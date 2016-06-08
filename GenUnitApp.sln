@@ -7,6 +7,12 @@ Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Informedica.GenUnit.App", "
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Informedica.GenUnit.Tests", "tests\Informedica.GenUnit.Tests\Informedica.GenUnit.Tests.fsproj", "{75C46A72-1748-417B-806C-8137CBB57CC8}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FE592046-9F11-4167-8DA1-7AFC2A5DCC94}"
+	ProjectSection(SolutionItems) = preProject
+		build.fsx = build.fsx
+		paket.dependencies = paket.dependencies
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
