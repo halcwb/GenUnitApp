@@ -11,6 +11,10 @@ Mono | .NET | Deploy |
 
 # Background
 
+# Running local
+
+To run this application locally you can use heroku. First install the [heroku toolbelt](https://toolbelt.heroku.com/) then add a `PATH` variable to the local fsi.exe and run
+`heroku local -f Procfile.local`.
 
 
 # Libray design

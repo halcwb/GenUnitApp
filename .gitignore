@@ -27,6 +27,7 @@ publishnuget.cmd
 
 # Add proc and app.json file
 !Procfile
+!Procfile.local
 !app.json
 
 # Add paket bootstrapper
