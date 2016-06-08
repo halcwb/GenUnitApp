@@ -1,1 +1,1 @@
-web: fsharpi-heroku bootstrap.fsx
+web: fsharpi-heroku heroku-bootstrap.fsx
