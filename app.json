@@ -1,0 +1,10 @@
+{
+  "name": "GenUnitApp",
+  "description": "Calculating with and converging from, units.",
+  "website": "https://halcwb.github.io/GenUnitApp",
+  "repository": "https://github.com/halcwb/GenUnitApp",
+  "logo": "https://halcwb.github.io/GenUnitApp/img/logo.png",
+  "env": {
+    "BUILDPACK_URL": "https://github.com/SuaveIO/mono-script-buildpack.git"
+  }
+}
