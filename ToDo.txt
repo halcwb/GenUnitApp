@@ -1,0 +1,42 @@
+GenUnitApp Calculate with units and perform unit conversions
+
+Minimum Marketing Features:
+- marketing home page
+
+User Stories:
+- "hello world" server
+- "hello world" user page
+
+Engineering Tasks:
+    Server:
+        - Build
+            - FAKE
+        - Test
+            - FsCheck
+            - NUnit
+            - FsUnit
+            - Unquote 
+            - Fuchu
+        - Integrate
+            - Travis
+            - Appveyor
+        - Release
+            - git
+        - Deploy
+            - setup Heroku
+            - setup Azure
+            - automate deploy via master
+    Client:
+        - build 
+            - Jake
+            - using Browserify
+        - static code analysis (Lint)
+          - Bring in all options
+        - continuous integration
+            - Travis
+            - Appveyor
+        - client-side testing
+            - Using Karma for cross browser
+        - continuous deployment
+            - setup Heroku
+            - setup Azure
