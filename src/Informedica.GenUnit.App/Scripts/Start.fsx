@@ -1,5 +1,6 @@
 ﻿//---------------------------------------------------------------------
 #load "load-project-release.fsx"
+
 open System
 open Suave // always open suave
 open Suave.Successful
@@ -7,6 +8,18 @@ open Suave.Http
 open Suave.Web // for config
 
 printfn "initializing script..."
+
+open System.IO
+
+let rec allFiles dirs =
+    if Seq.isEmpty dirs then Seq.empty else
+        seq { yield! dirs |> Seq.collect Directory.EnumerateFiles
+              yield! dirs |> Seq.collect Directory.EnumerateDirectories |> allFiles }
+
+let files =
+    seq { yield (System.Environment.CurrentDirectory + "/packages/Informedica.GenUtils.Lib") }
+    |> allFiles
+    |> String.concat ", "
 
 let config =
     let port = System.Environment.GetEnvironmentVariable("PORT")
@@ -17,6 +30,6 @@ let config =
 
 printfn "starting webserver ..."
 
-let app = OK "Hello World!"
+let app = OK files
 
 startWebServer config app
