@@ -17,7 +17,7 @@ github halcwb/GenBuild /scripts/appveyor.fsx
 // group project
 
 nuget FSPowerPack.Community
-nuget Informedica.GenUnits.Lib
+nuget Informedica.GenUtils.Lib
 nuget Suave
 nuget Suave.Testing
 
