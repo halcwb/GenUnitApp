@@ -28,6 +28,7 @@ publishnuget.cmd
 # Add proc and app.json file
 !Procfile
 !Procfile.local
+!Procfile.bash
 !app.json
 
 # Add .deployment for Azure
