@@ -16,7 +16,7 @@
 #r "System.Numerics.dll"
 #r "Suave/lib/net40/Suave.dll"
 #r "Informedica.GenUtils.Lib/lib/net45/Informedica.GenUtils.Lib.dll"
-#r "Informedica.GenUnits.lib/lib/net45/Informedica.GenUnits.lib.dll"
+//#r "Informedica.GenUnits.lib/lib/net45/Informedica.GenUnits.lib.dll"
 
 open System
 open Suave // always open suave
