@@ -11,7 +11,6 @@ open Informedica.GenUnits.Lib
 
 printfn "initializing script..."
 
-
 let msg =
     let eq = "200 mg[Mass]/ml[Volume] * 2 ml[Volume]/hour[Time]"
     let rs = eq |> Api.eval

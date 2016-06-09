@@ -8,5 +8,5 @@
 #r "System.dll"
 #r "System.Numerics.dll"
 #r "../../../packages/Suave/lib/net40/Suave.dll"
-#r "../../../packages/Informedica.GenUtils.Lib/lib/net45/Informedica.GenUtils.Lib.dll"
 #r "../../../packages/Informedica.GenUnits.lib/lib/net45/Informedica.GenUnits.lib.dll"
+#r "../../../packages/Informedica.GenUtils.Lib/lib/net45/Informedica.GenUtils.Lib.dll"
