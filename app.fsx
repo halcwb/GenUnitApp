@@ -24,14 +24,14 @@ open Suave.Successful
 open Suave.Http
 open Suave.Web // for config
 
-open Informedica.GenUnits.Lib
+//open Informedica.GenUnits.Lib
 
 printfn "initializing script..."
 
-let msg = //"Hello"
-    let eq = "200 mg[Mass]/ml[Volume] * 2 ml[Volume]/hour[Time]"
-    let rs = eq |> Api.eval
-    sprintf "This applicaton can calculate this expression:</br> %s = %s" eq rs
+let msg = "Hello"
+//    let eq = "200 mg[Mass]/ml[Volume] * 2 ml[Volume]/hour[Time]"
+//    let rs = eq |> Api.eval
+//    sprintf "This applicaton can calculate this expression:</br> %s = %s" eq rs
 
 let config =
     let port = System.Environment.GetEnvironmentVariable("PORT")
