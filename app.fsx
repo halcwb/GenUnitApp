@@ -16,7 +16,7 @@ Paket.Dependencies.Install (System.IO.File.ReadAllText "paket.dependencies")
 #r "System.Numerics.dll"
 #r "packages/Suave/lib/net40/Suave.dll"
 #r "packages/Informedica.GenUnits.lib/lib/net45/Informedica.GenUnits.lib.dll"
-#r "packages/Informedica.GenUtils.Lib/lib/net45/Informedica.GenUtils.Lib.dll"
+//#r "packages/Informedica.GenUtils.Lib/lib/net45/Informedica.GenUtils.Lib.dll"
 
 open System
 open Suave // always open suave
@@ -28,10 +28,10 @@ open Informedica.GenUnits.Lib
 
 printfn "initializing script..."
 
-let msg =
-    let eq = "200 mg[Mass]/ml[Volume] * 2 ml[Volume]/hour[Time]"
-    let rs = eq |> Api.eval
-    sprintf "This applicaton can calculate this expression:</br> %s = %s" eq rs
+let msg = "Hello"
+//    let eq = "200 mg[Mass]/ml[Volume] * 2 ml[Volume]/hour[Time]"
+//    let rs = eq |> Api.eval
+//    sprintf "This applicaton can calculate this expression:</br> %s = %s" eq rs
 
 let config =
     let port = System.Environment.GetEnvironmentVariable("PORT")
