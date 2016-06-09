@@ -7,19 +7,15 @@ open Suave.Successful
 open Suave.Http
 open Suave.Web // for config
 
+open Informedica.GenUnits.Lib
+
 printfn "initializing script..."
 
-open System.IO
 
-let rec allFiles dirs =
-    if Seq.isEmpty dirs then Seq.empty else
-        seq { yield! dirs |> Seq.collect Directory.EnumerateFiles
-              yield! dirs |> Seq.collect Directory.EnumerateDirectories |> allFiles }
-
-let files =
-    seq { yield (System.Environment.CurrentDirectory + "/packages/Informedica.GenUtils.Lib") }
-    |> allFiles
-    |> String.concat ", "
+let msg =
+    let eq = "200 mg[Mass]/ml[Volume] * 2 ml[Volume]/hour[Time]"
+    let rs = eq |> Api.eval
+    sprintf "This applicaton can calculate this expression:</br> %s = %s" eq rs
 
 let config =
     let port = System.Environment.GetEnvironmentVariable("PORT")
@@ -30,6 +26,6 @@ let config =
 
 printfn "starting webserver ..."
 
-let app = OK files
+let app = OK msg
 
 startWebServer config app

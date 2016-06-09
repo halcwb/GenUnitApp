@@ -65,6 +65,7 @@
     <None Include="Scripts\load-project-release.fsx" />
     <None Include="Scripts\Script.fsx" />
     <None Include="Scripts\Start.fsx" />
+    <None Include="paket.references" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
@@ -210,8 +211,8 @@
   <Choose>
     <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.5' Or $(TargetFrameworkVersion) == 'v4.5.1' Or $(TargetFrameworkVersion) == 'v4.5.2' Or $(TargetFrameworkVersion) == 'v4.5.3' Or $(TargetFrameworkVersion) == 'v4.6' Or $(TargetFrameworkVersion) == 'v4.6.1' Or $(TargetFrameworkVersion) == 'v4.6.2')">
       <ItemGroup>
-        <Reference Include="Informedica.GenCore.Lib">
-          <HintPath>..\..\packages\Informedica.GenCore.Lib\lib\net45\Informedica.GenCore.Lib.dll</HintPath>
+        <Reference Include="Informedica.GenUnits.lib">
+          <HintPath>..\..\packages\Informedica.GenUnits.lib\lib\net45\Informedica.GenUnits.lib.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>

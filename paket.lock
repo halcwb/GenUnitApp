@@ -32,7 +32,7 @@ NUGET
       NUnit (2.6.4)
     Fuchu (1.0.3)
       FSharp.Core (>= 3.1.2.1)
-    Informedica.GenCore.Lib (0.1.0-beta)
+    Informedica.GenUnits.lib (0.4.4-beta)
       FSPowerPack.Community
       Informedica.GenUtils.Lib
     Informedica.GenUtils.Lib (0.4.1-beta)
