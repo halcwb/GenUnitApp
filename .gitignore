@@ -30,6 +30,9 @@ publishnuget.cmd
 !Procfile.local
 !app.json
 
+# Add .deployment for Azure
+!.deployment
+
 # Add paket bootstrapper
 !/.paket/
 !/.paket/paket.bootstrapper.exe
