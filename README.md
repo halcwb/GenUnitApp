@@ -14,9 +14,9 @@ Deployment to Azure is working. Deployment to Heroku works locally, but due to m
 # Background
 Application that can parse string expressions like: </br>
 
-`200 mg[Mass]/ml[Volume] * 10 ml[Volume] </br>
+`200 mg[Mass]/ml[Volume] * 2 ml[Volume]` </br>
 
-Giving the right answer `2000 mg[Mass]`.
+Giving the right answer `400 mg[Mass]`.
 
 More comming...
 
