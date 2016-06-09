@@ -24,7 +24,7 @@ open Suave.Successful
 open Suave.Http
 open Suave.Web // for config
 
-open Informedica.GenUtils.Lib
+open Informedica.GenUnits.Lib
 
 printfn "initializing script..."
 
