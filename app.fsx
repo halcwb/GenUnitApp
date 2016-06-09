@@ -21,7 +21,7 @@ printfn "initializing script..."
 let msg = //"Hello"
     let eq = "200 mg[Mass]/ml[Volume] * 2 ml[Volume]/hour[Time]"
     let rs = eq |> Api.eval
-    sprintf "<b>This is the GenUnitApp!</b></br>" +
+    sprintf "<b>This is the GenUnitApp!</b></br></br>" +
     sprintf "This applicaton can calculate this expression:</br> %s = %s" eq rs
 
 let config =
