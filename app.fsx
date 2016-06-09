@@ -6,7 +6,17 @@ Paket.Dependencies.Install (System.IO.File.ReadAllText "paket.dependencies")
 #endif
 
 //---------------------------------------------------------------------
-#load "src/Informedica.GenUnit.App/Scripts/load-project-release.fsx"
+#I __SOURCE_DIRECTORY__
+#r "packages/FSPowerPack.Core.Community/Lib/Net40/FSharp.PowerPack.dll"
+#r "packages/FSPowerPack.Linq.Community/Lib/Net40/FSharp.PowerPack.Linq.dll"
+#r "packages/FSPowerPack.Metadata.Community/Lib/Net40/FSharp.PowerPack.Metadata.dll"
+#r "packages/FSPowerPack.Parallel.Seq.Community/Lib/Net40/FSharp.PowerPack.Parallel.Seq.dll"
+#r "System.Core.dll"
+#r "System.dll"
+#r "System.Numerics.dll"
+#r "packages/Suave/lib/net40/Suave.dll"
+#r "packages/Informedica.GenUnits.lib/lib/net45/Informedica.GenUnits.lib.dll"
+#r "packages/Informedica.GenUtils.Lib/lib/net45/Informedica.GenUtils.Lib.dll"
 
 open System
 open Suave // always open suave
