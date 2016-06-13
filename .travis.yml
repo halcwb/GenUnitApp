@@ -1,6 +1,9 @@
 language: csharp
 
-sudo: false  # use the new container-based Travis infrastructure 
+sudo: true  # use the new container-based Travis infrastructure 
+
+before_install:
+    - sudo npm install npm -g
 
 script: 
   - ./build.sh RunTests

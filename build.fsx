@@ -13,7 +13,7 @@ open Fake.NpmHelper
 #else
 open SourceLink
 #endif
-
+        
 let clientPath = "./client"
 
 Target "ClientTests" <| fun _ ->
