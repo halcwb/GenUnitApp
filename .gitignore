@@ -21,6 +21,11 @@
 !*.cmd
 !*.sh
 
+#Add client
+!/client
+!/client/package.json
+!/client/jakefile.js
+
 # ignore release and publish nuget commands
 release.cmd
 publishnuget.cmd
