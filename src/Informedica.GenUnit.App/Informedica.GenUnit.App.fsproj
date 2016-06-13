@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>a6392a72-d073-4ab7-9944-ec505a6f27e0</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <OutputType>Exe</OutputType>
     <RootNamespace>Informedica.GenUnit.App</RootNamespace>
     <AssemblyName>Informedica.GenUnit.App</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
