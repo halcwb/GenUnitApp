@@ -14,18 +14,19 @@ open Fake.NpmHelper
 open SourceLink
 #endif
 
+let clientPath = "./client"
 
 Target "ClientTests" <| fun _ ->
+    let npmFilePath = environVarOrDefault "NPM_FILE_PATH" defaultNpmParams.NpmFilePath
     Npm <| fun p ->
         { p with
             Command = Install Standard
-            WorkingDirectory = "./client" }
+            WorkingDirectory = clientPath }
     
     Npm <| fun p ->
         { p with
             Command = Run "jake-tests"
-            WorkingDirectory = "./client" }
-
+            WorkingDirectory = clientPath }
 
 
 Target "All" DoNothing
