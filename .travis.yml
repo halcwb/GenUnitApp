@@ -1,5 +1,8 @@
 language: csharp
 
+env:
+  - NPM_FILE_PATH=npm
+
 sudo: false  # use the new container-based Travis infrastructure 
 
 script: 

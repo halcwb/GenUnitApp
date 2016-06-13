@@ -17,7 +17,7 @@ open SourceLink
 let clientPath = "./client"
 
 Target "ClientTests" <| fun _ ->
-    let npmFilePath = environVarOrDefault "NPM_FILE_PATH" "npm"
+    let npmFilePath = environVarOrDefault "NPM_FILE_PATH" defaultNpmParams.NpmFilePath
     Npm <| fun p ->
         { p with
             Command = Install Standard
