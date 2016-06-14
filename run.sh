@@ -16,4 +16,4 @@ function run() {
   fi
 }
 
-run bin/Informedica.GenUnit.App.exe "$@"
+run src/GenUnitApp/bin/Release/GenUnitApp.exe "$@"
