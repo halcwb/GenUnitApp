@@ -68,12 +68,12 @@ publishnuget.cmd
 # Add source files
 !/scripts/
 !/src/
-!/src/Informedica.GenUnit.App/
-!/src/Informedica.GenUnit.App/Scripts/
+!/src/GenUnitApp/
+!/src/GenUnitApp/Scripts/
 
 # Add test files
 !/tests/
-!/tests/Informedica.GenUnit.Tests/
+!/tests/GenUnitApp.Tests/
 
 # Ignore generated documentation files
 /docs/content/**/*.md

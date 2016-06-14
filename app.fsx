@@ -1,5 +1,5 @@
 ﻿// Start the web server
-#load "src/Informedica.GenUnit.App/Scripts/Start.fsx"
+#load "src/GenUnitApp/Scripts/Start.fsx"
 
 
 

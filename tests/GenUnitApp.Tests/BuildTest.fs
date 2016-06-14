@@ -5,7 +5,6 @@ open NUnit.Framework
 open FsCheck
 open FsCheck.NUnit
 
-open Informedica.GenUnit.App
 
 [<TestFixture>]
 type ``Test that build was succesfull`` () =

@@ -3,10 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Informedica.GenUnit.App", "src\Informedica.GenUnit.App\Informedica.GenUnit.App.fsproj", "{A6392A72-D073-4AB7-9944-EC505A6F27E0}"
-EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Informedica.GenUnit.Tests", "tests\Informedica.GenUnit.Tests\Informedica.GenUnit.Tests.fsproj", "{75C46A72-1748-417B-806C-8137CBB57CC8}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FE592046-9F11-4167-8DA1-7AFC2A5DCC94}"
 	ProjectSection(SolutionItems) = preProject
 		app.fsx = app.fsx
@@ -27,16 +23,20 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{5B6F0502
 		docs\tools\generate.fsx = docs\tools\generate.fsx
 	EndProjectSection
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "GenUnitApp", "src\GenUnitApp\GenUnitApp.fsproj", "{9550937D-3FE4-4CDC-99C5-3806C96157FB}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "GenUnitApp.Tests", "tests\GenUnitApp.Tests\GenUnitApp.Tests.fsproj", "{75C46A72-1748-417B-806C-8137CBB57CC8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A6392A72-D073-4AB7-9944-EC505A6F27E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A6392A72-D073-4AB7-9944-EC505A6F27E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A6392A72-D073-4AB7-9944-EC505A6F27E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A6392A72-D073-4AB7-9944-EC505A6F27E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9550937D-3FE4-4CDC-99C5-3806C96157FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9550937D-3FE4-4CDC-99C5-3806C96157FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9550937D-3FE4-4CDC-99C5-3806C96157FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9550937D-3FE4-4CDC-99C5-3806C96157FB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{75C46A72-1748-417B-806C-8137CBB57CC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{75C46A72-1748-417B-806C-8137CBB57CC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{75C46A72-1748-417B-806C-8137CBB57CC8}.Release|Any CPU.ActiveCfg = Release|Any CPU

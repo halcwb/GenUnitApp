@@ -12,7 +12,7 @@
 
 // The name of the project
 // (used by attributes in AssemblyInfo, name of a NuGet package and directory in 'src')
-let project = "Informedica.GenUnit.App"
+let project = "GenUnitApp"
 
 // Short summary of the project
 // (used as description in AssemblyInfo and as a short summary for NuGet package)

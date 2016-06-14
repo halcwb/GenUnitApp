@@ -3,4 +3,8 @@
 //---------------------------------------------------------------------
 #load "load-project-release.fsx"
 
-Program.main [||]
+open System
+
+open GenUnitApp
+
+Environment.GetEnvironmentVariable("PORT") |> Server.start

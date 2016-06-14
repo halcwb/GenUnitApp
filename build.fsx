@@ -50,7 +50,6 @@ Target "All" DoNothing
 #else
   =?> ("SourceLink", Pdbstr.tryFind().IsSome )
 #endif
-  ==> "NuGet"
   ==> "BuildPackage"
 
 "CleanDocs"
@@ -68,7 +67,6 @@ Target "All" DoNothing
   ==> "Release"
 
 "BuildPackage"
-  ==> "PublishNuget"
   ==> "Release"
 
 
