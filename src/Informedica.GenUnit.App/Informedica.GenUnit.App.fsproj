@@ -60,7 +60,7 @@
     <Content Include="InstallationDummyFile.txt">
       <Paket>True</Paket>
     </Content>
-    <Compile Include="Library1.fs" />
+    <Compile Include="Program.fs" />
     <None Include="Scripts\load-references-release.fsx" />
     <None Include="Scripts\load-project-release.fsx" />
     <None Include="Scripts\Script.fsx" />
