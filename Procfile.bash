@@ -1,1 +1,1 @@
-web: fsharpi app.fsx
+web: run.sh
