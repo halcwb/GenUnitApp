@@ -22,9 +22,9 @@
 !*.sh
 
 #Add client
-!/client
-!/client/package.json
-!/client/jakefile.js
+!*.js
+!*.json
+!*.html
 
 # ignore release and publish nuget commands
 release.cmd
@@ -70,6 +70,15 @@ publishnuget.cmd
 !/src/
 !/src/GenUnitApp/
 !/src/GenUnitApp/Scripts/
+!/client/
+!/client/build/
+!/client/build/lint/
+!/client/src/
+!/client/src/lib
+!/client/src/ui
+!/client/tests/
+!/client/tests/lib
+!/client/tests/ui
 
 # Add test files
 !/tests/

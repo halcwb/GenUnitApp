@@ -13,7 +13,8 @@
     "nodeunit": "^0.9.1",
     "procfile": "^0.1.1",
     "shelljs": "^0.5.3",
-    "underscore": "^1.8.3"
+    "underscore": "^1.8.3",
+    "debug": "^2.2.0"
   },
   "devDependencies": {
     "karma-chrome-launcher": "^0.1.12",
