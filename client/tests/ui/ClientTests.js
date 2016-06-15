@@ -2,17 +2,14 @@
  * Created by halcwb on 14/06/16.
  */
 
-/* global dump, chai, webix, $$, medcalc*/
+/* global dump, expect, assert, webix, $$, medcalc*/
 
-var assert = chai.assert;
-var expect = chai.expect;
 
-describe("Build", function () {
+describe("Client", function () {
     "use strict";
 
     it("should run", function () {
-        assert.equal('bar', 'bar');
-        expect('foo').to.equal('foo');
+        expect(1).to.equal(1);
     });
 
 

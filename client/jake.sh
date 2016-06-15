@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 # Start up jake
 # Pass through command line arguments
-DEBUG=* node_modules/.bin/jake $*
+. build/scripts/run_jake.sh -f build/scripts/jakefile.js $*
