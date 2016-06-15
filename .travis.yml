@@ -8,5 +8,6 @@ sudo: false  # use the new container-based Travis infrastructure
 script: 
   - ./build.sh ClientTests
 
-addons:
-  firefox: "latest"  
+before_script:
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
