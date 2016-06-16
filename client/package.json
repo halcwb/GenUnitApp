@@ -7,6 +7,7 @@
     "node": "6.2.1"
   },
   "dependencies": {
+    "webix": "^3.3.17"
   },
   "devDependencies": {
     "simplebuild-karma": "^1.0.0",
