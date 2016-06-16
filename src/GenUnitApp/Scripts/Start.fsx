@@ -4,7 +4,17 @@
 #load "load-project-release.fsx"
 
 open System
+open System.IO
 
 open GenUnitApp
 
-Environment.GetEnvironmentVariable("PORT") |> Server.start
+let start () = 
+    Environment.CurrentDirectory <- __SOURCE_DIRECTORY__
+
+    let home = 
+        Path.Combine(Environment.CurrentDirectory, @"..\..\..\")
+        |> Directory.GetParent
+        |> (fun i -> i.FullName)
+
+
+    Environment.GetEnvironmentVariable("PORT") |> Server.start home

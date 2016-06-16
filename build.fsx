@@ -4,6 +4,7 @@
 System.Environment.CurrentDirectory <- __SOURCE_DIRECTORY__
 
 #load "paket-files/halcwb/GenBuild/scripts/targets.fsx"
+#load "scripts/buildClient.fsx"
 
 open System
 
@@ -14,22 +15,6 @@ open Fake.NpmHelper
 open SourceLink
 #endif
         
-let clientPath = "./client"
-
-Target "ClientTests" <| fun _ ->
-    let npmFilePath = environVarOrDefault "NPM_FILE_PATH" defaultNpmParams.NpmFilePath
-    Npm <| fun p ->
-        { p with
-            Command = Install Standard
-            WorkingDirectory = clientPath
-            NpmFilePath = npmFilePath }
-    
-    Npm <| fun p ->
-        { p with
-            Command = Run "jake-tests"
-            WorkingDirectory = clientPath 
-            NpmFilePath = npmFilePath }
-
 
 Target "All" DoNothing
 
@@ -39,6 +24,7 @@ Target "All" DoNothing
   ==> "Build"
   ==> "CopyBinaries"
   ==> "RunTests"
+  ==> "BuildClient"
   ==> "ClientTests"
   ==> "GenerateReferenceDocs"
   ==> "GenerateDocs"

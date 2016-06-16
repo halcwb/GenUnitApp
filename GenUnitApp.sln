@@ -28,6 +28,12 @@ Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "GenUnitApp", "src\GenUnitAp
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "GenUnitApp.Tests", "tests\GenUnitApp.Tests\GenUnitApp.Tests.fsproj", "{75C46A72-1748-417B-806C-8137CBB57CC8}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{22914310-A789-4C1B-B679-47FBDAACD7A4}"
+	ProjectSection(SolutionItems) = preProject
+		scripts\buildClient.fsx = scripts\buildClient.fsx
+		scripts\settings.fsx = scripts\settings.fsx
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,5 +55,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{CCB3DE1B-B93E-4C98-830D-B055BE5286F6} = {E5105618-BD66-4E38-BC94-2735422E8B4A}
 		{5B6F0502-A040-44E2-8326-AF48E8747E15} = {E5105618-BD66-4E38-BC94-2735422E8B4A}
+		{22914310-A789-4C1B-B679-47FBDAACD7A4} = {E5105618-BD66-4E38-BC94-2735422E8B4A}
 	EndGlobalSection
 EndGlobal

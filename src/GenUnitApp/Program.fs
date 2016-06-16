@@ -14,9 +14,11 @@ let main argv =
     
     printfn "initializing script..."
 
+    let home = AppDomain.CurrentDomain.RelativeSearchPath
+
     match argv |> List.ofArray with
-    | p::_ -> Server.start p
-    |  _   -> Server.start ""
+    | p::_ -> Server.start home p
+    |  _   -> Server.start home ""
 
     printfn "starting webserver ..."
     
