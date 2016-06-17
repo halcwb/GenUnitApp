@@ -1,5 +1,7 @@
 language: csharp
 
+sudo: required
+
 install:
   - sudo ./install_travis.sh
 
