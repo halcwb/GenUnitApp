@@ -3,40 +3,43 @@ GenUnitApp Calculate with units and perform unit conversions
 Minimum Marketing Features:
 - marketing home page
 
-User Stories:
+User Stories: - working but do not communicate yet
 - "hello world" server
 - "hello world" user page
 
 Engineering Tasks:
+    - Make sure that both windows and *nx use the same node version
     Server:
-        - Build
+        - Build working
             - FAKE
-        - Test
+        - Test working
             - FsCheck
             - NUnit
             - FsUnit
             - Unquote 
             - Fuchu
-        - Integrate
+        - Integrate working
             - Travis
             - Appveyor
         - Release
-            - git
+            - git working
         - Deploy
-            - setup Heroku
-            - setup Azure
-            - automate deploy via master
+            - setup Heroku not working yet
+            - setup Azure not working yet
+            - automate deploy via master working for azure
     Client:
         - build 
-            - Jake
-            - using Browserify
-        - static code analysis (Lint)
+            - Jake working
+            - using Browserify - not working yet
+        - static code analysis (Lint) working
           - Bring in all options
-        - continuous integration
+        - continuous integration working
             - Travis
             - Appveyor
-        - client-side testing
+        - client-side testing working
             - Using Karma for cross browser
-        - continuous deployment
+        - continuous deployment not working yet
+            - look for different setup using docker
             - setup Heroku
             - setup Azure
+        - setup webix to use on client side - working

@@ -8,7 +8,7 @@
 
     var shell = require("shelljs");
 
-    var debug = require('debug')('Jakefile');
+    var debug = require('debug')('jakefile');
 
     var karma = require("simplebuild-karma");
     var mocha = require("../util/mocha_runner.js");
@@ -19,7 +19,7 @@
     var paths = require('../config/paths.js');
 
     var browserify = require("../util/browserify_runner.js");
-    var version = require("../util/version_checker.js");
+    var checkVersion = require("../util/version_checker.js");
 
     var KARMA_CONFIG = "./build/config/karma.conf.js";
     var MOCHA_CONFIG = {
@@ -116,10 +116,11 @@
 
     desc("Check Node version");
     task("version", function() {
-        debug("Checking Node.js version: .");
-        version.check({
+        var version = require("../../package.json").engines.node;
+        debug("Checking Node.js version: " + version);
+        checkVersion.check({
             name: "Node",
-            expected: require("../../package.json").engines.node,
+            expected: version,
             actual: process.version,
             strict: strict
         }, complete, fail);
@@ -129,7 +130,36 @@
     //*** CREATE DIRECTORIES
 
     directory(paths.testDir);
-    directory(paths.uiDistDir);
+    directory(paths.distDir);
+
+
+    //*** BUILD
+
+    desc("Build distribution package");
+    task("build", [ "prepDistDir", "buildClient" ]);
+
+    task("prepDistDir", function() {
+        shell.rm("-rf", paths.distDir);
+    });
+
+    task("buildClient", [ paths.distDir, "bundleClientJs" ], function() {
+        debug("Copying client code: .");
+        shell.cp(paths.webixDir + "/webix.js", paths.webixDir + "/webix.css", paths.distDir);
+        shell.cp(paths.srcDir + "/*.html", paths.srcDir + "/*.css", paths.distDir);
+    });
+
+    task("bundleClientJs", [ paths.distDir ], function() {
+        debug("Bundling browser code with Browserify: .");
+        browserify.bundle({
+            entry: paths.entryPoint,
+            outfile: paths.distBundle,
+            options: {
+                standalone: "app",
+                debug: true
+            }
+        }, complete, fail);
+    }, { async: true });
+
 
 })();
 
