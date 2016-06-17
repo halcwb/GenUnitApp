@@ -8,14 +8,13 @@
         generatedDir: "generated",
         testDir: "generated/tests",
         distDir: "generated/dist",
-        uiDistDir: "generated/dist/ui",
+        webixDir: "node_modules/webix",
 
-        uiDir: "src/ui",
-        uiEntryPoint: "src/ui/example.js",
-        uiDistBundle: "generated/dist/ui/bundle.js",
+        srcDir: "src",
+        entryPoint: "src/ui/app.js",
+        distBundle: "generated/dist/bundle.js",
 
-        libDir: "src/lib",
-        libEntryPoint: "src/run.js"
+        libDir: "src/lib"
     };
 
 }());

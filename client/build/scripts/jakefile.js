@@ -130,7 +130,36 @@
     //*** CREATE DIRECTORIES
 
     directory(paths.testDir);
-    directory(paths.uiDistDir);
+    directory(paths.distDir);
+
+
+    //*** BUILD
+
+    desc("Build distribution package");
+    task("build", [ "prepDistDir", "buildClient" ]);
+
+    task("prepDistDir", function() {
+        shell.rm("-rf", paths.distDir);
+    });
+
+    task("buildClient", [ paths.distDir, "bundleClientJs" ], function() {
+        debug("Copying client code: .");
+        shell.cp(paths.webixDir + "/webix.js", paths.webixDir + "/webix.css", paths.distDir);
+        shell.cp(paths.srcDir + "/*.html", paths.srcDir + "/*.css", paths.distDir);
+    });
+
+    task("bundleClientJs", [ paths.distDir ], function() {
+        debug("Bundling browser code with Browserify: .");
+        browserify.bundle({
+            entry: paths.entryPoint,
+            outfile: paths.distBundle,
+            options: {
+                standalone: "app",
+                debug: true
+            }
+        }, complete, fail);
+    }, { async: true });
+
 
 })();
 
