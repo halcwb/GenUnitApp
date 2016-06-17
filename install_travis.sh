@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
-~/.nvm/v0.10.36/bin/npm cache clean -f
-~/.nvm/v0.10.36/bin/npm install -g n
-n stable
+sudo ~/.nvm/v0.10.36/bin/npm cache clean -f
+sudo ~/.nvm/v0.10.36/bin/npm install -g n
+sudo n stable

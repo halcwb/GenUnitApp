@@ -1,12 +1,14 @@
 language: csharp
 
+sudo: required
+
 install:
-  - ./install_travis.sh
+  - sudo ./install_travis.sh
 
 env:
   - NPM_FILE_PATH=npm
 
-sudo: false  # use the new container-based Travis infrastructure 
+# sudo: false  # use the new container-based Travis infrastructure 
 
 script: 
   - ./build.sh ClientTests
