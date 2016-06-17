@@ -1,1 +1,2 @@
-src\GenUnitApp\bin\Release\GenUnitApp.exe %*
+call build.cmd build
+call "start.cmd %*"
