@@ -82,6 +82,7 @@ publishnuget.cmd
 !/client/tests/
 !/client/tests/lib
 !/client/tests/ui
+!/client/tests/smoke
 
 # Add test files
 !/tests/
