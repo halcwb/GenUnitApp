@@ -1,7 +1,10 @@
 language: csharp
 
+install:
+  - sudo ./install_travis.sh
+
 env:
-  - NPM_FILE_PATH=~/.nvm/v0.10.36/bin/npm
+  - NPM_FILE_PATH=npm
 
 sudo: false  # use the new container-based Travis infrastructure 
 
