@@ -11,10 +11,15 @@ module Server =
     open Suave.Successful
     open Suave.Web // for config
 
+    open Informedica.GenUtils.Lib.BCL
     open Informedica.GenUnits.Lib
 
     let start home port =
-        let home = Path.Combine(home, @"client\generated\dist")
+        let clientDir = 
+            @"client\generated\dist" 
+            |> String.replace "\\" (string Path.DirectorySeparatorChar)
+
+        let home = Path.Combine(home, clientDir)
         printfn "Starting server on: %s with home: %s" port home
 
         let msg = 
