@@ -7,7 +7,7 @@ nuget FSharp.Formatting
 nuget Fake
 nuget SourceLink.Fake
 nuget Newtonsoft.Json
-nuget Npm.js
+nuget Npm
 
 github fsharp/FAKE modules/Octokit/Octokit.fsx
 

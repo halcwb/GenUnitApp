@@ -44,11 +44,14 @@ NUGET
       Microsoft.Bcl.Build (>= 1.0.14)
     Newtonsoft.Json (8.0.3)
     Node.js (5.3)
-    Npm.js (2.13.1)
+    NoGit (0.1)
+      Node.js (>= 0.12)
+    Npm (3.5.2)
       Node.js (>= 0.12.7)
+      NoGit (>= 0.1)
     NUnit (2.6.4)
     NUnit.Runners (2.6.4)
-    Octokit (0.19)
+    Octokit (0.20)
       Microsoft.Net.Http  - framework: net10, net11, net20, net30, net35, net40, net40-full
     SourceLink.Fake (1.1)
     Suave (1.1.2)
@@ -60,7 +63,7 @@ NUGET
     Unquote (3.1.1)
 GITHUB
   remote: fsharp/FAKE
-    modules/Octokit/Octokit.fsx (60acb2f035cb39f2bd40a6c58a4de10d915da248)
+    modules/Octokit/Octokit.fsx (5a9789b05e5713b55ea996baf8feb3561b6b926d)
       Octokit
   remote: halcwb/GenBuild
     scripts/appveyor.fsx (b9d2609761c58519c15fa4ffe558ecf1b2809d5a)
