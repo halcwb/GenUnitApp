@@ -6,7 +6,7 @@ install:
   - sudo ./install_travis.sh
 
 env:
-  - NPM_FILE_PATH=npm
+  - NPM_FILE_PATH=/usr/local/n/versions/node/6.2.1/bin/npm
 
 # sudo: false  # use the new container-based Travis infrastructure 
 
