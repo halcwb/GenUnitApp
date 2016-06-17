@@ -1,9 +1,7 @@
 language: csharp
 
-sudo: required
-
 install:
-  - sudo ./install_travis.sh
+  - ./install_travis.sh
 
 env:
   - NPM_FILE_PATH=npm
