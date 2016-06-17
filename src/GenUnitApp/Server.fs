@@ -14,6 +14,7 @@ module Server =
     open Informedica.GenUnits.Lib
 
     let start home port =
+        let home = home + @"\client\generated\dist"
         printfn "Starting server on: %s with home: %s" port home
 
         let msg = //"Hello"
@@ -32,9 +33,12 @@ module Server =
         
         let app = 
             choose 
-                [ GET >=> choose [
-                        path "/" >=> Files.browseFileHome "/client/generated/dist/index.html"
-                        Files.browseHome ] ]       
+                [ GET >=> choose 
+                    [
+                        path "/" >=> Files.browseFileHome "index.html"
+                        Files.browseHome 
+                    ] 
+                ]       
 
         startWebServer config app
         
