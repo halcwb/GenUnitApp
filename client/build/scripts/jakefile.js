@@ -8,7 +8,7 @@
 
     var shell = require("shelljs");
 
-    var debug = require('debug')('Jakefile');
+    var debug = require('debug')('jakefile');
 
     var karma = require("simplebuild-karma");
     var mocha = require("../util/mocha_runner.js");
@@ -19,7 +19,7 @@
     var paths = require('../config/paths.js');
 
     var browserify = require("../util/browserify_runner.js");
-    var version = require("../util/version_checker.js");
+    var checkVersion = require("../util/version_checker.js");
 
     var KARMA_CONFIG = "./build/config/karma.conf.js";
     var MOCHA_CONFIG = {
@@ -116,10 +116,11 @@
 
     desc("Check Node version");
     task("version", function() {
-        debug("Checking Node.js version: .");
-        version.check({
+        var version = require("../../package.json").engines.node;
+        debug("Checking Node.js version: " + version);
+        checkVersion.check({
             name: "Node",
-            expected: require("../../package.json").engines.node,
+            expected: version,
             actual: process.version,
             strict: strict
         }, complete, fail);
