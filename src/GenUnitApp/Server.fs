@@ -33,7 +33,7 @@ module Server =
         let app = 
             choose 
                 [ GET >=> choose [
-                        path "/" >=> Files.browseFileHome "/client/index.html"
+                        path "/" >=> Files.browseFileHome "/client/generated/dist/index.html"
                         Files.browseHome ] ]       
 
         startWebServer config app
