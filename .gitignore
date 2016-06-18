@@ -78,6 +78,7 @@ publishnuget.cmd
 !/client/build/util/
 !/client/src/
 !/client/src/lib
+!/client/src/lib/ajax/
 !/client/src/ui
 !/client/tests/
 !/client/tests/lib
