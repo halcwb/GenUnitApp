@@ -8,7 +8,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		app.fsx = app.fsx
 		build.fsx = build.fsx
 		paket.dependencies = paket.dependencies
-		scripts\settings.fsx = scripts\settings.fsx
+		README.md = README.md
+		RELEASE_NOTES.md = RELEASE_NOTES.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{E5105618-BD66-4E38-BC94-2735422E8B4A}"
