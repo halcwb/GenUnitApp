@@ -34,7 +34,8 @@
     "simplebuild-jshint": "^1.3.0"
   },
   "scripts": {
-    "jake-tests": "node_modules/.bin/jake -f build/scripts/jakefile.js test"
+    "build": "node_modules/.bin/jake -f build/scripts/jakefile.js build",
+    "test": "node_modules/.bin/jake -f build/scripts/jakefile.js test"
   },
   "repository": {
     "type": "git",
