@@ -113,7 +113,7 @@ let Npm setParams =
     defaultNpmParams |> setParams |> run
 
 
-let buildClient () =
+let npmInstall () =
     let npmFilePath = environVarOrDefault "NPM_FILE_PATH" defaultNpmParams.NpmFilePath
 
     Npm <| fun p ->
@@ -122,17 +122,28 @@ let buildClient () =
             WorkingDirectory = clientPath
             NpmFilePath = npmFilePath }
 
+
+let buildClient () = 
+    let npmFilePath = environVarOrDefault "NPM_FILE_PATH" defaultNpmParams.NpmFilePath
+    
+    Npm <| fun p ->
+        { p with
+            Command = Run "build"
+            WorkingDirectory = clientPath 
+            NpmFilePath = npmFilePath }
+
 let testClient () =
     let npmFilePath = environVarOrDefault "NPM_FILE_PATH" defaultNpmParams.NpmFilePath
     
     Npm <| fun p ->
         { p with
-            Command = Run "jake-tests"
+            Command = Run "test"
             WorkingDirectory = clientPath 
             NpmFilePath = npmFilePath }
 
 
-Target "BuildClient" <| fun _ ->  buildClient ()
+
+Target "BuildClient" <| fun _ -> npmInstall ()
     
 
 Target "ClientTests" <| fun _ -> testClient ()

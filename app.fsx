@@ -4,8 +4,10 @@
 
 // Build the client, i.e. run npm install
 // making sure all javascript libs are in place
+BuildClient.npmInstall()
+// And build the client, i.e. generate bundled client
+// in generated/dist dir
 BuildClient.buildClient()
-BuildClient.testClient()
 
 // Start the webserver
 Start.start ()
