@@ -1,5 +1,5 @@
 environment:
-  PAKET.VERSION: "3.3.1"
+  PAKET.VERSION: "3.1.7.0"
   matrix:
     # node.js
     - nodejs_version: "6"
