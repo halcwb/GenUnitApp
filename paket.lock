@@ -1,7 +1,7 @@
 REDIRECTS: ON
 NUGET
   remote: https://www.nuget.org/api/v2
-    FAKE (4.28)
+    FAKE (4.29.2)
     FsCheck (2.5)
       FSharp.Core (>= 3.1.2.5)
     FsCheck.NUnit (2.5)
@@ -54,18 +54,18 @@ NUGET
     Octokit (0.20)
       Microsoft.Net.Http  - framework: net10, net11, net20, net30, net35, net40, net40-full
     SourceLink.Fake (1.1)
-    Suave (1.1.2)
+    Suave (1.1.3)
       FSharp.Core (>= 3.1.2.5)
-    Suave.Testing (1.1.2)
+    Suave.Testing (1.1.3)
       FSharp.Core (>= 3.1.2.5)
       Fuchu (>= 1.0.2)
-      Suave (>= 1.1.2)
+      Suave (>= 1.1.3)
     Unquote (3.1.1)
 GITHUB
   remote: fsharp/FAKE
-    modules/Octokit/Octokit.fsx (5a9789b05e5713b55ea996baf8feb3561b6b926d)
+    modules/Octokit/Octokit.fsx (c063bf415dac7f7d4df4c37fe76badce76cae3c3)
       Octokit
   remote: halcwb/GenBuild
-    scripts/appveyor.fsx (b9d2609761c58519c15fa4ffe558ecf1b2809d5a)
-    scripts/targets.fsx (b9d2609761c58519c15fa4ffe558ecf1b2809d5a)
-    scripts/travis.fsx (b9d2609761c58519c15fa4ffe558ecf1b2809d5a)
+    scripts/appveyor.fsx (aed42e1638bbbfbec57e1df989944f1a50df4064)
+    scripts/targets.fsx (aed42e1638bbbfbec57e1df989944f1a50df4064)
+    scripts/travis.fsx (aed42e1638bbbfbec57e1df989944f1a50df4064)
