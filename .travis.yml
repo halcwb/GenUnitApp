@@ -1,14 +1,13 @@
 language: csharp
 
-sudo: required
+sudo: required # need to update node
+
+os:
+  - linux
+  - osx
 
 install:
-  - sudo ./install_travis.sh
-
-env:
-  - NPM_FILE_PATH=/usr/local/n/versions/node/6.2.1/bin/npm
-
-# sudo: false  # use the new container-based Travis infrastructure 
+  - ./node_update.sh 6.2.2
 
 script: 
   - ./build.sh ClientTests

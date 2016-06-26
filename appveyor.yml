@@ -1,14 +1,23 @@
 environment:
-  deploy_password:
+  matrix:
+    # node.js
+    - nodejs_version: "6"
+
+# Build on both platforms
+platform:
+  - x64
 
 shallow_clone: true
 
-before_build:
+# Install scripts. (runs after repo cloning)
+install:
+  # Get the latest version of $env:nodejs_version
+  - ps: Install-Product node $env:nodejs_version  
+  - ps: node --version
+  - ps: npm install -g npm
+  - ps: npm --version
 
 build_script:
   - build.cmd clienttests
 
 test: off
-  
-deploy_script:
-  #- deploy.cmd
