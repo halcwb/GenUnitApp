@@ -3,7 +3,7 @@ language: csharp
 sudo: required # need to update node
 
 env:
-  - PAKET.VERSION="3.1.7.0"
+  - PAKET.VERSION="3.1.9"
 
 os:
   - linux

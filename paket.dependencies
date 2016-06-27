@@ -25,8 +25,7 @@ nuget Suave.Testing
 // group test
 
 nuget FsUnit
-nuget NUnit < 3.0
-nuget NUnit.Runners < 3.0
+nuget NUnit
+nuget NUnit.Runners
 nuget Unquote
 nuget FsCheck
-nuget FsCheck.NUnit

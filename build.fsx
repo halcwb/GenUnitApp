@@ -14,7 +14,7 @@ open Fake.NpmHelper
 #else
 open SourceLink
 #endif
-        
+
 Target "All" DoNothing
 
 
@@ -22,7 +22,7 @@ Target "All" DoNothing
   ==> "AssemblyInfo"
   ==> "Build"
   ==> "CopyBinaries"
-  ==> "RunTests"
+  ==> "NUnit3"
   ==> "BuildClient"
   ==> "ClientTests"
   ==> "GenerateReferenceDocs"
@@ -30,7 +30,7 @@ Target "All" DoNothing
   ==> "All"
   =?> ("ReleaseDocs",isLocalBuild)
 
-"All" 
+"All"
 #if MONO
 #else
   =?> ("SourceLink", Pdbstr.tryFind().IsSome )
@@ -47,7 +47,7 @@ Target "All" DoNothing
 
 "GenerateHelp"
   ==> "KeepRunning"
-    
+
 "ReleaseDocs"
   ==> "Release"
 
