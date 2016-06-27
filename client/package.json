@@ -4,7 +4,7 @@
   "description": "Unit Calculator App",
   "main": "jakefile.js",
   "engines": {
-    "node": "6.2.1"
+    "node": "6.2.2"
   },
   "dependencies": {
     "webix": "^3.3.17"

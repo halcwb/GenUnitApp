@@ -1,6 +1,6 @@
 language: csharp
 
-sudo: required # need to update node
+sudo: false 
 
 env:
   - PAKET.VERSION="3.1.9"
@@ -9,12 +9,14 @@ os:
   - linux
   - osx
 
-install:
-  - ./node_update.sh 6.2.2
-
-script: 
-  - ./build.sh ClientTests
-
 before_script:
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
+
+install:
+  - ./node_install.sh 6.2.2
+
+script: 
+  - . ~/.nvm/nvm.sh # manually source nvm
+  - ./build.sh clienttests
+

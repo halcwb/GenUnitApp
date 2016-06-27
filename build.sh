@@ -36,5 +36,14 @@ run .paket/paket.exe restore
 
 [ ! -e build.fsx ] && run .paket/paket.exe update
 
+# Ensure npm build of client if there is a client with a package.json
+if [[ -d client ]] && [[ -f client/package.json ]] 
+then
+  echo "Building Client"
+  cd client 
+  npm install
+  cd ..
+fi
+
 run packages/FAKE/tools/FAKE.exe "$@" $FSIARGS build.fsx
 

@@ -6,146 +6,39 @@ open System
 open System.IO
 
 open Fake
+open Fake.ProcessHelper
+open Fake.StringHelper
 
 let dir = (new DirectoryInfo(__SOURCE_DIRECTORY__)).Parent.FullName
-Environment.CurrentDirectory <- dir
-    
-let clientPath   = "./client"
-let nodeFilePath = "./packages/Node.js/node.exe"
-let npmFilePath  = "./packages/Npm/node_modules/npm/bin/npm-cli.js"
 
-/// Default paths to node
-let private nodeFileName = 
+let workDir = Path.Combine(dir, "client")
+
+Environment.CurrentDirectory <- workDir
+
+let jakePath =
     match isUnix with
-    | true -> ""
-    | _    -> nodeFilePath
+    | false -> Path.Combine(workDir, "jake.cmd")
+    | true  -> Path.Combine(workDir, "jake.sh")
 
-/// Default paths to Npm
-let private npmFileName =
-    match isUnix with
-    | true -> "/usr/local/bin/npm"
-    | _    -> npmFilePath
+let runtests = "default"
+let build    = "build"
 
-/// Arguments for the Npm install command
-type InstallArgs =
-| Standard
-| Forced
+let runClient arg =
+    let res =
+        ExecProcessAndReturnMessages (fun info ->
+            info.FileName <- jakePath
+            info.Arguments <- arg
+            info.WorkingDirectory <- workDir)
+            (TimeSpan.FromMinutes 2.)
 
-/// The list of supported Npm commands. The `Custom` alternative
-/// can be used for other commands not in the list until they are
-/// implemented
-type NpmCommand =
-| Install of InstallArgs
-| Run of string
-| Custom of string
+    for msg in res.Messages do
+        printfn "%s" msg
 
-/// The Npm parameter type
-type NpmParams = 
-    { Src: string
-      NodeFilePath: string
-      NpmFilePath: string
-      WorkingDirectory: string
-      Command: NpmCommand
-      Timeout: TimeSpan }
+    if res.ExitCode <> 0 then
+        failwith
+        <| sprintf "Client code didn't pass:\n %s"
+                   (res.Errors |> String.concat "\n")
 
-/// Npm default parameters
-let defaultNpmParams = 
-    { Src = ""
-      NodeFilePath = nodeFileName
-      NpmFilePath = npmFileName
-      Command = Install Standard
-      WorkingDirectory = "."
-      Timeout = TimeSpan.MaxValue }
+Target "BuildClient" <| fun _ -> runClient build
 
-let private parseInstallArgs = function
-    | Standard -> ""
-    | Forced   -> " --force"
-
-let private parse = function
-    | Install installArgs -> sprintf "install%s" (installArgs |> parseInstallArgs)
-    | Run str -> sprintf "run %s" str
-    | Custom str -> str
-
-let run npmParams =
-    let npmPath = Path.GetFullPath(npmParams.NpmFilePath)
-    let nodePath = 
-        if npmParams.NodeFilePath |> String.IsNullOrEmpty then ""
-        else Path.GetFullPath(npmParams.NodeFilePath)
-    let fileName = 
-        if nodePath |> String.IsNullOrEmpty then npmPath else nodePath
-    let arguments = 
-        let args = npmParams.Command |> parse
-        if nodePath |> String.IsNullOrEmpty then args
-        else sprintf "%s %s" npmPath args
-    let workingDir = Path.GetFullPath(npmParams.WorkingDirectory)
-
-    let ok = 
-        execProcess (fun info ->
-            info.FileName <- fileName
-            info.WorkingDirectory <- workingDir
-            info.Arguments <- arguments) npmParams.Timeout
-    if not ok then failwith (sprintf "'npm %s' task failed" arguments)
-
-/// Runs npm with the given modification function. Make sure to have npm installed,
-/// you can install npm with nuget or a regular install. To change which `Npm` executable
-/// to use you can set the `NpmFilePath` parameter with the `setParams` function.
-///
-/// ## Parameters
-///
-///  - `setParams` - Function used to overwrite the Npm default parameters.
-///
-/// ## Sample
-///
-///        Target "Web" (fun _ ->
-///            Npm (fun p ->
-///                   { p with
-///                       Command = Install Standard
-///                       WorkingDirectory = "./src/FAKESimple.Web/"
-///                   })
-///
-///            Npm (fun p ->
-///                   { p with
-///                       Command = (Run "build")
-///                       WorkingDirectory = "./src/FAKESimple.Web/"
-///                   })
-///        )
-let Npm setParams =
-    defaultNpmParams |> setParams |> run
-
-
-let npmInstall () =
-    let npmFilePath = environVarOrDefault "NPM_FILE_PATH" defaultNpmParams.NpmFilePath
-
-    Npm <| fun p ->
-        { p with
-            Command = Install Standard
-            WorkingDirectory = clientPath
-            NpmFilePath = npmFilePath }
-
-
-let buildClient () = 
-    let npmFilePath = environVarOrDefault "NPM_FILE_PATH" defaultNpmParams.NpmFilePath
-    
-    Npm <| fun p ->
-        { p with
-            Command = Run "build"
-            WorkingDirectory = clientPath 
-            NpmFilePath = npmFilePath }
-
-let testClient () =
-    let npmFilePath = environVarOrDefault "NPM_FILE_PATH" defaultNpmParams.NpmFilePath
-    
-    Npm <| fun p ->
-        { p with
-            Command = Run "test"
-            WorkingDirectory = clientPath 
-            NpmFilePath = npmFilePath }
-
-
-
-Target "BuildClient" <| fun _ -> npmInstall ()
-    
-
-Target "ClientTests" <| fun _ -> testClient ()
-
-
+Target "ClientTests" <| fun _ -> runClient runtests
