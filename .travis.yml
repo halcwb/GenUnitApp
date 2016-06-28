@@ -7,11 +7,11 @@ env:
 
 os:
   - linux
-  - osx
+#  - osx
 
 before_script:
   - export DISPLAY=:99.0
-  - test -e /etc/init.d/svfb && sh -e /etc/init.d/xvfb start
+  - sh -e /etc/init.d/xvfb start
 
 install:
   - ./node_install.sh 6.2.2
