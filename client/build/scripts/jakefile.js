@@ -1,25 +1,7 @@
 /*global desc, task, jake, fail, complete, directory */
 "use strict";
 
-
 (function () {
-
-    var startTime = Date.now();
-
-    var shell = require("shelljs");
-
-    var debug = require('debug')('jakefile');
-
-    var karma = require("simplebuild-karma");
-    var mocha = require("../util/mocha_runner.js");
-
-    var jshint = require("simplebuild-jshint");
-    var jshintConfig = require('../config/jshint.conf.js');
-
-    var paths = require('../config/paths.js');
-
-    var browserify = require("../util/browserify_runner.js");
-    var checkVersion = require("../util/version_checker.js");
 
     var KARMA_CONFIG = "./build/config/karma.conf.js";
     var MOCHA_CONFIG = {
@@ -28,6 +10,23 @@
     };
 
     var strict = !process.env.loose;
+    var startTime = Date.now();
+
+    var shell = require("shelljs");
+    var debug = require('debug')('jakefile');
+    var karma = require("simplebuild-karma");
+    var mocha = require("../util/mocha_runner.js");
+    var jshint = require("simplebuild-jshint");
+    var jshintConfig = require('../config/jshint.conf.js');
+    var paths = require('../config/paths.js');
+    var browserify = require("../util/browserify_runner.js");
+    var checkVersion = require("../util/version_checker.js");
+
+
+    //*** CREATE DIRECTORIES
+
+    directory(paths.testDir);
+    directory(paths.distDir);
 
 
     //*** GENERAL
@@ -49,6 +48,20 @@
         shell.rm("-rf", paths.generatedDir);
     });
 
+
+    //*** CHECK VERSIONS
+
+    desc("Check Node version");
+    task("version", function() {
+        var version = require("../../package.json").engines.node;
+        debug("Checking Node.js version: " + version);
+        checkVersion.check({
+            name: "Node",
+            expected: version,
+            actual: process.version,
+            strict: strict
+        }, complete, fail);
+    }, { async: true });
 
 
     //*** LINT
@@ -112,27 +125,6 @@
     }, { async: true });
 
 
-    //*** CHECK VERSIONS
-
-    desc("Check Node version");
-    task("version", function() {
-        var version = require("../../package.json").engines.node;
-        debug("Checking Node.js version: " + version);
-        checkVersion.check({
-            name: "Node",
-            expected: version,
-            actual: process.version,
-            strict: strict
-        }, complete, fail);
-    }, { async: true });
-
-
-    //*** CREATE DIRECTORIES
-
-    directory(paths.testDir);
-    directory(paths.distDir);
-
-
     //*** BUILD
 
     desc("Build distribution package");
@@ -160,7 +152,4 @@
         }, complete, fail);
     }, { async: true });
 
-
 })();
-
-    
