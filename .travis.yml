@@ -7,7 +7,7 @@ env:
 
 os:
   - linux
-  - osx
+#  - osx
 
 before_script:
   - export DISPLAY=:99.0
