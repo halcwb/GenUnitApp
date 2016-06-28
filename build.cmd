@@ -12,5 +12,14 @@ if not exist .paket\paket.exe (
 if errorlevel 1 (
   exit /b %errorlevel%
 )
+
+::Build the client
+if exist client\package.json (
+	echo "Build Client"
+	cd client
+	call npm install
+	cd ..
+)
+
 ::Build the project
 packages\FAKE\tools\FAKE.exe build.fsx %*
