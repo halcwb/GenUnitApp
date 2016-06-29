@@ -8,7 +8,7 @@
     "use strict";
 
     var UNIX_BUILD_COMMAND = "./jake.sh";
-    var WINDOWS_BUILD_COMMAND = "jake.bat";
+    var WINDOWS_BUILD_COMMAND = "jake.cmd";
 
     var os = require("os");
 
@@ -16,4 +16,4 @@
         return os.platform() === "win32" ? WINDOWS_BUILD_COMMAND : UNIX_BUILD_COMMAND;
     };
 
-}());
+})();

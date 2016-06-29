@@ -1,1 +1,0 @@
-test -e /etc/init.d/svfb && sh -e /etc/init.d/xvfb start
