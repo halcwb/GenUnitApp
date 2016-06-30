@@ -11,7 +11,7 @@
   var buildCommand = require("../config/build_command.js");
   var paths = require("../config/paths.js");
 
-  var server = require('../../src/server/server.js');
+  var server = require('./server.js');
 
   console.log("*** Using nodemon to run " + buildCommand.get() + ". Type 'rs<enter>' to force restart.");
   nodemon({
