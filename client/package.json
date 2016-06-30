@@ -7,7 +7,11 @@
     "node": "6.2.2"
   },
   "dependencies": {
-    "webix": "^3.3.17"
+    "bufferutil": "^1.2.1",
+    "express-ws": "^2.0.0-rc.1",
+    "utf-8-validate": "^1.2.1",
+    "webix": "^3.3.17",
+    "ws": "^1.1.1"
   },
   "devDependencies": {
     "simplebuild-karma": "^1.0.0",
@@ -31,7 +35,9 @@
     "procfile": "^0.1.1",
     "semver": "^5.1.0",
     "shelljs": "^0.7.0",
-    "simplebuild-jshint": "^1.3.0"
+    "simplebuild-jshint": "^1.3.0",
+    "sendevent": "1.0.4",
+    "express": "4.14.0"
   },
   "scripts": {
     "build": "node_modules/.bin/jake -f build/scripts/jakefile.js build",

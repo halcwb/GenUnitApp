@@ -71,9 +71,11 @@ NUGET
     Unquote (3.1.1)
 GITHUB
   remote: fsharp/FAKE
-    modules/Octokit/Octokit.fsx (c063bf415dac7f7d4df4c37fe76badce76cae3c3)
-      Octokit
+    modules/Octokit/Octokit.fsx (c56456abac6b744c3bb95b217687db19fd19b367)
+      Octokit (>= 0.20)
   remote: halcwb/GenBuild
     scripts/appveyor.fsx (aed42e1638bbbfbec57e1df989944f1a50df4064)
     scripts/targets.fsx (aed42e1638bbbfbec57e1df989944f1a50df4064)
     scripts/travis.fsx (aed42e1638bbbfbec57e1df989944f1a50df4064)
+  remote: haf/YoLo
+    YoLo.fs (077257c9a06b556ddca47ae4e812297e9ab78582)
