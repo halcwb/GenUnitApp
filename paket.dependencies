@@ -22,7 +22,7 @@ nuget Informedica.GenUnits.Lib
 nuget Suave
 nuget Suave.Testing
 
-github haf/YoLo YoLo.fs
+github halcwb/YoLo YoLo.fs
 
 // group test
 

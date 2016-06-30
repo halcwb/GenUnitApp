@@ -29,6 +29,7 @@ module Server =
                 let! msg = ws.read();
                 match msg with
                 | (Text, data, true) ->
+                    
                     let str = UTF8.toString data
                     printfn "****** Received: %s" str
                     do! ws.send Text data true

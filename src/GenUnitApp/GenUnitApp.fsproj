@@ -54,7 +54,7 @@
   </Choose>
   <Import Project="$(FSharpTargetsPath)" />
   <ItemGroup>
-    <Compile Include="..\..\paket-files\haf\YoLo\YoLo.fs">
+    <Compile Include="..\..\paket-files\halcwb\YoLo\YoLo.fs">
       <Paket>True</Paket>
       <Link>paket-files/YoLo.fs</Link>
     </Compile>
@@ -70,6 +70,8 @@
     <None Include="Scripts\load-project-release.fsx" />
     <None Include="Scripts\Start.fsx" />
     <None Include="Scripts\Script1.fsx" />
+    <None Include="Scripts\load-references.fsx" />
+    <None Include="Scripts\load-project.fsx" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
