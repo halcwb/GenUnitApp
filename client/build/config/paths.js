@@ -9,12 +9,11 @@
         testDir: "generated/tests",
         distDir: "generated/dist",
         webixDir: "node_modules/webix",
-
+        spikeDir: "spike",
         srcDir: "src",
+        libDir: "src/lib",
         entryPoint: "src/ui/app.js",
-        distBundle: "generated/dist/bundle.js",
-
-        libDir: "src/lib"
+        distBundle: "generated/dist/bundle.js"
     };
 
 }());

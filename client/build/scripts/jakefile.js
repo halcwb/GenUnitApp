@@ -13,7 +13,7 @@
     var startTime = Date.now();
 
     var shell = require("shelljs");
-    var debug = require('debug')('jakefile');
+    var debug = require('debug')('app:jakefile');
     var karma = require("simplebuild-karma");
     var mocha = require("../util/mocha_runner.js");
     var jshint = require("simplebuild-jshint");
@@ -34,12 +34,12 @@
     desc("Lint and test");
     task("default", ["version", "lint", "test"], function() {
         var elapsedSeconds = (Date.now() - startTime) / 1000;
-        console.log("\n\nBUILD OK  (" + elapsedSeconds.toFixed(2) + "s)");
+        debug("\n\nBUILD OK  (" + elapsedSeconds.toFixed(2) + "s)");
     });
 
     desc("Start server (for manual testing)");
     task("run", [ "build" ], function() {
-        console.log("Starting server. Press Ctrl-C to exit.");
+        debug("Starting server. Press Ctrl-C to exit.");
         jake.exec("node " + paths.distDir + "/run.js 5000", { interactive: true }, complete);
     }, { async: true });
 
