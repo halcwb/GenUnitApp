@@ -42,3 +42,16 @@ This app is also deployable to [Azure](https://genunitapp.azurewebsites.net/).
 
 ## Libray design
 This repository uses an explicit opt-in `.gignore` strategy, meaning that all files are excluded unless specifically included via the `.gitignore` file.
+
+
+## Collaborate
+To facilitate collaboration commits will be made readable by prepending
+commit messages with:
+
+- feat: new feature
+- fix: fix a bug or problem
+- docs: document
+- refactor: refactoring
+- perf: improve performance
+- test: add test
+- chore: do a chore (build, libs, etc..)
