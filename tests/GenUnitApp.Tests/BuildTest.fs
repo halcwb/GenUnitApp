@@ -7,7 +7,8 @@ open FsCheck
 
 [<TestFixture>]
 type ``Test that build was succesfull`` () =
-    let check = Check.QuickThrowOnFailure
+    let check = 
+        Check.QuickThrowOnFailure >> ignore
 
     [<Test>]
     member x.``Always pass test`` () = ()
