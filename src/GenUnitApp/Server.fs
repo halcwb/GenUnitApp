@@ -55,6 +55,24 @@ module Server =
             sprintf "<b>This is the GenUnitApp!</b></br></br>" +
             sprintf "This applicaton can calculate this expression:</br> %s = %s" eq rs
 
+        let evaluate ctx = 
+            asyncOption {
+                printfn "Received evaluate post: %A" (ctx.request.rawForm |> UTF8.toString |> Uri.UnescapeDataString)
+
+                let res = 
+                    ctx.request.rawForm
+                    |> UTF8.toString
+                    |> String.split "="
+                    |> List.last
+                    |> Uri.UnescapeDataString
+                    |> Api.eval
+
+                return { ctx with response = 
+                                  { ctx.response with content = res |> UTF8.bytes |> Bytes
+                                                      status = HTTP_201 }
+                }
+            } 
+
         let config =
             { defaultConfig with
                 logger = Logging.Loggers.saneDefaultsFor Logging.LogLevel.Verbose
@@ -81,6 +99,7 @@ module Server =
                     POST >=> choose
                         [
                             path "/msg" >=> OK msg
+                            path "/eval" >=> evaluate
                         ]
                     NOT_FOUND "Sorry there is nothing there"
                 ]

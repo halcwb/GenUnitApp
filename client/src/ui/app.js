@@ -14,8 +14,19 @@ webix.ready(function () {
     // handles the calulcate button click
     var onClickCaclulate = function () {
       var text = $$('expression_text').getValue();
-      debug('going to calcluate', text);
-      $$('result_template').setHTML(text);
+      var output = $$('result_template');
+
+      debug('going to evaluate', text);
+
+      webix.ajax().post("/eval", { action: 'evaluate', text: text })
+      .then(function(resp) {
+          debug('got: ', resp);
+          output.setHTML(resp.text());
+      }).fail(function (err) {
+          debug('error', err);
+          output.setHTML('cannot evaluate: ' + text + '</br>' + err.responseText);
+      });
+
     };
 
     // starting reload for development
