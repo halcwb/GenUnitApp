@@ -16,7 +16,8 @@ conversions (units) and let the user pick a conversion
 Engineering Tasks:
 ------------------
 - Clean up root of repository
-- Update documentation and add javascript docs
+- Update readme and add link to this doc
+- Update code documentation and add javascript docs
 - ~~Make sure that both windows and max os x/linux use the same node version~~
 - ~~Server:~~
     - ~~Build~~
