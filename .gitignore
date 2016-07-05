@@ -66,8 +66,13 @@ publishnuget.cmd
 # Add fsharp source files
 !*.fs
 
-# Add source files
+# Add script files
 !/scripts/
+
+# Add deploy files
+!/deploy
+
+# Add source files
 !/src/
 !/src/GenUnitApp/
 !/src/GenUnitApp/Scripts/

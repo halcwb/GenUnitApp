@@ -16,5 +16,5 @@ function run() {
   fi
 }
 
-./build.sh build
-run src/GenUnitApp/bin/Release/GenUnitApp.exe "$@"
+../build.sh build
+run ../src/GenUnitApp/bin/Release/GenUnitApp.exe "$@"
