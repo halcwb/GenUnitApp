@@ -28,9 +28,10 @@ To build the app use `.\build.sh build` or `build.cmd build`. Except for
 ### Node.js
 The client build requires that `node.js` is installed. The current release
 is tested for version 6.2.2. It probably runs well on older releases. To
-install node `.\node_install.sh 6.2.2` can be used. To uninstall an older
-version first, `.\node_remove.sh` can be use. On windows, the 'normal'
-node installer can be used.
+install node `./scripts/node_install.sh 6.2.2` can be used. To uninstall an older
+version first, `./scripts/node_remove.sh` can be use. On windows, the 'normal'
+node installer can be used, but it is recommended to install node by using
+[nvm-windows](https://github.com/coreybutler/nvm-windows).
 
 ## Running local
 
@@ -45,6 +46,8 @@ This repository uses an explicit opt-in `.gignore` strategy, meaning that all fi
 
 
 ## Collaborate
+There is (always) a list of things [to do](https://github.com/halcwb/GenUnitApp/blob/master/ToDo.md).
+
 To facilitate collaboration commits will be made readable by prepending
 commit messages with:
 

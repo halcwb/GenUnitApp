@@ -15,8 +15,8 @@ conversions (units) and let the user pick a conversion
 
 Engineering Tasks:
 ------------------
-- Clean up root of repository
-- Update readme and add link to this doc
+- ~~Clean up root of repository~~
+- Update readme and ~~add link to this doc~~
 - Update code documentation and add javascript docs
 - ~~Make sure that both windows and max os x/linux use the same node version~~
 - ~~Server:~~
@@ -40,7 +40,7 @@ Engineering Tasks:
     - update code documentation
 - Client:
     - Build
-        - diff between --save and --save-dev
+        - ~~diff between --save and --save-dev~~
         - Jake:
             - ~~use Karma for cross browser testing~~
             - ~~use nodemon to automate bundling and testing~~
@@ -57,4 +57,6 @@ Engineering Tasks:
     - Using Docker (see suave book)
     - setup Heroku not working yet
     - setup Azure not working yet (could do by ftp bin?)
-    - automate deploy via master working for azure
+      - Copy binaries and client dir to bin
+      - Check running from bin is working
+      - Ftp bin to azure/site/wwwroot directory
