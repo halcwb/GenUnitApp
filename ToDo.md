@@ -9,12 +9,14 @@ Minimum Marketing Features:
 
 User Stories:
 -------------
-- enter a string expression and let the app calculate the expression
+- ~~enter a string expression and let the app calculate the expression~~
 - enter a digit and unit string expression, return a list of available
 conversions (units) and let the user pick a conversion
 
 Engineering Tasks:
 ------------------
+- Clean up root of repository
+- Update documentation and add javascript docs
 - ~~Make sure that both windows and max os x/linux use the same node version~~
 - ~~Server:~~
     - ~~Build~~
@@ -25,6 +27,7 @@ Engineering Tasks:
             - ~~release docs~~
             - ~~release solution~~
             - ~~integrate~~
+            - add watch and then trigger run script
     - ~~Tests~~
         - ~~FsCheck~~
         - ~~NUnit (version >= 3)~~
@@ -33,6 +36,7 @@ Engineering Tasks:
         - ~~Fuchu~~
     - ~~Release~~
         - ~~on git~~
+    - update code documentation
 - Client:
     - Build
         - diff between --save and --save-dev
@@ -42,13 +46,14 @@ Engineering Tasks:
             - ~~bundle with Browserify~~
             - ~~static code analysis (Lint)~~
             - ~~setup webix to use on client side~~
+            - create documentation
 - ~~Continuous Integration~~
     - ~~Travis runs server tests~~
     - ~~Appveyor runs server tests~~
     - ~~Travis runs clienttests~~
     - ~~Appveyor runs clienttests~~
 - Deploy
-    - Using Docker
+    - Using Docker (see suave book)
     - setup Heroku not working yet
-    - setup Azure not working yet
+    - setup Azure not working yet (could do by ftp bin?)
     - automate deploy via master working for azure
