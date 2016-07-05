@@ -1,6 +1,6 @@
 language: csharp
 
-sudo: false 
+sudo: false
 
 env:
   - PAKET.VERSION="3.1.9"
@@ -14,9 +14,8 @@ before_script:
   - sh -e /etc/init.d/xvfb start
 
 install:
-  - ./node_install.sh 6.2.2
+  - ./scripts/node_install.sh 6.2.2
 
-script: 
+script:
   - . ~/.nvm/nvm.sh # manually source nvm
   - ./build.sh clienttests
-
