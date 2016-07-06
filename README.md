@@ -23,7 +23,8 @@ More coming...
 ## Build
 
 To build the app use `.\build.sh build` or `build.cmd build`. Except for
-`node.js` there are no other dependencies.
+`node.js` there are no other dependencies. Build targets can be listed by
+`.\build.sh -lt`. The windows equivalent is `build.cmd`.
 
 ### Node.js
 The client build requires that `node.js` is installed. The current release
@@ -35,7 +36,11 @@ node installer can be used, but it is recommended to install node by using
 
 ## Running local
 
-To run this application locally you can use heroku. First install the [heroku toolbelt](https://toolbelt.heroku.com/) then add a `PATH` variable to the local fsi.exe and run
+Using `./build.sh copyclient`, in the `bin/GenUnitApp` folder a runnable server client setup is created. On mono it can
+be started with `mono bin/GenUnitApp/GenUnitApp` (can add a PORT). The app will run on http://localhost:3000 (3000 being the
+default PORT if none is specified). On windows the `mono` prefix can of course be ommitted.
+
+To run this application locally you can also use heroku. First install the [heroku toolbelt](https://toolbelt.heroku.com/) then add a `PATH` variable to the local fsi.exe and run
 `heroku local -f Procfile.local`. (deployment is not working yet as mentionned above).
 
 This app is also deployable to [Azure](https://genunitapp.azurewebsites.net/). Currently by using quick and dirty manual ftp the build to the website root.
