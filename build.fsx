@@ -25,6 +25,7 @@ Target "All" DoNothing
   ==> "NUnit3"
   ==> "ClientTests"
   ==> "BuildClient"
+  ==> "CopyClient"
   ==> "GenerateReferenceDocs"
   ==> "GenerateDocs"
   ==> "All"

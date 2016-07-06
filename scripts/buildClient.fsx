@@ -48,17 +48,31 @@ Target "CopyClient" (fun _ ->
         workDir
         |> combineWith "generated"
         |> combineWith "dist"
-    let client = 
+    let webconfig =
+        dir
+        |> combineWith "deploy"
+        |> combineWith "web.config"
+    let app = 
         dir
         |> combineWith "bin"
         |> combineWith "GenUnitApp"
+    let client = 
+        app
         |> combineWith "client"
     let target =
         client
         |> combineWith "generated"
         |> combineWith "dist"
+    
+    // add the web.config
+    CopyFile app webconfig
+    
+    // copy/replace the client
     DeleteDir client
     CopyDir target dist (fun _ -> true)
+
+    // delete compressed folder 
+    DeleteDir (app |> combineWith "_temporary_compressed_files")
 )
 
 Target "BuildClient" <| fun _ -> runClient build
