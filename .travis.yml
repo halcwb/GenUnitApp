@@ -18,4 +18,4 @@ install:
 
 script:
   - . ~/.nvm/nvm.sh # manually source nvm
-  - ./build.sh clienttests
+  - ./build.sh copyclient
