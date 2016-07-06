@@ -57,6 +57,6 @@ Engineering Tasks:
     - Using Docker (see suave book)
     - setup Heroku not working yet
     - setup Azure not working yet (could do by ftp bin?)
-      - Copy binaries and client dir to bin
-      - Check running from bin is working
-      - Ftp bin to azure/site/wwwroot directory
+      - ~~Copy binaries and client dir to bin~~
+      - ~~Check running from bin is working~~
+      - ~~Ftp bin to azure/site/wwwroot directory~~

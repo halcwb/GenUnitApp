@@ -3,13 +3,13 @@ Web based client server app to calculate with and convert units.
 
 ## Build Status
 
-Mono | .NET | Heroku | Azure |
----- | ---- | ------ | ----- |
-[![Mono CI Build Status](https://img.shields.io/travis/halcwb/GenUnitApp/master.svg)](https://travis-ci.org/halcwb/GenUnitApp) | [![.NET Build Status](https://img.shields.io/appveyor/ci/halcwb/GenUnitApp/master.svg)](https://ci.appveyor.com/project/halcwb/GenUnitApp) | [![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)| [![Deploy to Azure](http://azuredeploy.net/deploybutton.png)](https://azuredeploy.net/)|
+Mono | .NET |
+---- | ---- |
+[![Mono CI Build Status](https://img.shields.io/travis/halcwb/GenUnitApp/master.svg)](https://travis-ci.org/halcwb/GenUnitApp) | [![.NET Build Status](https://img.shields.io/appveyor/ci/halcwb/GenUnitApp/master.svg)](https://ci.appveyor.com/project/halcwb/GenUnitApp)
 
 This app aims to build both on mono and .net and to be deployable to Heroku and Azure
 
-Deployment to Azure is working. Deployment to Heroku works locally, but due to mono version issue that causes resolving dependent libs not in the GAC not being found, it doesn't work on Heroku remote yet.
+A demo can be found at: http://genunitapp.azurewebsite.net.
 
 ## Background
 Application that can parse string expressions like: </br>
@@ -38,7 +38,7 @@ node installer can be used, but it is recommended to install node by using
 To run this application locally you can use heroku. First install the [heroku toolbelt](https://toolbelt.heroku.com/) then add a `PATH` variable to the local fsi.exe and run
 `heroku local -f Procfile.local`. (deployment is not working yet as mentionned above).
 
-This app is also deployable to [Azure](https://genunitapp.azurewebsites.net/).
+This app is also deployable to [Azure](https://genunitapp.azurewebsites.net/). Currently by using quick and dirty manual ftp the build to the website root.
 
 
 ## Libray design
