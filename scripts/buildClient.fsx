@@ -9,6 +9,8 @@ open Fake
 open Fake.ProcessHelper
 open Fake.StringHelper
 
+let combineWith p2 p1 = Path.Combine(p1, p2)
+
 let dir = (new DirectoryInfo(__SOURCE_DIRECTORY__)).Parent.FullName
 
 let workDir = Path.Combine(dir, "client")
@@ -38,6 +40,26 @@ let runClient arg =
         failwith
         <| sprintf "Client code didn't pass:\n %s"
                    (res.Errors |> String.concat "\n")
+
+// Copies the client generatated distribution folder
+// to the bin folder
+Target "CopyClient" (fun _ ->
+    let dist =
+        workDir
+        |> combineWith "generated"
+        |> combineWith "dist"
+    let client = 
+        dir
+        |> combineWith "bin"
+        |> combineWith "GenUnitApp"
+        |> combineWith "client"
+    let target =
+        client
+        |> combineWith "generated"
+        |> combineWith "dist"
+    DeleteDir client
+    CopyDir target dist (fun _ -> true)
+)
 
 Target "BuildClient" <| fun _ -> runClient build
 
