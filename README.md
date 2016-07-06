@@ -9,7 +9,7 @@ Mono | .NET |
 
 This app aims to build both on mono and .net and to be deployable to Heroku and Azure
 
-A demo can be found at: http://genunitapp.azurewebsite.net.
+A demo can be found at: http://genunitapp.azurewebsites.net.
 
 ## Background
 Application that can parse string expressions like: </br>
