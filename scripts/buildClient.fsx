@@ -73,6 +73,19 @@ Target "CopyClient" (fun _ ->
 
     // delete compressed folder 
     DeleteDir (app |> combineWith "_temporary_compressed_files")
+
+    let docsSource = 
+        workDir
+        |> combineWith "docs"
+    let docsTarget = 
+        dir
+        |> combineWith "docs"
+        |> combineWith "files"
+        |> combineWith "client"
+
+    // copy/replace the client docs
+    DeleteDir docsTarget
+    CopyDir docsTarget docsSource (fun _ -> true)
 )
 
 Target "BuildClient" <| fun _ -> runClient build

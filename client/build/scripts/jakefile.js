@@ -159,7 +159,7 @@
     task("docs", function() {
         debug("Create documentation");
         shell.rm("-rf", "docs");
-        jake.exec("./node_modules/.bin/jsdoc -r -c build/config/jsdoc.conf.json -d docs", complete);
+        jake.exec("node_modules/.bin/jsdoc -r -c build/config/jsdoc.conf.json -d docs", complete);
     });
 
 
