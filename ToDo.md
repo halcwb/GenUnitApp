@@ -16,7 +16,7 @@ conversions (units) and let the user pick a conversion
 Engineering Tasks:
 ------------------
 - ~~Clean up root of repository~~
-- Update readme and ~~add link to this doc~~
+- ~~Update readme and add link to this doc~~
 - Update code documentation and add javascript docs
 - ~~Make sure that both windows and max os x/linux use the same node version~~
 - ~~Server:~~
@@ -60,3 +60,11 @@ Engineering Tasks:
       - ~~Copy binaries and client dir to bin~~
       - ~~Check running from bin is working~~
       - ~~Ftp bin to azure/site/wwwroot directory~~
+      - Automate deploy to azure
+
+Current Taks:
+-------------
+- Try to hide console error when no development refresh server
+- Give better description when invalid expression input
+- Implement server side request response abstraction
+- Create tests for client and server
