@@ -60,7 +60,7 @@ Engineering Tasks:
       - ~~Copy binaries and client dir to bin~~
       - ~~Check running from bin is working~~
       - ~~Ftp bin to azure/site/wwwroot directory~~
-      - Automate deploy to azure
+      - Automate deploy to azure (maybe use: http://help.appveyor.com/discussions/questions/964-deploy-static-site-to-azure-website)
 
 Current Taks:
 -------------
