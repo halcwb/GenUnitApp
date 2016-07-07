@@ -32,9 +32,9 @@
     //*** GENERAL
 
     desc("Lint and test");
-    task("default", ["version", "lint", "test"], function() {
+    task("default", ["version", "lint", "test", "docs"], function() {
         var elapsedSeconds = (Date.now() - startTime) / 1000;
-        debug("\n\nBUILD OK  (" + elapsedSeconds.toFixed(2) + "s)");
+        debug("BUILD OK  (" + elapsedSeconds.toFixed(2) + "s)");
     });
 
     desc("Start server (for manual testing)");
@@ -151,6 +151,18 @@
             }
         }, complete, fail);
     }, { async: true });
+
+
+    //*** DOCUMENTATION
+
+    desc("Generate the documentation");
+    task("docs", function() {
+        debug("Create documentation");
+        shell.rm("-rf", "docs");
+        jake.exec("./node_modules/.bin/jsdoc -r -c build/config/jsdoc.conf.json -d docs", complete);
+    });
+
+
 
 
 })();

@@ -17,6 +17,7 @@
     "express": "4.14.0",
     "express-ws": "^2.0.0-rc.1",
     "jake": "^8.0.12",
+    "jsdoc": "^3.4.0",
     "jshint": "^2.9.2",
     "karma": "^0.13.22",
     "karma-chrome-launcher": "^0.2.3",

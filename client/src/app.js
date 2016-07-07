@@ -1,17 +1,33 @@
+
 /**
- * Created by halcwb on 17/06/16.
- */
+* @file The entry point the application, creates the app
+*/
+
+
 /*global webix, $$, console, app, debug */
 
 "use strict";
 
+/**
+* Starts the application:
+* 1. Check if in development mode
+* 2. If in development mode automate reload
+* 3. Create the GUI 
+* @namespace app
+*/
 webix.ready(function () {
+
+    /**
+    * Debug factory
+    * @memberof app
+    * @method debug
+    */
     app.debug = require("debug");
     var debug = app.debug('client:app');
-    var reload = require("../lib/util/reload.js");
-    var msg = require("../lib/ajax/request.js").getMessage();
+    var reload = require("./lib/util/reload.js");
+    var msg = require("./lib/ajax/request.js").getMessage();
 
-    // handles the calulcate button click
+    // handles the evaluate button click event
     var onClickCaclulate = function () {
       var text = $$('expression_text').getValue();
       var output = $$('result_template');

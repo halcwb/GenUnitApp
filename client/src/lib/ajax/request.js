@@ -1,6 +1,7 @@
 /**
- * Created by halcwb on 18/06/16.
+ * @module lib/ajax/request
  */
+
 /*global webix, app */
 
 (function () {
@@ -8,8 +9,10 @@
 
     var debug = app.debug('client:request');
 
-    /// Get a message just to test that
-    /// the server is life.
+    /**
+    * Get a message just to test that
+    * the server is life.
+    */
     exports.getMessage = function () {
         debug('request message');
         return webix.ajax().post("/msg");

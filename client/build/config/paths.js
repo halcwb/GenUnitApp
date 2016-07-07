@@ -8,11 +8,12 @@
         generatedDir: "generated",
         testDir: "generated/tests",
         distDir: "generated/dist",
+        docsDir: "docs",
         webixDir: "node_modules/webix",
         spikeDir: "spike",
         srcDir: "src",
         libDir: "src/lib",
-        entryPoint: "src/ui/app.js",
+        entryPoint: "src/app.js",
         distBundle: "generated/dist/bundle.js"
     };
 

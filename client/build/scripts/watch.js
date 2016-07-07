@@ -14,7 +14,7 @@
 
     var server = require('./server.js');
 
-    debug("*** Using nodemon to run " + buildCommand.get() + ". Type 'rs<enter>' to force restart.");
+    debug("using nodemon to run " + buildCommand.get() + ". Type 'rs<enter>' to force restart.");
     nodemon({
         runOnChangeOnly: true,
         ext: "sh bat json js html css",
@@ -35,18 +35,18 @@
     }).on('exit', function (data) {
         // Exit is triggered twice :-(
         // But is triggered when build is complete
-        debug('*** receiving exit');
-        debug('*** reload clients');
+        debug('receiving exit');
+        debug('reload clients');
         server.reload();
     }).on('stderr', function (data) {
         // Never triggered
-        debug('*** receiving stderr', data);
+        debug('receiving stderr', data);
     }).on('stdout', function (data) {
         // Never triggered
-        debug('*** receiving stdout', data);
+        debug('receiving stdout', data);
     }).on("restart", function (files) {
         // Restart is triggered twice on mac :-(
-        debug("*** Restarting due to:", files);
+        debug("restarting due to:", files);
     });
 
 }());

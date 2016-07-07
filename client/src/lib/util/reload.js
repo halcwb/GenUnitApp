@@ -1,8 +1,17 @@
+/**
+* @module lib/util/reload
+*/
+
 /*global WebSocket, app, window, webix */
 "use strict";
 
 (function () {
 
+    /**
+    * Initializes the app with a 'reload server'
+    * When the reload server sends a message by
+    * a websocket, the window will be reloaded.
+    */
     exports.init = function () {
         var URL = '//localhost:1337';
         var debug = app.debug("client:reload");
