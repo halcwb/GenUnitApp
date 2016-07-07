@@ -12,6 +12,7 @@
     var strict = !process.env.loose;
     var startTime = Date.now();
 
+    var path = require('path');
     var shell = require("shelljs");
     var debug = require('debug')('app:jakefile');
     var karma = require("simplebuild-karma");
@@ -157,12 +158,10 @@
 
     desc("Generate the documentation");
     task("docs", function() {
-        debug("Create documentation");
+        var cmd = "node_modules/.bin/jsdoc -r -c build/config/jsdoc.conf.json -d docs".replace(/\//g, path.sep);
+        debug(cmd);
         shell.rm("-rf", "docs");
-        jake.exec("node_modules/.bin/jsdoc -r -c build/config/jsdoc.conf.json -d docs", complete);
+        jake.exec(cmd, { async: true }, complete);
     });
-
-
-
 
 })();

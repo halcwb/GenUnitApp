@@ -3,4 +3,5 @@ REM Runs Jake from node_modules directory, preventing it from needing to be inst
 REM Also ensures node modules have been built
 
 if not exist node_modules\.bin\jake.cmd call npm rebuild
+SET DEBUG=app:*
 node_modules\.bin\jake %*
