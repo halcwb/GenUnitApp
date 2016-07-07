@@ -54,9 +54,6 @@
       <Paket>True</Paket>
     </Content>
     <Compile Include="BuildTest.fs" />
-    <None Include="Scripts\load-references-release.fsx" />
-    <None Include="Scripts\load-project-release.fsx" />
-    <None Include="Scripts\Script.fsx" />
     <None Include="Scripts\load-references.fsx" />
     <None Include="Scripts\load-project.fsx" />
     <Content Include="App.config" />
