@@ -22,6 +22,8 @@ module Server =
     open Informedica.GenUtils.Lib.BCL
     open Informedica.GenUnits.Lib
 
+    /// Implementation of an echo websocket, 
+    /// just echos the received message
     let echo (ws : WebSocket) =
         fun cx -> socket {
             let loop = ref true
@@ -41,7 +43,10 @@ module Server =
                 | _ -> ()
         }
 
+    /// Start the GenUnitApp with home `home` and 
+    /// port `port`.
     let start home port =
+        // ToDo refactor this
         let clientDir =
             @"client\generated\dist"
             |> String.replace "\\" (string Path.DirectorySeparatorChar)

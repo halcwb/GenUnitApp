@@ -65,6 +65,7 @@ Engineering Tasks:
 Current Taks:
 -------------
 - Try to hide console error when no development refresh server
+see (http://forum.webix.com/discussion/7230/suppress-ajax-error-in-console#latest)
 - Give better description when invalid expression input
 - Implement server side request response abstraction
 - Create tests for client and server

@@ -28,7 +28,9 @@
             };
         // no reaction from the development
         // server, so we are in production
-        }).fail(/* do nothing */);
+      }).fail(function() {
+          debug('no development server, no problem!');
+      });
     };
 
 })();
