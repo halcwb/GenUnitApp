@@ -22,6 +22,12 @@ module Server =
     open Informedica.GenUtils.Lib.BCL
     open Informedica.GenUnits.Lib
 
+    let rec listLast (list: 'T list) =
+        match list with
+        | [x] -> x
+        | _::tail -> listLast tail
+        | [] -> failwith "Empty list"
+
     /// Implementation of an echo websocket, 
     /// just echos the received message
     let echo (ws : WebSocket) =
@@ -68,7 +74,7 @@ module Server =
                     ctx.request.rawForm
                     |> UTF8.toString
                     |> String.split "="
-                    |> List.last
+                    |> listLast
                     |> Uri.UnescapeDataString
                     |> Api.eval
 

@@ -1,10 +1,11 @@
-﻿#load "load-references-release.fsx"
+﻿#load "load-project.fsx"
 
 #time
 
 open System
 
 Environment.CurrentDirectory <- __SOURCE_DIRECTORY__
+
 
 open Suave
 
