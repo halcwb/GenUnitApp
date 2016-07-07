@@ -58,6 +58,7 @@
     <None Include="Scripts\load-project.fsx" />
     <Content Include="App.config" />
     <None Include="paket.references" />
+    <None Include="Scripts\Script.fsx" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
@@ -330,6 +331,12 @@
       <Private>True</Private>
       <Paket>True</Paket>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\GenUnitApp\GenUnitApp.fsproj">
+      <Project>{9550937D-3FE4-4CDC-99C5-3806C96157FB}</Project>
+      <Name>GenUnitApp</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v3.5'">

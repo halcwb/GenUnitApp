@@ -16,3 +16,4 @@
 #r "System.Net.Http.dll"
 #r "System.Numerics.dll"
 #r "../../../packages/Unquote/lib/net45/Unquote.dll"
+#r "../../../src/GenUnitApp/bin/Release/GenUnitApp.exe"
