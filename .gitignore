@@ -76,6 +76,8 @@ publishnuget.cmd
 !/src/
 !/src/GenUnitApp/
 !/src/GenUnitApp/Scripts/
+
+# Add client source files
 !/client/
 !/client/build/
 !/client/build/scripts/
@@ -94,6 +96,7 @@ publishnuget.cmd
 # Add test files
 !/tests/
 !/tests/GenUnitApp.Tests/
+!/tests/GenUnitApp.Tests/Scripts/
 
 # Ignore generated documentation files
 /docs/content/**/*.md
