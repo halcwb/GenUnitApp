@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Choice - GenUnitApp</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content=""/>
+    <meta name="author" content="halcwb"/>
+
+    <script src="https://code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet"/>
+
+    <link type="text/css" rel="stylesheet" href="/GenUnitApp/content/style.css" />
+    <script type="text/javascript" src="/GenUnitApp/content/tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+          <li><a href="http://fsharp.org">fsharp.org</a></li>
+          <li><a href="http://github.com/halcwb/GenUnitApp">github page</a></li>
+        </ul>
+        <h3 class="muted"><a href="/GenUnitApp/index.html">GenUnitApp</a></h3>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="span9" id="main">
+          
+
+
+
+<h1>Choice</h1>
+<p>
+  <span>Namespace: global</span><br />
+  <span>Parent Module: <a href="global-yolo.html">YoLo</a></span>
+</p>
+<div class="xmldoc">
+</div>
+
+<!-- Render nested types and modules, if there are any -->
+  <h2>Nested types and modules</h2>
+  <div>
+      <table class="table table-bordered module-list">
+    <thead>
+      <tr><td>Module</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td class="module-name">
+            <a href="yolo-choice-operators.html">Operators</a>
+          </td>
+          <td class="xmldoc"></td>
+        </tr>
+    </tbody>
+  </table>
+
+  </div>
+
+  <h3>Functions and values</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Function or value</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '41', 41)" onmouseover="showTip(event, '41', 41)">
+            apply f v
+          </code>
+          <div class="tip" id="41">
+            <strong>Signature:</strong> f:Choice&lt;(&#39;?19561 -&gt; &#39;?19562),&#39;?19563&gt; -&gt; v:Choice&lt;&#39;?19561,&#39;?19563&gt; -&gt; Choice&lt;&#39;?19562,&#39;?19563&gt;<br />
+                          <strong>Type parameters:</strong> '?19561, '?19562, '?19563          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/halcwb/GenUnitApp/tree/master/paket-files/halcwb/YoLo/YoLo.fs#L44-44" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '42', 42)" onmouseover="showTip(event, '42', 42)">
+            applySnd f v
+          </code>
+          <div class="tip" id="42">
+            <strong>Signature:</strong> f:Choice&lt;(&#39;?19565 -&gt; &#39;?19566),&#39;?19566&gt; -&gt; v:Choice&lt;&#39;?19567,&#39;?19565&gt; -&gt; Choice&lt;&#39;?19567,&#39;?19566&gt;<br />
+                          <strong>Type parameters:</strong> '?19565, '?19566, '?19567          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/halcwb/GenUnitApp/tree/master/paket-files/halcwb/YoLo/YoLo.fs#L49-49" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '43', 43)" onmouseover="showTip(event, '43', 43)">
+            bind f v
+          </code>
+          <div class="tip" id="43">
+            <strong>Signature:</strong> f:(&#39;a -&gt; Choice&lt;&#39;b,&#39;c&gt;) -&gt; v:Choice&lt;&#39;a,&#39;c&gt; -&gt; Choice&lt;&#39;b,&#39;c&gt;<br />
+                          <strong>Type parameters:</strong> 'a, 'b, 'c          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/halcwb/GenUnitApp/tree/master/paket-files/halcwb/YoLo/YoLo.fs#L29-29" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '44', 44)" onmouseover="showTip(event, '44', 44)">
+            bindSnd f v
+          </code>
+          <div class="tip" id="44">
+            <strong>Signature:</strong> f:(&#39;a -&gt; Choice&lt;&#39;c,&#39;b&gt;) -&gt; v:Choice&lt;&#39;c,&#39;a&gt; -&gt; Choice&lt;&#39;c,&#39;b&gt;<br />
+                          <strong>Type parameters:</strong> 'a, 'c, 'b          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/halcwb/GenUnitApp/tree/master/paket-files/halcwb/YoLo/YoLo.fs#L34-34" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '45', 45)" onmouseover="showTip(event, '45', 45)">
+            create v
+          </code>
+          <div class="tip" id="45">
+            <strong>Signature:</strong> v:&#39;?19535 -&gt; Choice&lt;&#39;?19535,&#39;?19536&gt;<br />
+                          <strong>Type parameters:</strong> '?19535, '?19536          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/halcwb/GenUnitApp/tree/master/paket-files/halcwb/YoLo/YoLo.fs#L17-17" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '46', 46)" onmouseover="showTip(event, '46', 46)">
+            createSnd v
+          </code>
+          <div class="tip" id="46">
+            <strong>Signature:</strong> v:&#39;?19538 -&gt; Choice&lt;&#39;?19539,&#39;?19538&gt;<br />
+                          <strong>Type parameters:</strong> '?19538, '?19539          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/halcwb/GenUnitApp/tree/master/paket-files/halcwb/YoLo/YoLo.fs#L19-19" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '47', 47)" onmouseover="showTip(event, '47', 47)">
+            fold f g _arg1
+          </code>
+          <div class="tip" id="47">
+            <strong>Signature:</strong> f:(&#39;?19557 -&gt; &#39;?19558) -&gt; g:(&#39;?19559 -&gt; &#39;?19558) -&gt; _arg1:Choice&lt;&#39;?19557,&#39;?19559&gt; -&gt; &#39;?19558<br />
+                          <strong>Type parameters:</strong> '?19557, '?19558, '?19559          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/halcwb/GenUnitApp/tree/master/paket-files/halcwb/YoLo/YoLo.fs#L39-39" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '48', 48)" onmouseover="showTip(event, '48', 48)">
+            inject f _arg1
+          </code>
+          <div class="tip" id="48">
+            <strong>Signature:</strong> f:(&#39;?19598 -&gt; unit) -&gt; _arg1:Choice&lt;&#39;?19598,&#39;?19598&gt; -&gt; Choice&lt;&#39;?19598,&#39;?19599&gt;<br />
+                          <strong>Type parameters:</strong> '?19598, '?19599          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/halcwb/GenUnitApp/tree/master/paket-files/halcwb/YoLo/YoLo.fs#L70-70" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '49', 49)" onmouseover="showTip(event, '49', 49)">
+            injectSnd f _arg1
+          </code>
+          <div class="tip" id="49">
+            <strong>Signature:</strong> f:(&#39;?19601 -&gt; unit) -&gt; _arg1:Choice&lt;&#39;?19602,&#39;?19601&gt; -&gt; Choice&lt;&#39;?19602,&#39;?19601&gt;<br />
+                          <strong>Type parameters:</strong> '?19601, '?19602          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/halcwb/GenUnitApp/tree/master/paket-files/halcwb/YoLo/YoLo.fs#L74-74" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '50', 50)" onmouseover="showTip(event, '50', 50)">
+            lift2 f v1 v2
+          </code>
+          <div class="tip" id="50">
+            <strong>Signature:</strong> f:(&#39;?19569 -&gt; &#39;?19570 -&gt; &#39;?19571) -&gt; v1:Choice&lt;&#39;?19569,&#39;?19572&gt; -&gt; v2:Choice&lt;&#39;?19570,&#39;?19572&gt; -&gt; Choice&lt;&#39;?19571,&#39;?19572&gt;<br />
+                          <strong>Type parameters:</strong> '?19569, '?19570, '?19571, '?19572          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/halcwb/GenUnitApp/tree/master/paket-files/halcwb/YoLo/YoLo.fs#L54-54" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '51', 51)" onmouseover="showTip(event, '51', 51)">
+            lift3 f v1 v2 v3
+          </code>
+          <div class="tip" id="51">
+            <strong>Signature:</strong> f:(&#39;?19574 -&gt; &#39;?19575 -&gt; &#39;?19576 -&gt; &#39;?19577) -&gt; v1:Choice&lt;&#39;?19574,&#39;?19578&gt; -&gt; v2:Choice&lt;&#39;?19575,&#39;?19578&gt; -&gt; v3:Choice&lt;&#39;?19576,&#39;?19578&gt; -&gt; Choice&lt;&#39;?19577,&#39;?19578&gt;<br />
+                          <strong>Type parameters:</strong> '?19574, '?19575, '?19576, '?19577, '?19578          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/halcwb/GenUnitApp/tree/master/paket-files/halcwb/YoLo/YoLo.fs#L57-57" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '52', 52)" onmouseover="showTip(event, '52', 52)">
+            lift4 f v1 v2 v3 v4
+          </code>
+          <div class="tip" id="52">
+            <strong>Signature:</strong> f:(&#39;?19580 -&gt; &#39;?19581 -&gt; &#39;?19582 -&gt; &#39;?19583 -&gt; &#39;?19584) -&gt; v1:Choice&lt;&#39;?19580,&#39;?19585&gt; -&gt; v2:Choice&lt;&#39;?19581,&#39;?19585&gt; -&gt; v3:Choice&lt;&#39;?19582,&#39;?19585&gt; -&gt; v4:Choice&lt;&#39;?19583,&#39;?19585&gt; -&gt; Choice&lt;&#39;?19584,&#39;?19585&gt;<br />
+                          <strong>Type parameters:</strong> '?19580, '?19581, '?19582, '?19583, '?19584, '?19585          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/halcwb/GenUnitApp/tree/master/paket-files/halcwb/YoLo/YoLo.fs#L60-60" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '53', 53)" onmouseover="showTip(event, '53', 53)">
+            lift5 f v1 v2 v3 v4 v5
+          </code>
+          <div class="tip" id="53">
+            <strong>Signature:</strong> f:(&#39;?19587 -&gt; &#39;?19588 -&gt; &#39;?19589 -&gt; &#39;?19590 -&gt; &#39;?19591 -&gt; &#39;?19592) -&gt; v1:Choice&lt;&#39;?19587,&#39;?19593&gt; -&gt; v2:Choice&lt;&#39;?19588,&#39;?19593&gt; -&gt; v3:Choice&lt;&#39;?19589,&#39;?19593&gt; -&gt; v4:Choice&lt;&#39;?19590,&#39;?19593&gt; -&gt; v5:Choice&lt;&#39;?19591,&#39;?19593&gt; -&gt; Choice&lt;&#39;?19592,&#39;?19593&gt;<br />
+                          <strong>Type parameters:</strong> '?19587, '?19588, '?19589, '?19590, '?19591, '?19592, '?19593          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/halcwb/GenUnitApp/tree/master/paket-files/halcwb/YoLo/YoLo.fs#L63-63" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '54', 54)" onmouseover="showTip(event, '54', 54)">
+            map f _arg1
+          </code>
+          <div class="tip" id="54">
+            <strong>Signature:</strong> f:(&#39;?19541 -&gt; &#39;?19542) -&gt; _arg1:Choice&lt;&#39;?19541,&#39;?19543&gt; -&gt; Choice&lt;&#39;?19542,&#39;?19543&gt;<br />
+                          <strong>Type parameters:</strong> '?19541, '?19542, '?19543          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/halcwb/GenUnitApp/tree/master/paket-files/halcwb/YoLo/YoLo.fs#L21-21" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '55', 55)" onmouseover="showTip(event, '55', 55)">
+            mapSnd f _arg1
+          </code>
+          <div class="tip" id="55">
+            <strong>Signature:</strong> f:(&#39;?19545 -&gt; &#39;?19546) -&gt; _arg1:Choice&lt;&#39;?19547,&#39;?19545&gt; -&gt; Choice&lt;&#39;?19547,&#39;?19546&gt;<br />
+                          <strong>Type parameters:</strong> '?19545, '?19546, '?19547          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/halcwb/GenUnitApp/tree/master/paket-files/halcwb/YoLo/YoLo.fs#L25-25" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '56', 56)" onmouseover="showTip(event, '56', 56)">
+            ofOption onMissing _arg1
+          </code>
+          <div class="tip" id="56">
+            <strong>Signature:</strong> onMissing:&#39;?19595 -&gt; _arg1:&#39;?19596 option -&gt; Choice&lt;&#39;?19596,&#39;?19595&gt;<br />
+                          <strong>Type parameters:</strong> '?19595, '?19596          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/halcwb/GenUnitApp/tree/master/paket-files/halcwb/YoLo/YoLo.fs#L66-66" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+        </div>
+        <div class="span3">
+          <img src="/GenUnitApp/img/logo.png" alt="F# Project" style="width:150px;margin:10px" />  
+          <ul class="nav nav-list" id="menu" style="margin-top: 20px;">
+            <li class="nav-header">GenUnitApp</li>
+            <li><a href="/GenUnitApp/index.html">Home page</a></li>
+            <li class="divider"></li>
+            <li><a href="/GenUnitApp/index.html">Deploy via Heroku</a></li>
+            <li><a href="/GenUnitApp/index.html">Deploy via Azure</a></li>
+            <li><a href="http://github.com/halcwb/GenUnitApp">Source Code on GitHub</a></li>
+            <li><a href="/GenUnitApp/license.html">License</a></li>
+            <li><a href="/GenUnitApp/release-notes.html">Release Notes</a></li>
+            
+            <li class="nav-header">Getting started</li>
+            <li><a href="/GenUnitApp/tutorial.html">Sample tutorial</a></li>
+
+            <li class="nav-header">Documentation</li>
+            <li><a href="/GenUnitApp/reference/index.html">API Reference</a></li>
+            <li><a href="/GenUnitApp/client/index.html">Client Reference</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <a href="http://github.com/halcwb/GenUnitApp"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"/></a>
+  </body>
+  </html>
