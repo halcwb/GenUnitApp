@@ -5,6 +5,7 @@ module ServerTests =
     open System
 
     open GenUnitApp
+    open GenUnitApp.Utils
 
     open NUnit.Framework
     open FsUnit
@@ -12,6 +13,9 @@ module ServerTests =
     open Suave
     open Suave.Http
     open Suave.Testing
+
+    [<Literal>]
+    let indexHtml = "index.html"
 
 
     [<Test>]
@@ -31,5 +35,19 @@ module ServerTests =
 
     [<Test>]
     let ``app routing should return index file when get root`` () =
-        let home = AppDomain.CurrentDomain.BaseDirectory
-        home |> should equal ""
+        let home = 
+            AppDomain.CurrentDomain.BaseDirectory
+            |> Path.parentDirectory
+            |> Path.parentDirectory
+            |> Path.combineWith "data"
+//        home |> should equal ""
+
+        let config = {
+                defaultConfig
+                with homeFolder = home |> Some
+            }
+        let response = 
+            runWith config Server.app
+            |> req HttpMethod.GET "/" None
+
+        response |> should equal indexHtml

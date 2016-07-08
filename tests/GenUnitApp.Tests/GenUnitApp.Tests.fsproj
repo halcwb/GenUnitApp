@@ -22,7 +22,7 @@
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <WarningLevel>3</WarningLevel>
-    <DocumentationFile>bin\Debug\Informedica.GenUnit.Tests.XML</DocumentationFile>
+    <DocumentationFile>bin\Debug\GenUnitApp.Tests.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -61,6 +61,7 @@
     <None Include="Scripts\Script.fsx" />
     <Content Include="App.config" />
     <None Include="paket.references" />
+    <None Include="data\index.html" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
@@ -339,6 +340,9 @@
       <Project>{9550937D-3FE4-4CDC-99C5-3806C96157FB}</Project>
       <Name>GenUnitApp</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="data\" />
   </ItemGroup>
   <Choose>
     <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v3.5'">

@@ -92,7 +92,7 @@ module Server =
     let app =
         choose
             [
-                path "/echo" >=> handShake echo
+//                path "/echo" >=> handShake echo
                 GET >=> choose
                     [
                         // Just to avoid an error in chrome
