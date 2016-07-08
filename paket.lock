@@ -1,6 +1,7 @@
 REDIRECTS: ON
 NUGET
   remote: https://www.nuget.org/api/v2
+  specs:
     FAKE (4.29.2)
     FsCheck (2.5)
       FSharp.Core (>= 3.1.2.5)
@@ -307,11 +308,14 @@ NUGET
     Unquote (3.1.1)
 GITHUB
   remote: fsharp/FAKE
+  specs:
     modules/Octokit/Octokit.fsx (c56456abac6b744c3bb95b217687db19fd19b367)
       Octokit (>= 0.20)
   remote: halcwb/GenBuild
+  specs:
     scripts/appveyor.fsx (aed42e1638bbbfbec57e1df989944f1a50df4064)
     scripts/targets.fsx (aed42e1638bbbfbec57e1df989944f1a50df4064)
     scripts/travis.fsx (aed42e1638bbbfbec57e1df989944f1a50df4064)
   remote: halcwb/YoLo
+  specs:
     YoLo.fs (f8ec082b579f448f91ac8caedab16ae8e0ba383c)

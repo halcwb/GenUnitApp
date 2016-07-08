@@ -89,7 +89,7 @@ module Server =
             homeFolder = home |> Some }
 
 
-    let app =
+    let app processRequest =
         choose
             [
 //                path "/echo" >=> handShake echo
@@ -108,6 +108,7 @@ module Server =
                     [
                         path "/msg" >=> OK msg
                         path "/eval" >=> evaluate
+                        path "/request" >=> (Json.mapJson processRequest)
                     ]
                 NOT_FOUND NOT_FOUND_RESPONSE
             ]
@@ -125,4 +126,4 @@ module Server =
         let home = Path.Combine(home, clientDir)
 
         printfn "Starting server on: %s with home: %s" port home
-        startWebServer (getConfig home port) app
+        startWebServer (getConfig home port) (app (fun _ -> ()))
