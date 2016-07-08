@@ -30,6 +30,9 @@ module Server =
         | [] -> failwith "Empty list"
 
 
+    [<Literal>]
+    let NOT_FOUND_RESPONSE = "Sorry, there is nothing there"
+
     /// Implementation of an echo websocket, 
     /// just echos the received message
     let echo (ws : WebSocket) =
@@ -95,7 +98,7 @@ module Server =
                         // Just to avoid an error in chrome
                         path "/favicon.ico" >=> OK ""
                         // Little server alive check
-                        path "/hello" >=> OK "World?"
+                        path "/hello" >=> OK "GenUnitApp"
                         // Start with the index file
                         path "/" >=> Files.browseFileHome "index.html"
                         // Get all other files
@@ -106,7 +109,7 @@ module Server =
                         path "/msg" >=> OK msg
                         path "/eval" >=> evaluate
                     ]
-                NOT_FOUND "Sorry there is nothing there"
+                NOT_FOUND NOT_FOUND_RESPONSE
             ]
 
 
