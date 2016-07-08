@@ -25,9 +25,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{5B6F0502
 		docs\tools\generate.fsx = docs\tools\generate.fsx
 	EndProjectSection
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "GenUnitApp", "src\GenUnitApp\GenUnitApp.fsproj", "{9550937D-3FE4-4CDC-99C5-3806C96157FB}"
+Project("{f2a71f9b-5d33-465a-a702-920d77279786}") = "GenUnitApp", "src\GenUnitApp\GenUnitApp.fsproj", "{9550937D-3FE4-4CDC-99C5-3806C96157FB}"
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "GenUnitApp.Tests", "tests\GenUnitApp.Tests\GenUnitApp.Tests.fsproj", "{75C46A72-1748-417B-806C-8137CBB57CC8}"
+Project("{f2a71f9b-5d33-465a-a702-920d77279786}") = "GenUnitApp.Tests", "tests\GenUnitApp.Tests\GenUnitApp.Tests.fsproj", "{75C46A72-1748-417B-806C-8137CBB57CC8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{22914310-A789-4C1B-B679-47FBDAACD7A4}"
 	ProjectSection(SolutionItems) = preProject

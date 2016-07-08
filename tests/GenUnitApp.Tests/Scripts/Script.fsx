@@ -20,34 +20,32 @@ open Suave.Http
 open Suave.Testing
 
 
-module ReqResp =
-
-    [<DataContract(Name="request")>]
-    [<CLIMutable>]
-    type Request =
-        {
-            [<field: DataMember(Name = "act")>]
-            Action: string
-            [<field: DataMember(Name = "qry")>]
-            Query: string
-        }
+[<DataContract(Name="request")>]
+[<CLIMutable>]
+type Request =
+    {
+        [<field: DataMember(Name = "act")>]
+        Action: string
+        [<field: DataMember(Name = "qry")>]
+        Query: string
+    }
 
 
-    [<DataContract(Name="response")>]
-    [<CLIMutable>]
-    type Response =
-        {
-            [<field: DataMember(Name = "succ")>]
-            Success: bool
-            [<field: DataMember(Name = "info")>]
-            Info: string[]
-            [<field: DataMember(Name = "warn")>]
-            Warning: string[]
-            [<field: DataMember(Name = "errs")>]
-            Errors: string[]
-            [<field: DataMember(Name = "reqs")>]
-            Requests: Request[]
-        }
+[<DataContract(Name="response")>]
+[<CLIMutable>]
+type Response =
+    {
+        [<field: DataMember(Name = "succ")>]
+        Success: bool
+        [<field: DataMember(Name = "info")>]
+        Info: string[]
+        [<field: DataMember(Name = "warn")>]
+        Warning: string[]
+        [<field: DataMember(Name = "errs")>]
+        Errors: string[]
+        [<field: DataMember(Name = "reqs")>]
+        Requests: Request[]
+    }
 
 let fromJson<'T> (json: string) =
     let dcs = DataContractJsonSerializer(typeof<'T>)
@@ -63,7 +61,7 @@ let toJson o =
     (new StreamReader(ms)).ReadToEnd()
 
 
-{ ReqResp.Action = "Test"; ReqResp.Query = "" }
+{ Action = "Test"; Query = "" }
 |> toJson
 
 [<Literal>]
