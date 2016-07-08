@@ -1,6 +1,6 @@
-﻿namespace GenUnitApp
+﻿namespace GenUnitApp.Utils
 
-module Utils = 
+module Path = 
 
     open System
     open System.IO

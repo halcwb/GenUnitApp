@@ -10,7 +10,7 @@ open Suave.Web // for config
 
 open Informedica.GenUtils.Lib.BCL
 open GenUnitApp
-open GenUnitApp.Utils
+open GenUnitApp.Utils.Path
 
 let iif x1 x2 = if x1 |> String.IsNullOrEmpty |> not then x1 else x2
 
