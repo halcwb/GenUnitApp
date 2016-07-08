@@ -27,7 +27,7 @@ type Request =
         [<field: DataMember(Name = "act")>]
         Action: string
         [<field: DataMember(Name = "qry")>]
-        Query: string
+        Query: obj
     }
 
 
@@ -61,7 +61,7 @@ let toJson o =
     (new StreamReader(ms)).ReadToEnd()
 
 
-{ Action = "Test"; Query = "" }
+{ Action = "Test"; Query = new Object() }
 |> toJson
 
 [<Literal>]
