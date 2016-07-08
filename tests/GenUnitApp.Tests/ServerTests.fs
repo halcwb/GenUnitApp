@@ -2,6 +2,8 @@
 
 module ServerTests =
 
+    open System
+
     open GenUnitApp
 
     open NUnit.Framework
@@ -25,3 +27,9 @@ module ServerTests =
             runWith defaultConfig Server.app
             |> req HttpMethod.GET "/foo" None
         response |> should equal Server.NOT_FOUND_RESPONSE
+
+
+    [<Test>]
+    let ``app routing should return index file when get root`` () =
+        let home = AppDomain.CurrentDomain.BaseDirectory
+        home |> should equal ""

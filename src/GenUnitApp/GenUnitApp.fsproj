@@ -62,6 +62,7 @@
       <Paket>True</Paket>
     </Content>
     <Compile Include="AssemblyInfo.fs" />
+    <Compile Include="Utils.fs" />
     <Compile Include="Server.fs" />
     <Compile Include="Program.fs" />
     <None Include="paket.references" />
@@ -77,7 +78,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Numerics" />
   </ItemGroup>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>
