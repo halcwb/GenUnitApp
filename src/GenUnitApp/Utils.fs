@@ -23,14 +23,14 @@ module Path =
     
 module Json =
 
-    open Newtonsoft
+    open Newtonsoft.Json
 
-//    let toString (o: obj) =
-//       JsonConvert.SerializeObject(o) 
-//
-//
-//    let fromString<'T> (s: string) =
-//        JsonConvert.DeserializeObject<'T>(s)
+    let toString (o: obj) =
+       JsonConvert.SerializeObject(o) 
+
+
+    let fromString<'T> (s: string) =
+        JsonConvert.DeserializeObject<'T>(s)
 
 
 

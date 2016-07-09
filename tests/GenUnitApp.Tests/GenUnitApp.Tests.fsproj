@@ -80,10 +80,6 @@
     <Reference Include="System.Numerics" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Runtime.Serialization" />
-    <ProjectReference Include="..\..\src\GenUnitApp\GenUnitApp.fsproj">
-      <Project>{9550937D-3FE4-4CDC-99C5-3806C96157FB}</Project>
-      <Name>GenUnitApp</Name>
-    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="($(TargetFrameworkIdentifier) == '.NETCore') Or ($(TargetFrameworkIdentifier) == 'MonoAndroid') Or ($(TargetFrameworkIdentifier) == 'MonoTouch') Or ($(TargetFrameworkIdentifier) == 'Xamarin.iOS') Or ($(TargetFrameworkIdentifier) == 'Xamarin.Mac') Or ($(TargetFrameworkProfile) == 'Profile7') Or ($(TargetFrameworkProfile) == 'Profile44')">
@@ -342,6 +338,13 @@
       <Private>True</Private>
       <Paket>True</Paket>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\GenUnitApp\GenUnitApp.fsproj">
+      <Name>GenUnitApp</Name>
+      <Project>{9550937d-3fe4-4cdc-99c5-3806c96157fb}</Project>
+      <Private>True</Private>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v3.5'">

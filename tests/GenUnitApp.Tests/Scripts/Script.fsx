@@ -1,4 +1,4 @@
-﻿#load "load-references-release.fsx"
+﻿#load "load-project-release.fsx"
 
 #time
 

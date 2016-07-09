@@ -19,3 +19,4 @@
 #r "System.Runtime.Serialization.dll"
 #r "System.Xml.dll"
 #r "../../../packages/Unquote/lib/net45/Unquote.dll"
+#r "../../../src/GenUnitApp/bin/Release/GenUnitApp.exe"
