@@ -1,5 +1,4 @@
 ﻿#I __SOURCE_DIRECTORY__
-#r "System.Core.dll"
 #r "System.dll"
 #r "System.Net.Http.dll"
 #r "System.Runtime.Serialization"
@@ -39,3 +38,5 @@ let toJson o =
 
 { Action = "Test"; Query = new Object() }
 |> toJson
+|> printfn "%s"
+
