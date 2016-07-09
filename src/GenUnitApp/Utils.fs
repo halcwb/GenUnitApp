@@ -21,4 +21,16 @@ module Path =
         let d = (new DirectoryInfo(p))
         d.Parent.FullName
     
+module Json =
+
+    open Newtonsoft
+
+//    let toString (o: obj) =
+//       JsonConvert.SerializeObject(o) 
+//
+//
+//    let fromString<'T> (s: string) =
+//        JsonConvert.DeserializeObject<'T>(s)
+
+
 

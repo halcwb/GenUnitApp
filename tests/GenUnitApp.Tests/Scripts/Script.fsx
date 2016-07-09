@@ -1,4 +1,4 @@
-﻿#load "load-references.fsx"
+﻿#load "load-references-release.fsx"
 
 #time
 
@@ -47,22 +47,6 @@ type Response =
         Requests: Request[]
     }
 
-let fromJson<'T> (json: string) =
-    let dcs = DataContractJsonSerializer(typeof<'T>)
-    use ms = new MemoryStream(ASCIIEncoding.ASCII.GetBytes(json))
-    (new StreamWriter(ms)).Write(json)
-    dcs.ReadObject(ms) :?> 'T
-
-let toJson o =
-    let dcs = DataContractJsonSerializer(o.GetType())
-    use ms = new MemoryStream()
-    dcs.WriteObject(ms, o) 
-    ms.Position <- 0L
-    (new StreamReader(ms)).ReadToEnd()
-
-
-{ Action = "Test"; Query = new Object() }
-|> toJson
 
 [<Literal>]
 let indexHtml = "index.html"
