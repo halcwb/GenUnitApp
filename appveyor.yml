@@ -2,7 +2,7 @@ environment:
   PAKET.VERSION: "3.1.9"
   matrix:
     # node.js
-    - nodejs_version: "6"
+    - nodejs_version: "6.2.2"
 
 shallow_clone: true
 
