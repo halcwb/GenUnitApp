@@ -4,11 +4,8 @@
 module ServerTests =
 
     open System
-    open System.Net.Http
-    open System.IO
     open System.Text
-    open System.Runtime.Serialization
-    open System.Runtime.Serialization.Json
+    open System.Net.Http
 
     open GenUnitApp
     open GenUnitApp.Utils
@@ -20,49 +17,34 @@ module ServerTests =
     open Suave.Http
     open Suave.Testing
 
+    open Newtonsoft.Json
 
-    [<DataContract(Name="request")>]
+
     [<CLIMutable>]
     type Request =
         {
-            [<field: DataMember(Name = "act")>]
+            [<JsonProperty("act")>]
             Action: string
-            [<field: DataMember(Name = "qry")>]
+            [<JsonProperty("qry")>]
             Query: obj
         }
 
 
-    [<DataContract(Name="response")>]
     [<CLIMutable>]
     type Response =
         {
-            [<field: DataMember(Name = "succ")>]
+            [<JsonProperty("succ")>]
             Success: bool
-            [<field: DataMember(Name = "info")>]
+            [<JsonProperty("info")>]
             Info: string[]
-            [<field: DataMember(Name = "warn")>]
+            [<JsonProperty("warn")>]
             Warning: string[]
-            [<field: DataMember(Name = "errs")>]
+            [<JsonProperty("errs")>]
             Errors: string[]
-            [<field: DataMember(Name = "reqs")>]
+            [<JsonProperty("reqs")>]
             Requests: Request[]
         }
         
-    let fromJson<'T> (json: string) =
-        let dcs = DataContractJsonSerializer(typeof<'T>)
-        use ms = new MemoryStream(ASCIIEncoding.ASCII.GetBytes(json))
-        (new StreamWriter(ms)).Write(json)
-        dcs.ReadObject(ms) :?> 'T
-
-    let toJson o =
-        let dcs = DataContractJsonSerializer(o.GetType())
-        use ms = new MemoryStream()
-        dcs.WriteObject(ms, o) 
-        ms.Position <- 0L
-        (new StreamReader(ms)).ReadToEnd()
-
-    
-
     [<Literal>]
     let indexHtml = "index.html"
 
@@ -113,17 +95,14 @@ module ServerTests =
                 Info = [||]
                 Warning = [||]
                 Errors = [||]
-                Requests = [||]
+                Requests = [| request |]
             } 
 
-        let processRequest _ = response |> toJson
+        let processRequest (r: Request) = response
 
         let actual = 
-            let dcs = DataContractJsonSerializer(response.GetType())
-            use ms = new MemoryStream()
-            ms.Position <- 0L
+            let data = Json.serialize request |> Encoding.UTF8.GetBytes
             runWith defaultConfig (Server.app processRequest)
-            |> req HttpMethod.POST "/request" (Some <| new ByteArrayContent(Json.toJson request))
-            |> fromJson<Response>
+            |> req HttpMethod.POST "/request" (Some <| new ByteArrayContent(data))
 
-        actual |> should equal response
+        actual |> should equal (response |> Json.serialize)

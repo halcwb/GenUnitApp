@@ -108,7 +108,7 @@ module Server =
                     [
                         path "/msg" >=> OK msg
                         path "/eval" >=> evaluate
-                        path "/request" >=> (Json.mapJson processRequest)
+                        path "/request" >=> (GenUnitApp.Json.mapJson processRequest)
                     ]
                 NOT_FOUND NOT_FOUND_RESPONSE
             ]
