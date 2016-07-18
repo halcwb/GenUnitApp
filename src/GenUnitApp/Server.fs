@@ -11,6 +11,7 @@ module Server =
     open Suave.Files
     open Suave.Operators
     open Suave.Filters
+    open Suave.Writers
     open Suave.Successful
     open Suave.RequestErrors
     open Suave.Web // for config
@@ -33,26 +34,9 @@ module Server =
     [<Literal>]
     let NOT_FOUND_RESPONSE = "Sorry, there is nothing there"
 
-    /// Implementation of an echo websocket, 
-    /// just echos the received message
-    let echo (ws : WebSocket) =
-        fun cx -> socket {
-            let loop = ref true
-            while !loop do
-                let! msg = ws.read();
-                match msg with
-                | (Text, data, true) ->
-                    
-                    let str = UTF8.toString data
-                    printfn "****** Received: %s" str
-                    do! ws.send Text data true
-                | (Ping, _, _) ->
-                    do! ws.send Pong [||] true
-                | (Close, _, _) ->
-                    do! ws.send Close [||] true
-                    loop := false
-                | _ -> ()
-        }
+    let setCORSHeaders =
+        setHeader "Access-Control-Allow-Origin" "*"
+        >=> setHeader "Access-Control-Allow-Headers" "content-type"
 
 
     let msg =
@@ -92,7 +76,6 @@ module Server =
     let app processRequest =
         choose
             [
-//                path "/echo" >=> handShake echo
                 GET >=> choose
                     [
                         // Just to avoid an error in chrome
@@ -108,7 +91,7 @@ module Server =
                     [
                         path "/msg" >=> OK msg
                         path "/eval" >=> evaluate
-                        path "/request" >=> (GenUnitApp.Json.mapJson processRequest)
+                        path "/request" >=> fun context -> context |> (setCORSHeaders >=> (GenUnitApp.Json.mapJson processRequest))
                     ]
                 NOT_FOUND NOT_FOUND_RESPONSE
             ]

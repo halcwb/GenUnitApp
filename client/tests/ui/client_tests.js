@@ -18,4 +18,13 @@ describe("Client", function () {
         expect(webix.version).to.equal('3.3.17');
     });
 
+    it('should have the app loaded', function () {
+        expect(app).to.be.ok;
+    });
+
+    it('should have an app.util', function () {
+        expect(app.util.inspect).to.be.ok;
+    });
+
+
 });

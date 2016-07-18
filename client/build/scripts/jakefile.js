@@ -107,7 +107,7 @@
         }, complete, fail);
     }, { async: true });
 
-    task("testBrowser", function() {
+    task("testBrowser", ["build"], function() {
         debug("Testing browser code: ");
         karma.run({
             configFile: KARMA_CONFIG,

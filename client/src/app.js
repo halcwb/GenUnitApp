@@ -22,6 +22,7 @@ webix.ready(function () {
     * @memberof app
     * @method debug
     */
+    app.util  = require("util");
     app.debug = require("debug");
     var debug = app.debug('client:app');
     var reload = require("./lib/util/reload.js");
