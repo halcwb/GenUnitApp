@@ -18,9 +18,9 @@ module.exports = function (config) {
         // list of files / patterns to load in the browser
         files: [
 //            './node_modules/chai/chai.js',
-//            './vendor/**/webix.css',
-//            './vendor/**/webix.js',
-//            './src/ui/**/*.js',
+            'node_modules/webix/**/webix.css',
+            'node_modules/webix/**/webix.js',
+            'src/ui/**/*.js',
             'tests/ui/**/*.js'
         ],
 
@@ -50,7 +50,7 @@ module.exports = function (config) {
 
         // level of logging
         // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-        logLevel: config.LOG_ERROR,
+        logLevel: config.LOG_INFO,
 
 
         // enable / disable watching file and executing tests whenever any file changes

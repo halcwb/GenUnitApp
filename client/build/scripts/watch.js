@@ -21,7 +21,8 @@
         watch: [
             "src",
             "build",
-            "spike"
+            "spike",
+            "tests"
         ],
         ignore: [
             "generated"
