@@ -19,32 +19,7 @@ module ServerTests =
 
     open Newtonsoft.Json
 
-
-    [<CLIMutable>]
-    type Request =
-        {
-            [<JsonProperty("act")>]
-            Action: string
-            [<JsonProperty("qry")>]
-            Query: obj
-        }
-
-
-    [<CLIMutable>]
-    type Response =
-        {
-            [<JsonProperty("succ")>]
-            Success: bool
-            [<JsonProperty("info")>]
-            Info: string[]
-            [<JsonProperty("warn")>]
-            Warning: string[]
-            [<JsonProperty("errs")>]
-            Errors: string[]
-            [<JsonProperty("reqs")>]
-            Requests: Request[]
-        }
-        
+            
     [<Literal>]
     let indexHtml = "index.html"
 
@@ -88,8 +63,8 @@ module ServerTests =
 
     [<Test>]
     let ``can post a request and get a response`` () =
-        let request  = { Action = ""; Query = new obj() }
-        let response = 
+        let request : Json.Request = { Action = ""; Query = new obj() }
+        let response : Json.Response = 
             {
                 Success = true
                 Info = [||]
@@ -98,7 +73,7 @@ module ServerTests =
                 Requests = [| request |]
             } 
 
-        let processRequest (r: Request) = response
+        let processRequest (r: Json.Request) = response
 
         let actual = 
             let data = Json.serialize request |> Encoding.UTF8.GetBytes
