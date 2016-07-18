@@ -21,7 +21,6 @@
         watch: [
             "src",
             "build",
-            "spike",
             "tests"
         ],
         ignore: [
