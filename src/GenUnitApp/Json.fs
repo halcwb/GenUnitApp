@@ -47,6 +47,7 @@ module Json =
 
     let mapJson f =
         request(fun r ->
+            printfn "Processing request:\n%A" (Encoding.UTF8.GetString(r.rawForm))
             f (Encoding.UTF8.GetString(r.rawForm) |> deSerialize)
             |> serialize
             |> Successful.OK

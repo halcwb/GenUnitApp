@@ -2,11 +2,19 @@
  * Created by halcwb on 18/07/16.
  */
 
-/* global dump, expect, assert, webix, $$, medcalc*/
+/* global dump, expect, assert, webix, $$, medcalc */
 
 
-(function () {
-    "use strict";
+describe("Smoke process request tests", function () {
+   "use strict";
 
-
-})();
+    it("should echo the test request", function () {
+       webix.ajax().post("/request", { action: 'test', query: {} })
+           .then(function (resp) {
+            done();
+           }).fail(function (errs) {
+            throw(errs);
+            done();
+       });
+    });
+});

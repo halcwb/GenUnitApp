@@ -118,6 +118,16 @@ module Server =
     /// port `port`.
     let start home port =
 
+        let procReq (r: Json.Request) =
+            printfn "Received request:\n %A" r 
+            { 
+                Json.Response.Success = true
+                Json.Response.Info = [||]
+                Json.Response.Warning = [||]
+                Json.Response.Errors = [||]
+                Json.Response.Requests = [|r|]
+            }
+
         // ToDo refactor this
         let clientDir =
             @"client\generated\dist"
@@ -126,4 +136,4 @@ module Server =
         let home = Path.Combine(home, clientDir)
 
         printfn "Starting server on: %s with home: %s" port home
-        startWebServer (getConfig home port) (app (fun _ -> ()))
+        startWebServer (getConfig home port) (app procReq)
