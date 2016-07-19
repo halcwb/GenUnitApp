@@ -117,13 +117,6 @@
         }, complete, fail);
     }, { async: true });
 
-    // task("testSmoke", [ "build" ], function() {
-    //     debug("Running local smoke tests: ");
-    //     mocha.runTests({
-    //         files: [ "tests/smoke/**/*.js" ],
-    //         options: MOCHA_CONFIG
-    //     }, complete, fail);
-    // }, { async: true });
 
     //*** BUILD
 
