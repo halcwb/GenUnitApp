@@ -18,6 +18,7 @@ describe("Smoke process request tests", function () {
             expect(resp.json().reqs[0].act = "test");
             done();
         }).fail(function (err) {
+            console.log('echo test error', app.util.inspect(promise));
             throw(err);
         });
 
