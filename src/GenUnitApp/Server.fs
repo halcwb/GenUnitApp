@@ -23,7 +23,8 @@ module Server =
     open Informedica.GenUtils.Lib.BCL
     open Informedica.GenUnits.Lib
 
-
+    /// Utility to get the last element 
+    /// in a list
     let rec listLast (list: 'T list) =
         match list with
         | [x] -> x
@@ -34,6 +35,8 @@ module Server =
     [<Literal>]
     let NOT_FOUND_RESPONSE = "Sorry, there is nothing there"
 
+    /// Utility function to set the headers to allow
+    /// cross origin requests 
     let setCORSHeaders =
         setHeader "Access-Control-Allow-Origin" "*"
         >=> setHeader "Access-Control-Allow-Headers" "content-type"
@@ -64,6 +67,8 @@ module Server =
             }
         } 
 
+    /// Get the server configuration with
+    /// home folder `home` and port `port`.
     let getConfig home port =
         { defaultConfig with
             logger = Logging.Loggers.saneDefaultsFor Logging.LogLevel.Verbose
@@ -73,6 +78,8 @@ module Server =
             homeFolder = home |> Some }
 
 
+    /// Create the server app with a function
+    /// that processes request posts.
     let app processRequest =
         choose
             [
@@ -91,7 +98,8 @@ module Server =
                     [
                         path "/msg" >=> OK msg
                         path "/eval" >=> evaluate
-                        path "/request" >=> fun context -> context |> (setCORSHeaders >=> (GenUnitApp.Json.mapJson processRequest))
+                        path "/request" >=> fun context -> 
+                            context |> (setCORSHeaders >=> (GenUnitApp.Json.mapJson processRequest))
                     ]
                 NOT_FOUND NOT_FOUND_RESPONSE
             ]
