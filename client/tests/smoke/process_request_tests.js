@@ -14,10 +14,10 @@ describe("Smoke process request tests", function () {
         var promise = webix.ajax().post("http://localhost:3000/request", JSON.stringify(test));
 
         promise.then(function (resp) {
-            console.log('resp', app.util.inspect(resp));
+            expect(resp.json().succ).to.be(true);
+            expect(resp.json().reqs[0].act = "test");
             done();
         }).fail(function (err) {
-            console.log('err', JSON.stringify(err));
             throw(err);
         });
 
