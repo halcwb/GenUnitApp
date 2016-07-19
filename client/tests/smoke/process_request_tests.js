@@ -6,7 +6,7 @@
 
 
 describe("Smoke process request tests", function () {
-   "use strict";
+    "use strict";
 
     it("should echo the test request with response", function (done) {
         var test = { act: 'test', qry: {} };
