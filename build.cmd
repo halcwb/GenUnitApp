@@ -13,9 +13,9 @@ if errorlevel 1 (
   exit /b %errorlevel%
 )
 
-::Build the client
+::Install client files
 if exist client\package.json (
-	echo "Build Client"
+	echo "Install npm modules"
 	cd client
 	call npm install
 	cd ..
@@ -23,3 +23,4 @@ if exist client\package.json (
 
 ::Build the project
 packages\FAKE\tools\FAKE.exe build.fsx %*
+

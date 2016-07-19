@@ -15,7 +15,6 @@ install:
   - ps: npm --version
 
 build_script:
-  - scripts\run.cmd
-  - build.cmd copyclient
+  - build.cmd nunit3
 
 test: off
