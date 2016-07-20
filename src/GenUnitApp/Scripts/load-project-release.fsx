@@ -4,5 +4,7 @@
 #load "../../../paket-files/halcwb/YoLo/YoLo.fs"
       "../AssemblyInfo.fs"
       "../Utils.fs"
+      "../Json.fs"
+      "../RequestResponse.fs"
       "../Server.fs"
       "../Program.fs"

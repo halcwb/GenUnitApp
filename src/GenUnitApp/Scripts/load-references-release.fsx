@@ -11,3 +11,4 @@
 #r "System.Core.dll"
 #r "System.dll"
 #r "System.Numerics.dll"
+#r "System.Net.Http.dll"
