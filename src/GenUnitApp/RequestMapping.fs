@@ -14,6 +14,8 @@ module Actions =
     [<Literal>]
     let NOACTION = "cannot map this action"
 
+    [<Literal>]
+    let GETUNITS = "getunits"
 
 module Query =
 
@@ -26,9 +28,30 @@ module Query =
             Expression : string
         }
 
+module Result =
+
+    open Newtonsoft.Json
+
+    [<CLIMutable>]
+    type Evaluate =
+        {
+            [<JsonProperty("text")>]
+            Text : string
+        }
+
+    let createEvaluate text = { Text = text }
+
+    [<CLIMutable>]
+    type GetUnits = 
+        {
+            [<JsonProperty("units")>]
+            Units : string[]
+        }
+
+    let createUnits us = { Units = us |> Array.ofSeq }
+
 
 /// Mapping a request to a response 
-/// 
 module RequestMapping =
 
     open Informedica.GenUnits.Lib
@@ -37,14 +60,21 @@ module RequestMapping =
 
     let map (r : Request) : Response =
         printfn "mapping request: %A" r
+
+        let toResponse succ = createResponse succ [||] [||] [||] [||]
+
         match r.Action with
         | Actions.ECHO     -> 
-            createResponse true [||] [||] [||] [||] r
+            toResponse true r
         | Actions.EVALUATE -> 
             (r.Query |> Json.deSerialize<Query.Evaluate>).Expression 
             |> Api.eval
             |> Result.createEvaluate
-            |> (createResponse true [||] [||] [||] [||])
+            |> (toResponse true)
+        | Actions.GETUNITS -> 
+            GenUnits.Api.getUnits()
+            |> Result.createUnits
+            |> (toResponse true)
         | _ -> 
             let resp =
                 createResponse false [||] [||] [|Actions.NOACTION|] [||] (new obj())

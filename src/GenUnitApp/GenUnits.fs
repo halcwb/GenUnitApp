@@ -1,15 +1,8 @@
-﻿#load "load-project-release.fsx"
-
-#time
-
-open System
-
-Environment.CurrentDirectory <- __SOURCE_DIRECTORY__
+﻿namespace GenUnitApp
 
 
 module GenUnits =
     
-
     module Api =
 
         open Informedica.GenUnits.Lib
@@ -29,4 +22,5 @@ module GenUnits =
                 let abbr = u.Abbreviation |> fst |> Unit.Name.toString
                 let grp = u.Group |> Unit.Name.toString
                 sprintf "%s[%s]" abbr grp)
+
 

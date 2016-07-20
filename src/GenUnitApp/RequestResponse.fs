@@ -59,15 +59,5 @@ module RequestResponse =
         }
 
 
-    module Result =
-
-        [<CLIMutable>]
-        type Evaluate =
-            {
-                [<JsonProperty("text")>]
-                Text : string
-            }
-
-        let createEvaluate text = { Text = text }
 
 

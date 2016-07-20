@@ -6,5 +6,6 @@
       "../Utils.fs"
       "../Json.fs"
       "../RequestResponse.fs"
+      "../RequestMapping.fs"
       "../Server.fs"
       "../Program.fs"
