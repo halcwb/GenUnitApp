@@ -21,6 +21,8 @@ module ServerTests =
 
     open Newtonsoft.Json
 
+    module RR = GenUnitApp.RequestResponse
+
             
     [<Literal>]
     let indexHtml = "index.html"
@@ -30,14 +32,15 @@ module ServerTests =
     type Query1 = { content : string }
     type Query2 = { content : string }
 
-    let createRequest a q : Json.Request = { Action = a; Query = q }
-    let createResponse s i w e rs : Json.Response = 
+    let createRequest a q : RR.Request = { Action = a; Query = q }
+    let createResponse s i w e rs : RR.Response = 
         {
             Success = s
             Info = i
             Warning = w
             Errors = e
             Requests = rs
+            Result = new obj()
         } 
 
     [<Literal>]
@@ -83,17 +86,18 @@ module ServerTests =
 
     [<Test>]
     let ``can post a request and get a response`` () =
-        let request : Json.Request = { Action = ""; Query = new obj() }
-        let response : Json.Response = 
+        let request : RR.Request = { Action = ""; Query = "" }
+        let response : RR.Response = 
             {
                 Success = true
                 Info = [||]
                 Warning = [||]
                 Errors = [||]
                 Requests = [| request |]
+                Result = new obj()
             } 
 
-        let processRequest (r: Json.Request) = response
+        let processRequest (r: RR.Request) = response
 
         let actual = 
             let data = Json.serialize request |> Encoding.UTF8.GetBytes
@@ -105,9 +109,9 @@ module ServerTests =
 
     [<Test>]
     let ``can map a request to a response`` () =
-        let req1 = createRequest "act1" ({ Query1.content = "query1"})
-        let req2 = createRequest "act2" ({ Query2.content = "query2"})
-        let req3 = createRequest "act3" (new obj())
+        let req1 = createRequest "act1" ({ Query1.content = "query1"} |> Json.serialize)
+        let req2 = createRequest "act2" ({ Query2.content = "query2"} |> Json.serialize)
+        let req3 = createRequest "act3" ""
 
         let crResp s r = createResponse s [||] [||] [||] [|r|]
 
@@ -115,7 +119,7 @@ module ServerTests =
         let resp2 = crResp true req2
         let resp3 = crResp false req3
 
-        let mapRequest (r: Json.Request) =
+        let mapRequest (r: RR.Request) =
             match r.Action with
             | ACT1 -> crResp true r
             | ACT2 -> crResp true r
@@ -132,4 +136,28 @@ module ServerTests =
             |> req HttpMethod.POST "/request" data 
         
         act1 |> should equal (resp1 |> Json.serialize)
+
+        let act2 =
+            let data =
+                new ByteArrayContent( 
+                    Json.serialize req2 
+                    |> Encoding.UTF8.GetBytes)
+                |> Some
+
+            runWith defaultConfig (Server.app mapRequest)
+            |> req HttpMethod.POST "/request" data 
+        
+        act2 |> should equal (resp2 |> Json.serialize)
+
+        let act3 =
+            let data =
+                new ByteArrayContent( 
+                    Json.serialize req3 
+                    |> Encoding.UTF8.GetBytes)
+                |> Some
+
+            runWith defaultConfig (Server.app mapRequest)
+            |> req HttpMethod.POST "/request" data 
+        
+        act3 |> should equal (resp3 |> Json.serialize)
         
