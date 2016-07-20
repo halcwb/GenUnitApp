@@ -26,7 +26,7 @@ webix.ready(function () {
     app.debug = require("debug");
     var debug = app.debug('client:app');
     var reload = require("./lib/util/reload.js");
-    var msg = require("./lib/ajax/request.js").getMessage();
+    var request = require("./lib/ajax/request.js");
 
     // handles the evaluate button click event
     var onClickCaclulate = function () {
@@ -35,7 +35,7 @@ webix.ready(function () {
 
       debug('going to evaluate', text);
 
-      webix.ajax().post("/eval", { action: 'evaluate', text: text })
+      request.evaluate(text)
       .then(function(resp) {
           debug('got: ', resp);
           output.setHTML(resp.text());
@@ -50,7 +50,7 @@ webix.ready(function () {
     reload.init();
 
     debug("Starting the app!, ok");
-    msg.then(function (resp) {
+    request.message().then(function (resp) {
         webix.alert(resp.text());
     });
 
