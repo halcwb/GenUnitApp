@@ -119,4 +119,4 @@ module Server =
         let home = Path.Combine(home, clientDir)
 
         printfn "Starting server on: %s with home: %s" port home
-        startWebServer (getConfig home port) (app RequestResponse.mapRequest)
+        startWebServer (getConfig home port) (app RequestMapping.map)

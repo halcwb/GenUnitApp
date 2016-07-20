@@ -1,5 +1,6 @@
 ﻿namespace GenUnitApp
 
+/// Request Response abstraction with a 
 module RequestResponse =
 
     open System
@@ -80,7 +81,13 @@ module RequestResponse =
         let createEvaluate text = { Text = text }
 
 
-    let mapRequest (r : Request) : Response =
+module RequestMapping =
+
+    open Informedica.GenUnits.Lib
+
+    open RequestResponse
+
+    let map (r : Request) : Response =
         printfn "mapping request: %A" r
         match r.Action with
         | Actions.EVALUATE -> 
