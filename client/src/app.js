@@ -29,7 +29,7 @@ webix.ready(function () {
     var request = require("./lib/ajax/request.js");
 
     // handles the evaluate button click event
-    var onClickCaclulate = function () {
+    var onClickEvaluate = function () {
       var text = $$('expression_text').getValue();
       var output = $$('result_template');
 
@@ -54,7 +54,7 @@ webix.ready(function () {
         webix.alert(resp.text());
     });
 
-    // create the ui
+    // create the ui 
     webix.ui({
         rows: [
             { type: 'header', template: 'GenUnitApp' },
@@ -65,8 +65,8 @@ webix.ready(function () {
                       placeholder:"<expression>",
                       label: 'expression' },
                     { view:"button",
-                      id: 'expression_button',
-                      value: 'calculate' }
+                      id: 'evaluate_button',
+                      value: 'evaluate' }
                 ]},
                 { template: 'result', id: 'result_template' }
             ]}
@@ -74,6 +74,6 @@ webix.ready(function () {
     });
 
     // attach events
-    $$('expression_button').attachEvent('onItemClick', onClickCaclulate);
+    $$('evaluate_button').attachEvent('onItemClick', onClickEvaluate);
 
 });
