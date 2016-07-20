@@ -9,29 +9,29 @@ describe("Smoke process request tests", function () {
     "use strict";
 
     var HOME_URL = "http://localhost:3000/request";
-    var test1, test2, test3;
+    var foo, echo, evaluate;
 
 
     before(function () {
-        var req = { act: 'test1', qry: ""};
+        var req = { act: 'foo', qry: ""};
 
-        console.log('running before');
-        test1 = webix.ajax().post(HOME_URL, JSON.stringify(req));
-        req.act = "test2";
-        test2 = webix.ajax().post(HOME_URL, JSON.stringify(req));
+        foo = webix.ajax().post(HOME_URL, JSON.stringify(req));
+
+        req.act = "echo";
+        echo = webix.ajax().post(HOME_URL, JSON.stringify(req));
 
         req.act = "evaluate";
         req.qry = JSON.stringify({ expr: "20 mL[Volume] * 100 mg[Mass]/ml[Volume]"});
-        test3 = webix.ajax().post(HOME_URL, JSON.stringify(req));
-        
+        evaluate = webix.ajax().post(HOME_URL, JSON.stringify(req));
+
     });
 
-    it("should echo the test request with response", function (done) {
-        var promise = test1;
+    it("should not be able to process request with action foo", function (done) {
+        var promise = foo;
 
-        console.log('test1');
+        console.log('test');
         promise.then(function (resp) {
-            expect(resp.json().succ).to.be(true);
+            expect(resp.json().succ).to.be(false);
             done();
         }).fail(function (err) {
             console.log('echo test error', app.util.inspect(promise));
@@ -42,12 +42,13 @@ describe("Smoke process request tests", function () {
     });
 
 
-    it("should echo the test request with response 2", function (done) {
-        var promise = test2;
+    it("should echo the request when action echo", function (done) {
+        var promise = echo;
 
-        console.log('test2');
+        console.log('echo');
         promise.then(function (resp) {
             expect(resp.json().succ).to.be(true);
+            expect(resp.json().result).to.eql({ act: 'echo', qry: '' });
             done();
         }).fail(function (err) {
             console.log('echo test error', app.util.inspect(promise));
@@ -59,11 +60,12 @@ describe("Smoke process request tests", function () {
 
 
     it ("should be able to request an evaluation of an expression", function (done) {
-        var promise = test3;
+        var promise = evaluate;
 
-        console.log('test3');
+        console.log('evaluate');
         promise.then(function (resp) {
             expect(resp.json().succ).to.be(true);
+            expect(resp.json().result.text).to.equal("2000 mg[Mass]");
             done();
         }).fail(function (err) {
             console.log('req evaluate error', app.util.inspect(promise));
