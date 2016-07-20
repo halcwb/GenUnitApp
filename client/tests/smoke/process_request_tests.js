@@ -9,7 +9,7 @@ describe("Smoke process request tests", function () {
     "use strict";
 
     var HOME_URL = "http://localhost:3000/request";
-    var foo, echo, evaluate;
+    var foo, echo, evaluate, units;
 
 
     before(function () {
@@ -23,6 +23,10 @@ describe("Smoke process request tests", function () {
         req.act = "evaluate";
         req.qry = JSON.stringify({ expr: "20 mL[Volume] * 100 mg[Mass]/ml[Volume]"});
         evaluate = webix.ajax().post(HOME_URL, JSON.stringify(req));
+
+        req.act = "getunits";
+        req.qry = ""
+        units = webix.ajax().post(HOME_URL, JSON.stringify(req));
 
     });
 
@@ -73,6 +77,19 @@ describe("Smoke process request tests", function () {
             throw(err);
         });
 
+    });
+
+    it("getunits should get a list of units", function (done) {
+        var promise = units;
+
+        promise.then(function (resp) {
+            expect(resp.json().succ).to.be(true);
+            expect(resp.json().result.units).to.be.an(Array);
+            done();
+        }).fail(function () {
+            console.log('get units failed', app.util.inspect(promise));
+            done();
+        });
     });
 
 
