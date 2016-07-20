@@ -20,6 +20,8 @@ module ServerTests =
 
     open Newtonsoft.Json
 
+    module RR = GenUnitApp.RequestResponse
+
             
     [<Literal>]
     let indexHtml = "index.html"
@@ -29,8 +31,8 @@ module ServerTests =
     type Query1 = { content : string }
     type Query2 = { content : string }
 
-    let createRequest a q : Json.Request = { Action = a; Query = q }
-    let createResponse s i w e rs : Json.Response = 
+    let createRequest a q : RR.Request = { Action = a; Query = q }
+    let createResponse s i w e rs : RR.Response = 
         {
             Success = s
             Info = i
@@ -82,8 +84,8 @@ module ServerTests =
 
     [<Test>]
     let ``can post a request and get a response`` () =
-        let request : Json.Request = { Action = ""; Query = new obj() }
-        let response : Json.Response = 
+        let request : RR.Request = { Action = ""; Query = new obj() }
+        let response : RR.Response = 
             {
                 Success = true
                 Info = [||]
@@ -92,7 +94,7 @@ module ServerTests =
                 Requests = [| request |]
             } 
 
-        let processRequest (r: Json.Request) = response
+        let processRequest (r: RR.Request) = response
 
         let actual = 
             let data = Json.serialize request |> Encoding.UTF8.GetBytes
@@ -114,7 +116,7 @@ module ServerTests =
         let resp2 = crResp true req2
         let resp3 = crResp false req3
 
-        let mapRequest (r: Json.Request) =
+        let mapRequest (r: RR.Request) =
             match r.Action with
             | ACT1 -> crResp true r
             | ACT2 -> crResp true r

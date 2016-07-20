@@ -23,6 +23,8 @@ module Server =
     open Informedica.GenUtils.Lib.BCL
     open Informedica.GenUnits.Lib
 
+    open RequestResponse
+
     /// Utility to get the last element 
     /// in a list
     let rec listLast (list: 'T list) =
@@ -109,14 +111,14 @@ module Server =
     /// port `port`.
     let start home port =
 
-        let procReq (r: Json.Request) =
+        let procReq (r: Request) : Response =
             printfn "Received request:\n %A" r 
             { 
-                Json.Response.Success = true
-                Json.Response.Info = [||]
-                Json.Response.Warning = [||]
-                Json.Response.Errors = [||]
-                Json.Response.Requests = [|r|]
+                Success = true
+                Info = [||]
+                Warning = [||]
+                Errors = [||]
+                Requests = [|r|]
             }
 
         // ToDo refactor this
