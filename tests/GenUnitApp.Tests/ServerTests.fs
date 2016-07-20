@@ -39,6 +39,7 @@ module ServerTests =
             Warning = w
             Errors = e
             Requests = rs
+            Result = new obj()
         } 
 
     [<Literal>]
@@ -84,7 +85,7 @@ module ServerTests =
 
     [<Test>]
     let ``can post a request and get a response`` () =
-        let request : RR.Request = { Action = ""; Query = new obj() }
+        let request : RR.Request = { Action = ""; Query = "" }
         let response : RR.Response = 
             {
                 Success = true
@@ -92,6 +93,7 @@ module ServerTests =
                 Warning = [||]
                 Errors = [||]
                 Requests = [| request |]
+                Result = new obj()
             } 
 
         let processRequest (r: RR.Request) = response
@@ -106,9 +108,9 @@ module ServerTests =
 
     [<Test>]
     let ``can map a request to a response`` () =
-        let req1 = createRequest "act1" ({ Query1.content = "query1"})
-        let req2 = createRequest "act2" ({ Query2.content = "query2"})
-        let req3 = createRequest "act3" (new obj())
+        let req1 = createRequest "act1" ({ Query1.content = "query1"} |> Json.serialize)
+        let req2 = createRequest "act2" ({ Query2.content = "query2"} |> Json.serialize)
+        let req3 = createRequest "act3" ""
 
         let crResp s r = createResponse s [||] [||] [||] [|r|]
 

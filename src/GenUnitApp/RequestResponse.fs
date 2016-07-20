@@ -10,13 +10,16 @@ module RequestResponse =
     open Suave
     open Suave.Operators
 
+    open Informedica.GenUnits.Lib
+
+
     [<CLIMutable>]
     type Request =
         {
             [<JsonProperty("act")>]
             Action: string
             [<JsonProperty("qry")>]
-            Query: obj
+            Query: string
         }
 
 
@@ -24,16 +27,35 @@ module RequestResponse =
     type Response =
         {
             [<JsonProperty("succ")>]
-            Success: bool
+            Success : bool
             [<JsonProperty("info")>]
-            Info: string[]
+            Info : string[]
             [<JsonProperty("warn")>]
-            Warning: string[]
+            Warning : string[]
             [<JsonProperty("errs")>]
-            Errors: string[]
+            Errors : string[]
             [<JsonProperty("reqs")>]
-            Requests: Request[]
+            Requests : Request[]
+            [<JsonProperty("result")>]
+            Result : obj 
         }
+
+
+    let createResponse succ info warn errs reqs res =
+        {
+            Success = succ
+            Info = info
+            Warning = warn
+            Errors = errs
+            Requests = reqs
+            Result = res
+        }
+
+
+    module Actions =
+
+        [<Literal>]
+        let EVALUATE = "evaluate"
 
 
     module Query =
@@ -41,7 +63,33 @@ module RequestResponse =
         [<CLIMutable>]
         type Evaluate =
             {
+                [<JsonProperty("expr")>]
+                Expression : string
+            }
+
+
+    module Result =
+
+        [<CLIMutable>]
+        type Evaluate =
+            {
                 [<JsonProperty("text")>]
                 Text : string
             }
+
+        let createEvaluate text = { Text = text }
+
+
+    let mapRequest (r : Request) : Response =
+        printfn "mapping request: %A" r
+        match r.Action with
+        | Actions.EVALUATE -> 
+            (r.Query |> Json.deSerialize<Query.Evaluate>).Expression 
+            |> Api.eval
+            |> Result.createEvaluate
+            |> (fun r -> createResponse true [||] [||] [||] [||] r)
+        | _ -> 
+            let resp =
+                createResponse true [||] [||] [||] [||] (new obj())
+            resp
 

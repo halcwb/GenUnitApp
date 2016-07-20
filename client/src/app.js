@@ -54,7 +54,7 @@ webix.ready(function () {
         webix.alert(resp.text());
     });
 
-    // create the ui 
+    // create the ui
     webix.ui({
         rows: [
             { type: 'header', template: 'GenUnitApp' },

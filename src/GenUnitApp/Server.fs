@@ -111,16 +111,6 @@ module Server =
     /// port `port`.
     let start home port =
 
-        let procReq (r: Request) : Response =
-            printfn "Received request:\n %A" r 
-            { 
-                Success = true
-                Info = [||]
-                Warning = [||]
-                Errors = [||]
-                Requests = [|r|]
-            }
-
         // ToDo refactor this
         let clientDir =
             @"client\generated\dist"
@@ -129,4 +119,4 @@ module Server =
         let home = Path.Combine(home, clientDir)
 
         printfn "Starting server on: %s with home: %s" port home
-        startWebServer (getConfig home port) (app procReq)
+        startWebServer (getConfig home port) (app RequestResponse.mapRequest)

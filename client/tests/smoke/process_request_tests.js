@@ -13,16 +13,17 @@ describe("Smoke process request tests", function () {
 
 
     before(function () {
-        var req = { act: 'test1', qry: {}};
+        var req = { act: 'test1', qry: ""};
 
-        console.log('running before ');
+        console.log('running before');
         test1 = webix.ajax().post(HOME_URL, JSON.stringify(req));
         req.act = "test2";
         test2 = webix.ajax().post(HOME_URL, JSON.stringify(req));
-        req.act = "evalute";
-        req.qry = { expr: "20 mL[Volume] * 100 mg[Mass]/ml[Volume]"};
-        test3 = webix.ajax().post(HOME_URL, JSON.stringify(req));
 
+        req.act = "evaluate";
+        req.qry = JSON.stringify({ expr: "20 mL[Volume] * 100 mg[Mass]/ml[Volume]"});
+        test3 = webix.ajax().post(HOME_URL, JSON.stringify(req));
+        
     });
 
     it("should echo the test request with response", function (done) {
@@ -31,7 +32,6 @@ describe("Smoke process request tests", function () {
         console.log('test1');
         promise.then(function (resp) {
             expect(resp.json().succ).to.be(true);
-            expect(resp.json().reqs[0].act = "test1");
             done();
         }).fail(function (err) {
             console.log('echo test error', app.util.inspect(promise));
@@ -48,7 +48,6 @@ describe("Smoke process request tests", function () {
         console.log('test2');
         promise.then(function (resp) {
             expect(resp.json().succ).to.be(true);
-            expect(resp.json().reqs[0].act = "test2");
             done();
         }).fail(function (err) {
             console.log('echo test error', app.util.inspect(promise));
@@ -73,5 +72,6 @@ describe("Smoke process request tests", function () {
         });
 
     });
+
 
 });
