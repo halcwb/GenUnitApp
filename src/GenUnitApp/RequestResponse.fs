@@ -1,6 +1,6 @@
 ﻿namespace GenUnitApp
 
-/// Request Response abstraction with a 
+/// Request Response abstraction. 
 module RequestResponse =
 
     open System
@@ -13,17 +13,23 @@ module RequestResponse =
 
     open Informedica.GenUnits.Lib
 
+        
 
+    /// Represents a `Request` with
     [<CLIMutable>]
     type Request =
         {
+            /// Action that uses the query
             [<JsonProperty("act")>]
             Action: string
+            /// Query string that is the json
+            /// representation of a query object
             [<JsonProperty("qry")>]
             Query: string
         }
 
 
+    /// Represents a `Response`
     [<CLIMutable>]
     type Response =
         {
@@ -53,22 +59,6 @@ module RequestResponse =
         }
 
 
-    module Actions =
-
-        [<Literal>]
-        let EVALUATE = "evaluate"
-
-
-    module Query =
-
-        [<CLIMutable>]
-        type Evaluate =
-            {
-                [<JsonProperty("expr")>]
-                Expression : string
-            }
-
-
     module Result =
 
         [<CLIMutable>]
@@ -80,23 +70,4 @@ module RequestResponse =
 
         let createEvaluate text = { Text = text }
 
-
-module RequestMapping =
-
-    open Informedica.GenUnits.Lib
-
-    open RequestResponse
-
-    let map (r : Request) : Response =
-        printfn "mapping request: %A" r
-        match r.Action with
-        | Actions.EVALUATE -> 
-            (r.Query |> Json.deSerialize<Query.Evaluate>).Expression 
-            |> Api.eval
-            |> Result.createEvaluate
-            |> (fun r -> createResponse true [||] [||] [||] [||] r)
-        | _ -> 
-            let resp =
-                createResponse true [||] [||] [||] [||] (new obj())
-            resp
 

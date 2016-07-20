@@ -67,6 +67,7 @@
     <Compile Include="Utils.fs" />
     <Compile Include="Json.fs" />
     <Compile Include="RequestResponse.fs" />
+    <Compile Include="RequestMapping.fs" />
     <Compile Include="Server.fs" />
     <Compile Include="Program.fs" />
     <None Include="paket.references" />
@@ -75,6 +76,8 @@
     <None Include="Scripts\load-project-release.fsx" />
     <None Include="Scripts\Start.fsx" />
     <None Include="Scripts\Script1.fsx" />
+    <None Include="Scripts\load-references-debug.fsx" />
+    <None Include="Scripts\load-project-debug.fsx" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
