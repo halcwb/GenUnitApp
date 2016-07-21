@@ -5,6 +5,7 @@
       "../AssemblyInfo.fs"
       "../Utils.fs"
       "../Json.fs"
+      "../GenUnits.fs"
       "../RequestResponse.fs"
       "../RequestMapping.fs"
       "../Server.fs"

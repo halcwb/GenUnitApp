@@ -28,6 +28,13 @@ module Query =
             Expression : string
         }
 
+    [<CLIMutable>]
+    type GetUnits =
+        {
+            [<JsonProperty("grp")>]
+            Group : string
+        }
+
 module Result =
 
     open Newtonsoft.Json
@@ -71,8 +78,9 @@ module RequestMapping =
             |> Api.eval
             |> Result.createEvaluate
             |> (toResponse true)
-        | Actions.GETUNITS -> 
-            GenUnits.Api.getUnits()
+        | Actions.GETUNITS ->
+            (r.Query |> Json.deSerialize<Query.GetUnits>).Group 
+            |> GenUnits.Api.getUnits
             |> Result.createUnits
             |> (toResponse true)
         | _ -> 

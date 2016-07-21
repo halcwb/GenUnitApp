@@ -21,7 +21,7 @@ module ServerTests =
     open Newtonsoft.Json
 
     module RR = GenUnitApp.RequestResponse
-
+    module QR = GenUnitApp.Query
             
     [<Literal>]
     let indexHtml = "index.html"
@@ -41,6 +41,8 @@ module ServerTests =
             Requests = rs
             Result = new obj()
         } 
+    let crResp s r = createResponse s [||] [||] [||] [|r|]
+
 
     [<Literal>]
     let ACT1 = "act1"
@@ -112,8 +114,6 @@ module ServerTests =
         let req2 = createRequest "act2" ({ Query2.content = "query2"} |> Json.serialize)
         let req3 = createRequest "act3" ""
 
-        let crResp s r = createResponse s [||] [||] [||] [|r|]
-
         let resp1 = crResp true req1
         let resp2 = crResp true req2
         let resp3 = crResp false req3
@@ -160,3 +160,31 @@ module ServerTests =
         
         act3 |> should equal (resp3 |> Json.serialize)
         
+    [<Test>]
+    let ``can get units for a group`` () =
+        let resp = 
+            GenUnits.Api.getUnits ""
+            |> GenUnitApp.Result.createUnits
+            |> (fun us -> 
+                {
+                    RR.Response.Success = true
+                    RR.Response.Info = [||]
+                    RR.Response.Warning = [||]
+                    RR.Response.Errors = [||]
+                    RR.Response.Requests = [||]
+                    RR.Response.Result = us
+                }             
+            )
+            |> Json.serialize
+
+        let qry = { QR.GetUnits.Group = "" }
+        let data = 
+            createRequest "getunits" (qry |> Json.serialize)
+            |> Json.serialize
+            |> Encoding.UTF8.GetBytes
+
+        let act =
+            runWith defaultConfig (Server.app RequestMapping.map)
+            |> req HttpMethod.POST "/request" (new ByteArrayContent(data) |> Some)
+        
+        act |> should equal resp

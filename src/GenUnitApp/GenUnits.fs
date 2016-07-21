@@ -15,9 +15,13 @@ module GenUnits =
         
         let convert = Api.convert
         
-        let getUnits () = 
+        let getUnits grp = 
             Unit.Units.units
             |> List.collect id
+            |> List.filter (fun u -> 
+                (u 
+                |> Unit.getGroupName 
+                |> Unit.Name.toString = grp) || (grp |> String.isEmpty))
             |> List.map (fun u -> 
                 let abbr = u.Abbreviation |> fst |> Unit.Name.toString
                 let grp = u.Group |> Unit.Name.toString
