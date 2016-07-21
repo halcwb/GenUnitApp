@@ -24,8 +24,9 @@
         return webix.ajax().post("/request", req);
     };
 
-    exports.units = function () {
-        var req = JSON.stringify({ act: 'getunits', qry : "" });
+    exports.units = function (grp) {
+        var qry = JSON.stringify({ grp: grp });
+        var req = JSON.stringify({ act: 'getunits', qry : qry });
         return webix.ajax().post("/request", req);
     };
 

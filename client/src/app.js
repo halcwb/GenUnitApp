@@ -46,28 +46,29 @@ webix.ready(function () {
 
     };
 
-    var onUnitsCombo1Click = function () {
+    var onFromUnitsComboClick = function () {
         debug('combo clicked', arguments);
-        var list = $$('units_combo1').getPopup().getList();
+        var list = $$('from_units_combo').getPopup().getList();
 
         if (list.count() === 0) {
             list.clearAll();
-            request.units().then(function (resp) {
+            request.units("").then(function (resp) {
                 list.parse(resp.json().result.units);
             });
         }
     };
 
-    var onUnitsCombo2Click = function () {
-        debug('combo clicked', arguments);
-        var list = $$('units_combo2').getPopup().getList();
+    var onFromUnitsComboChange = function (val) {
+        debug('combo changed', val);
+        var combo = $$('to_units_combo');
+        var list = combo.getPopup().getList();
+        var grp = val.match(/\[(.*?)\]/)[1];
 
-        if (list.count() === 0) {
-            list.clearAll();
-            request.units().then(function (resp) {
-                list.parse(resp.json().result.units);
-            });
-        }
+        combo.setValue("");
+        list.clearAll();
+        request.units(grp).then(function (resp) {
+            list.parse(resp.json().result.units);
+        });
     };
 
     // starting reload for development
@@ -93,7 +94,7 @@ webix.ready(function () {
                             id: 'evaluate_button',
                             value: 'evaluate' }
                     ]},
-                    { view: "form", id: 'expression_form', elements: [
+                    { view: "form", id: 'convert_form', elements: [
                         { rows: [
                             { cols: [
                                 { view:"text",
@@ -101,7 +102,7 @@ webix.ready(function () {
                                     placeholder: "<value>",
                                     label: 'value' },
                                 { view:"combo",
-                                    id: 'units_combo1',
+                                    id: 'from_units_combo',
                                     placeholder: "<units>",
                                     options: [],
                                     label: '' },
@@ -111,7 +112,7 @@ webix.ready(function () {
                                     align: 'center',
                                     id: 'label_to' },
                                 { view:"combo",
-                                    id: 'units_combo2',
+                                    id: 'to_units_combo',
                                     placeholder: "<units>",
                                     options: [],
                                     label: '' }
@@ -129,7 +130,7 @@ webix.ready(function () {
 
     // attach events
     $$('evaluate_button').attachEvent('onItemClick', onClickEvaluate);
-    $$('units_combo1').attachEvent('onItemclick', onUnitsCombo1Click);
-    $$('units_combo2').attachEvent('onItemclick', onUnitsCombo2Click);
+    $$('from_units_combo').attachEvent('onItemclick', onFromUnitsComboClick);
+    $$('from_units_combo').attachEvent('onChange', onFromUnitsComboChange);
 
 });

@@ -25,7 +25,7 @@ describe("Smoke process request tests", function () {
         evaluate = webix.ajax().post(HOME_URL, JSON.stringify(req));
 
         req.act = "getunits";
-        req.qry = ""
+        req.qry = JSON.stringify({ grp: ''});
         units = webix.ajax().post(HOME_URL, JSON.stringify(req));
 
     });
