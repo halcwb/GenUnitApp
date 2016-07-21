@@ -19,7 +19,14 @@
     };
 
     exports.evaluate = function (text) {
-        return webix.ajax().post("/eval", { action: 'evaluate', text: text });
+        var qry = JSON.stringify({ expr: text });
+        var req = JSON.stringify({ act: 'evaluate', qry: qry });
+        return webix.ajax().post("/request", req);
+    };
+
+    exports.units = function () {
+        var req = JSON.stringify({ act: 'getunits', qry : "" });
+        return webix.ajax().post("/request", req);
     };
 
 })();

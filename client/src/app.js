@@ -38,12 +38,36 @@ webix.ready(function () {
       request.evaluate(text)
       .then(function(resp) {
           debug('got: ', resp);
-          output.setHTML(resp.text());
+          output.setHTML(resp.json().result.text);
       }).fail(function (err) {
           debug('error', err);
           output.setHTML('cannot evaluate: ' + text + '</br>' + err.responseText);
       });
 
+    };
+
+    var onUnitsCombo1Click = function () {
+        debug('combo clicked', arguments);
+        var list = $$('units_combo1').getPopup().getList();
+
+        if (list.count() === 0) {
+            list.clearAll();
+            request.units().then(function (resp) {
+                list.parse(resp.json().result.units);
+            });
+        }
+    };
+
+    var onUnitsCombo2Click = function () {
+        debug('combo clicked', arguments);
+        var list = $$('units_combo2').getPopup().getList();
+
+        if (list.count() === 0) {
+            list.clearAll();
+            request.units().then(function (resp) {
+                list.parse(resp.json().result.units);
+            });
+        }
     };
 
     // starting reload for development
@@ -59,14 +83,44 @@ webix.ready(function () {
         rows: [
             { type: 'header', template: 'GenUnitApp' },
             { cols: [
-                { view: "form", id: 'expression_form', elements: [
-                    { view:"text",
-                      id: 'expression_text',
-                      placeholder:"<expression>",
-                      label: 'expression' },
-                    { view:"button",
-                      id: 'evaluate_button',
-                      value: 'evaluate' }
+                {rows: [
+                    { view: "form", id: 'expression_form', elements: [
+                        { view:"text",
+                            id: 'expression_text',
+                            placeholder: "<expression>",
+                            label: 'expression' },
+                        { view:"button",
+                            id: 'evaluate_button',
+                            value: 'evaluate' }
+                    ]},
+                    { view: "form", id: 'expression_form', elements: [
+                        { rows: [
+                            { cols: [
+                                { view:"text",
+                                    id: 'value_text',
+                                    placeholder: "<value>",
+                                    label: 'value' },
+                                { view:"combo",
+                                    id: 'units_combo1',
+                                    placeholder: "<units>",
+                                    options: [],
+                                    label: '' },
+                                { view:"label",
+                                    label: 'to',
+                                    width:  30,
+                                    align: 'center',
+                                    id: 'label_to' },
+                                { view:"combo",
+                                    id: 'units_combo2',
+                                    placeholder: "<units>",
+                                    options: [],
+                                    label: '' }
+                            ] },
+                            { view:"button",
+                                id: 'convert_button',
+                                value: 'convert' }
+                        ]}
+                    ]}
                 ]},
                 { template: 'result', id: 'result_template' }
             ]}
@@ -75,5 +129,7 @@ webix.ready(function () {
 
     // attach events
     $$('evaluate_button').attachEvent('onItemClick', onClickEvaluate);
+    $$('units_combo1').attachEvent('onItemclick', onUnitsCombo1Click);
+    $$('units_combo2').attachEvent('onItemclick', onUnitsCombo2Click);
 
 });
