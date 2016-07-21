@@ -1,3 +1,7 @@
+#### 0.1.0-beta - July 21 2016
+* evaluate an expression
+* convert a value unit to another unit
+
 #### 0.1.0-alpha - July 5 2016
 * First working client setup
 * First implemented feature: evaluate an expression
@@ -11,4 +15,3 @@
 
 #### 0.0.1-alpha - June 03 2016
 * Initial setup
-
