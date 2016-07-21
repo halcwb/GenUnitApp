@@ -17,6 +17,10 @@ module Actions =
     [<Literal>]
     let GETUNITS = "getunits"
 
+    [<Literal>]
+    let CONVERT = "convert"
+
+
 module Query =
 
     open Newtonsoft.Json
@@ -35,6 +39,17 @@ module Query =
             Group : string
         }
 
+    [<CLIMutable>]
+    type Convert =
+        {
+            [<JsonProperty("val")>]
+            Value : string
+            [<JsonProperty("fromUnit")>]
+            FromUnit : string
+            [<JsonProperty("toUnit")>]
+            ToUnit : string
+        }
+
 module Result =
 
     open Newtonsoft.Json
@@ -46,7 +61,7 @@ module Result =
             Text : string
         }
 
-    let createEvaluate text = { Text = text }
+    let createEvaluate text : Evaluate = { Text = text }
 
     [<CLIMutable>]
     type GetUnits = 
@@ -56,6 +71,15 @@ module Result =
         }
 
     let createUnits us = { Units = us |> Array.ofSeq }
+
+    [<CLIMutable>]
+    type Convert = 
+        {
+            [<JsonProperty("text")>]
+            Text : string
+        }
+
+    let createConvert txt : Convert = { Text = txt }
 
 
 /// Mapping a request to a response 
@@ -73,16 +97,27 @@ module RequestMapping =
         match r.Action with
         | Actions.ECHO     -> 
             toResponse true r
+
         | Actions.EVALUATE -> 
             (r.Query |> Json.deSerialize<Query.Evaluate>).Expression 
             |> Api.eval
             |> Result.createEvaluate
             |> (toResponse true)
+
+        | Actions.CONVERT -> 
+            let conv = (r.Query |> Json.deSerialize<Query.Convert>)
+            let value = conv.Value + " " + conv.FromUnit
+            let toUnit = conv.ToUnit 
+            value |> Api.convert toUnit
+            |> Result.createConvert
+            |> (toResponse true)
+
         | Actions.GETUNITS ->
             (r.Query |> Json.deSerialize<Query.GetUnits>).Group 
             |> GenUnits.Api.getUnits
             |> Result.createUnits
             |> (toResponse true)
+
         | _ -> 
             let resp =
                 createResponse false [||] [||] [|Actions.NOACTION|] [||] (new obj())

@@ -188,3 +188,33 @@ module ServerTests =
             |> req HttpMethod.POST "/request" (new ByteArrayContent(data) |> Some)
         
         act |> should equal resp
+
+        
+    [<Test>]
+    let ``can convert a value unit`` () =
+        let resp = 
+            "1000 mg[Mass]" |> GenUnits.Api.convert "g[Mass]"
+            |> GenUnitApp.Result.createConvert
+            |> (fun us -> 
+                {
+                    RR.Response.Success = true
+                    RR.Response.Info = [||]
+                    RR.Response.Warning = [||]
+                    RR.Response.Errors = [||]
+                    RR.Response.Requests = [||]
+                    RR.Response.Result = us
+                }             
+            )
+            |> Json.serialize
+
+        let qry = { QR.Convert.Value = "1000"; QR.Convert.FromUnit = "mg[Mass]"; QR.Convert.ToUnit = "g[Mass]" }
+        let data = 
+            createRequest "convert" (qry |> Json.serialize)
+            |> Json.serialize
+            |> Encoding.UTF8.GetBytes
+
+        let act =
+            runWith defaultConfig (Server.app RequestMapping.map)
+            |> req HttpMethod.POST "/request" (new ByteArrayContent(data) |> Some)
+        
+        act |> should equal resp
