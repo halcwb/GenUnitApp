@@ -69,3 +69,6 @@ see (http://forum.webix.com/discussion/7230/suppress-ajax-error-in-console#lates
 - Give better description when invalid expression input
 - Implement server side request response abstraction
 - Create tests for client and server
+- Refactor
+  - client extract query objects
+  - abstract creating request objects

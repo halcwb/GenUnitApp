@@ -28,21 +28,65 @@ webix.ready(function () {
     var reload = require("./lib/util/reload.js");
     var request = require("./lib/ajax/request.js");
 
+    var doWait = function (p) {
+        if (p)
+            webix.ui({
+                id: "waitwindow",
+                view: "window",
+
+                width: 100,
+                height: 100,
+                modal: true,
+                position: "center",
+                head: false,
+                borderless: true,
+                body: {
+                    template: "<p align='center'><i class='fa fa-spin fa-spinner fa-4x'></i></p>",
+                    css: "wait"
+                }
+            }).show();
+        else { $$('waitwindow').hide(); $$('waitwindow').destructor(); }
+    };
+
     // handles the evaluate button click event
     var onClickEvaluate = function () {
-      var text = $$('expression_text').getValue();
-      var output = $$('result_template');
+        var text = $$('expression_text').getValue();
+        var output = $$('result_template');
 
-      debug('going to evaluate', text);
+        debug('going to evaluate', text);
 
-      request.evaluate(text)
-      .then(function(resp) {
-          debug('got: ', resp);
-          output.setHTML(resp.json().result.text);
-      }).fail(function (err) {
-          debug('error', err);
-          output.setHTML('cannot evaluate: ' + text + '</br>' + err.responseText);
-      });
+        doWait(true);
+        request.evaluate(text).then(function(resp) {
+            debug('got: ', resp);
+            output.setHTML(resp.json().result.text);
+            doWait(false);
+        }).fail(function (err) {
+            debug('error', err);
+            output.setHTML('cannot evaluate: ' + text + '</br>' + err.responseText);
+            doWait(false);
+        });
+
+    };
+
+    // handles the evaluate button click event
+    var onClickConvert = function () {
+        var value = $$('value_text').getValue();
+        var fromUnit = $$('from_units_combo').getValue();
+        var toUnit = $$('to_units_combo').getValue();
+        var output = $$('result_template');
+
+        debug('going to convert', value + " " + fromUnit);
+
+        doWait(true);
+        request.convert(value, fromUnit, toUnit).then(function(resp) {
+            debug('got: ', resp);
+            output.setHTML(resp.json().result.text);
+            doWait(false);
+        }).fail(function (err) {
+            debug('error', err);
+            output.setHTML('cannot convert: ' + value + " " + fromUnit + '</br>' + err.responseText);
+            doWait(false);
+        });
 
     };
 
@@ -51,9 +95,13 @@ webix.ready(function () {
         var list = $$('from_units_combo').getPopup().getList();
 
         if (list.count() === 0) {
+            doWait(true);
             list.clearAll();
             request.units("").then(function (resp) {
                 list.parse(resp.json().result.units);
+                doWait(false);
+            }).fail(function () {
+                doWait(false);
             });
         }
     };
@@ -64,10 +112,14 @@ webix.ready(function () {
         var list = combo.getPopup().getList();
         var grp = val.match(/\[(.*?)\]/)[1];
 
+        doWait(true);
         combo.setValue("");
         list.clearAll();
         request.units(grp).then(function (resp) {
             list.parse(resp.json().result.units);
+            doWait(false);
+        }).fail(function () {
+            doWait(false);
         });
     };
 
@@ -132,5 +184,6 @@ webix.ready(function () {
     $$('evaluate_button').attachEvent('onItemClick', onClickEvaluate);
     $$('from_units_combo').attachEvent('onItemclick', onFromUnitsComboClick);
     $$('from_units_combo').attachEvent('onChange', onFromUnitsComboChange);
+    $$('convert_button').attachEvent('onItemClick', onClickConvert);
 
 });

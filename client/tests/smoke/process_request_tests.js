@@ -9,7 +9,7 @@ describe("Smoke process request tests", function () {
     "use strict";
 
     var HOME_URL = "http://localhost:3000/request";
-    var foo, echo, evaluate, units;
+    var foo, echo, evaluate, units, convert;
 
 
     before(function () {
@@ -27,6 +27,10 @@ describe("Smoke process request tests", function () {
         req.act = "getunits";
         req.qry = JSON.stringify({ grp: ''});
         units = webix.ajax().post(HOME_URL, JSON.stringify(req));
+
+        req.act = "convert";
+        req.qry = JSON.stringify({ value: '1000', fromUnit: 'mg[Mass]', toUnit: 'g[Mass]' });
+        convert = webix.ajax().post(HOME_URL, JSON.stringify(req));
 
     });
 
@@ -88,6 +92,18 @@ describe("Smoke process request tests", function () {
             done();
         }).fail(function () {
             console.log('get units failed', app.util.inspect(promise));
+            done();
+        });
+    });
+
+    it("can convert a value unit to a different unit", function (done) {
+        var promise = convert;
+
+        promise.then(function (resp) {
+            expect(resp.json().succ).to.be(true);
+            done();
+        }).fail(function () {
+            console.log('convert value unit failed', app.util.inspect(promise));
             done();
         });
     });

@@ -30,4 +30,11 @@
         return webix.ajax().post("/request", req);
     };
 
+    exports.convert = function (value, fromUnit, toUnit) {
+        var qry = JSON.stringify({ value: value, fromUnit: fromUnit, toUnit: toUnit });
+        var req = JSON.stringify({ act: 'convert', qry : qry });
+        return webix.ajax().post("/request", req);
+    };
+
+
 })();
