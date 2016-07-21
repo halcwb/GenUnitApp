@@ -42,7 +42,7 @@ module Query =
     [<CLIMutable>]
     type Convert =
         {
-            [<JsonProperty("val")>]
+            [<JsonProperty("value")>]
             Value : string
             [<JsonProperty("fromUnit")>]
             FromUnit : string
