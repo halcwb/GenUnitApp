@@ -29,6 +29,7 @@
 
 # ignore release and publish nuget commands
 release.cmd
+release.sh
 publishnuget.cmd
 
 # Add proc and app.json file
