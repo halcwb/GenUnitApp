@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: lib/util/reload.js</title>
+    <title>JSDoc: Source: views/loadingMask.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: lib/util/reload.js</h1>
+    <h1 class="page-title">Source: views/loadingMask.js</h1>
 
     
 
@@ -27,50 +27,41 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
-* @module lib/util/reload
-*/
-
-/*global WebSocket, app, window, webix */
-"use strict";
+ * @module views/loadingMask
+ */
 
 (function () {
 
-    /**
-    * Initializes the app with a 'reload server'
-    * When the reload server sends a message by
-    * a websocket, the window will be reloaded.
-    */
-    exports.init = function () {
-        var URL = '//localhost:1337';
-        var debug = app.debug("client:reload");
-        var resp = webix.ajax().get('http:' + URL);
+    var doWait = function (p) {
+        if (p)
+            webix.ui({
+                id: "waitwindow",
+                view: "window",
 
-        resp.then(function () {
-            // we are in development
-            app.debug.enable("client:*");
-            debug('development mode started');
-
-            // the development watch server is up
-            // add a new websocket
-            app.ws = new WebSocket('ws:' + URL);
-
-            // getting a message is the sign
-            // to reload
-            app.ws.onmessage = function () {
-                window.location.reload();
-            };
-
-            app.ws.onerror = function () {
-                debug('no reload');
-            };
-        // no reaction from the development
-        // server, so we are in production
-      }).fail(function() {
-          debug('no development server, no problem!');
-      });
+                width: 100,
+                height: 100,
+                modal: true,
+                position: "center",
+                head: false,
+                borderless: true,
+                body: {
+                    template: "&lt;p align='center'>&lt;i class='fa fa-spin fa-spinner fa-4x'>&lt;/i>&lt;/p>",
+                    css: "wait"
+                }
+            }).show();
+        else { $$('waitwindow').hide(); $$('waitwindow').destructor(); }
     };
 
+
+    /**
+     * loadingMask: &lt;/br>
+     * shows a loading mask if p = true
+     * @param p
+     */
+    exports.loadingMask = doWait;
+
 })();
+
 </code></pre>
         </article>
     </section>
