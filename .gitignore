@@ -88,7 +88,7 @@ publishnuget.cmd
 !/client/src/lib
 !/client/src/lib/ajax/
 !/client/src/lib/util/
-!/client/src/ui
+!/client/src/views/
 !/client/tests/
 !/client/tests/lib
 !/client/tests/ui

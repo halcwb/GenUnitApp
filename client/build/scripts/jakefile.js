@@ -111,8 +111,8 @@
         debug("Testing browser code: ");
         karma.run({
             configFile: KARMA_CONFIG,
-            strict: true,
-            capture: ['Firefox'],
+            strict:  true,
+            capture: [],
             expectedBrowsers: []
         }, complete, fail);
     }, { async: true });
