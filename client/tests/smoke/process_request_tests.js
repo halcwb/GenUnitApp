@@ -44,7 +44,6 @@ describe("Smoke process request tests", function () {
         }).fail(function (err) {
             console.log('echo test error', app.util.inspect(promise));
             done();
-            throw(err);
         });
 
     });
@@ -61,7 +60,6 @@ describe("Smoke process request tests", function () {
         }).fail(function (err) {
             console.log('echo test error', app.util.inspect(promise));
             done();
-            throw(err);
         });
 
     });
@@ -78,7 +76,6 @@ describe("Smoke process request tests", function () {
         }).fail(function (err) {
             console.log('req evaluate error', app.util.inspect(promise));
             done();
-            throw(err);
         });
 
     });
