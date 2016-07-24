@@ -45,10 +45,25 @@ To run this application locally you can also use heroku. First install the [hero
 
 This app is also deployable to [Azure](https://genunitapp.azurewebsites.net/). Currently by using quick and dirty manual ftp the build to the website root.
 
+## Development
+
+#### To develop the server side
+
+To run tests `./build.sh nunit3`, or `build.cmd nunit3`.
+
+#### To develop the client side
+
+* `./scripts/run.sh` to start the server,
+* `cd client` go to dir to start client scripts
+* `./jake.sh karma` to start karma (open web browser with http://localhost:9876)
+* `./watch.sh` to start watching files
+* open web browser with http://localhost:300, this opens the app
+
+Start development. Each time the client side code changes all tests are automatically run. The app window will be
+automatically refreshed.
 
 ## Libray design
 This repository uses an explicit opt-in `.gignore` strategy, meaning that all files are excluded unless specifically included via the `.gitignore` file.
-
 
 ## Collaborate
 There is (always) a list of things [to do](https://github.com/halcwb/GenUnitApp/blob/master/ToDo.md).
