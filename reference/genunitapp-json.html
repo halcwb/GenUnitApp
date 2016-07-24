@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8"/>
-    <title>Seq - GenUnitApp</title>
+    <title>Json - GenUnitApp</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="description" content=""/>
     <meta name="author" content="halcwb"/>
@@ -35,10 +35,9 @@
 
 
 
-<h1>Seq</h1>
+<h1>Json</h1>
 <p>
-  <span>Namespace: global</span><br />
-  <span>Parent Module: <a href="global-yolo.html">YoLo</a></span>
+  <span>Namespace: GenUnitApp</span><br />
 </p>
 <div class="xmldoc">
 </div>
@@ -54,15 +53,15 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '134', 134)" onmouseover="showTip(event, '134', 134)">
-            combinations size set
+          <code onmouseout="hideTip(event, '11', 11)" onmouseover="showTip(event, '11', 11)">
+            deSerialize s
           </code>
-          <div class="tip" id="134">
-            <strong>Signature:</strong> size:int -&gt; set:&#39;?7050 list -&gt; seq&lt;&#39;?7050 list&gt;<br />
-                          <strong>Type parameters:</strong> '?7050          </div>
+          <div class="tip" id="11">
+            <strong>Signature:</strong> s:string -&gt; &#39;T<br />
+                          <strong>Type parameters:</strong> 'T          </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/halcwb/GenUnitApp/tree/master/paket-files/halcwb/YoLo/YoLo.fs#L580-580" class="github-link">
+            <a href="http://github.com/halcwb/GenUnitApp/tree/master/src/GenUnitApp/Json.fs#L19-19" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -72,15 +71,33 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '135', 135)" onmouseover="showTip(event, '135', 135)">
-            first xs
+          <code onmouseout="hideTip(event, '12', 12)" onmouseover="showTip(event, '12', 12)">
+            mapJson f
           </code>
-          <div class="tip" id="135">
-            <strong>Signature:</strong> xs:seq&lt;&#39;?7052&gt; -&gt; &#39;?7052 option<br />
-                          <strong>Type parameters:</strong> '?7052          </div>
+          <div class="tip" id="12">
+            <strong>Signature:</strong> f:(&#39;?7191 -&gt; &#39;?7192) -&gt; HttpContext -&gt; Async&lt;HttpContext option&gt;<br />
+                          <strong>Type parameters:</strong> '?7191, '?7192          </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/halcwb/GenUnitApp/tree/master/paket-files/halcwb/YoLo/YoLo.fs#L592-592" class="github-link">
+            <a href="http://github.com/halcwb/GenUnitApp/tree/master/src/GenUnitApp/Json.fs#L23-23" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '13', 13)" onmouseover="showTip(event, '13', 13)">
+            serialize o
+          </code>
+          <div class="tip" id="13">
+            <strong>Signature:</strong> o:obj -&gt; string<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/halcwb/GenUnitApp/tree/master/src/GenUnitApp/Json.fs#L15-15" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>

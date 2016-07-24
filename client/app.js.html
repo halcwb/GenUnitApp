@@ -50,34 +50,112 @@ webix.ready(function () {
     * @memberof app
     * @method debug
     */
+    app.util  = require("util");
     app.debug = require("debug");
     var debug = app.debug('client:app');
     var reload = require("./lib/util/reload.js");
-    var msg = require("./lib/ajax/request.js").getMessage();
+    var request = require("./lib/ajax/request.js");
+
+    var doWait = function (p) {
+        if (p)
+            webix.ui({
+                id: "waitwindow",
+                view: "window",
+
+                width: 100,
+                height: 100,
+                modal: true,
+                position: "center",
+                head: false,
+                borderless: true,
+                body: {
+                    template: "&lt;p align='center'>&lt;i class='fa fa-spin fa-spinner fa-4x'>&lt;/i>&lt;/p>",
+                    css: "wait"
+                }
+            }).show();
+        else { $$('waitwindow').hide(); $$('waitwindow').destructor(); }
+    };
 
     // handles the evaluate button click event
-    var onClickCaclulate = function () {
-      var text = $$('expression_text').getValue();
-      var output = $$('result_template');
+    var onClickEvaluate = function () {
+        var text = $$('expression_text').getValue();
+        var output = $$('result_template');
 
-      debug('going to evaluate', text);
+        debug('going to evaluate', text);
 
-      webix.ajax().post("/eval", { action: 'evaluate', text: text })
-      .then(function(resp) {
-          debug('got: ', resp);
-          output.setHTML(resp.text());
-      }).fail(function (err) {
-          debug('error', err);
-          output.setHTML('cannot evaluate: ' + text + '&lt;/br>' + err.responseText);
-      });
+        doWait(true);
+        request.evaluate(text).then(function(resp) {
+            debug('got: ', resp);
+            output.setHTML(resp.json().result.text);
+            doWait(false);
+        }).fail(function (err) {
+            debug('error', err);
+            output.setHTML('cannot evaluate: ' + text + '&lt;/br>' + err.responseText);
+            doWait(false);
+        });
 
+    };
+
+    // handles the evaluate button click event
+    var onClickConvert = function () {
+        var value = $$('value_text').getValue();
+        var fromUnit = $$('from_units_combo').getValue();
+        var toUnit = $$('to_units_combo').getValue();
+        var output = $$('result_template');
+
+        debug('going to convert', value + " " + fromUnit);
+
+        doWait(true);
+        request.convert(value, fromUnit, toUnit).then(function(resp) {
+            debug('got: ', resp);
+            output.setHTML(resp.json().result.text);
+            doWait(false);
+        }).fail(function (err) {
+            debug('error', err);
+            output.setHTML('cannot convert: ' + value + " " + fromUnit + '&lt;/br>' + err.responseText);
+            doWait(false);
+        });
+
+    };
+
+    var onFromUnitsComboClick = function () {
+        debug('combo clicked', arguments);
+        var list = $$('from_units_combo').getPopup().getList();
+
+        if (list.count() === 0) {
+            doWait(true);
+            list.clearAll();
+            request.units("").then(function (resp) {
+                list.parse(resp.json().result.units);
+                doWait(false);
+            }).fail(function () {
+                doWait(false);
+            });
+        }
+    };
+
+    var onFromUnitsComboChange = function (val) {
+        debug('combo changed', val);
+        var combo = $$('to_units_combo');
+        var list = combo.getPopup().getList();
+        var grp = val.match(/\[(.*?)\]/)[1];
+
+        doWait(true);
+        combo.setValue("");
+        list.clearAll();
+        request.units(grp).then(function (resp) {
+            list.parse(resp.json().result.units);
+            doWait(false);
+        }).fail(function () {
+            doWait(false);
+        });
     };
 
     // starting reload for development
     reload.init();
 
     debug("Starting the app!, ok");
-    msg.then(function (resp) {
+    request.message().then(function (resp) {
         webix.alert(resp.text());
     });
 
@@ -86,14 +164,44 @@ webix.ready(function () {
         rows: [
             { type: 'header', template: 'GenUnitApp' },
             { cols: [
-                { view: "form", id: 'expression_form', elements: [
-                    { view:"text",
-                      id: 'expression_text',
-                      placeholder:"&lt;expression>",
-                      label: 'expression' },
-                    { view:"button",
-                      id: 'expression_button',
-                      value: 'calculate' }
+                {rows: [
+                    { view: "form", id: 'expression_form', elements: [
+                        { view:"text",
+                            id: 'expression_text',
+                            placeholder: "&lt;expression>",
+                            label: 'expression' },
+                        { view:"button",
+                            id: 'evaluate_button',
+                            value: 'evaluate' }
+                    ]},
+                    { view: "form", id: 'convert_form', elements: [
+                        { rows: [
+                            { cols: [
+                                { view:"text",
+                                    id: 'value_text',
+                                    placeholder: "&lt;value>",
+                                    label: 'value' },
+                                { view:"combo",
+                                    id: 'from_units_combo',
+                                    placeholder: "&lt;units>",
+                                    options: [],
+                                    label: '' },
+                                { view:"label",
+                                    label: 'to',
+                                    width:  30,
+                                    align: 'center',
+                                    id: 'label_to' },
+                                { view:"combo",
+                                    id: 'to_units_combo',
+                                    placeholder: "&lt;units>",
+                                    options: [],
+                                    label: '' }
+                            ] },
+                            { view:"button",
+                                id: 'convert_button',
+                                value: 'convert' }
+                        ]}
+                    ]}
                 ]},
                 { template: 'result', id: 'result_template' }
             ]}
@@ -101,7 +209,10 @@ webix.ready(function () {
     });
 
     // attach events
-    $$('expression_button').attachEvent('onItemClick', onClickCaclulate);
+    $$('evaluate_button').attachEvent('onItemClick', onClickEvaluate);
+    $$('from_units_combo').attachEvent('onItemclick', onFromUnitsComboClick);
+    $$('from_units_combo').attachEvent('onChange', onFromUnitsComboChange);
+    $$('convert_button').attachEvent('onItemClick', onClickConvert);
 
 });
 </code></pre>
@@ -120,7 +231,7 @@ webix.ready(function () {
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Thu Jul 07 2016 21:22:36 GMT+0200 (CEST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Sun Jul 24 2016 22:54:49 GMT+0200 (Central Europe Daylight Time)
 </footer>
 
 <script> prettyPrint(); </script>

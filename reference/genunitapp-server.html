@@ -53,20 +53,20 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '1', 1)" onmouseover="showTip(event, '1', 1)">
-            echo ws cx
+          <code onmouseout="hideTip(event, '19', 19)" onmouseover="showTip(event, '19', 19)">
+            app processRequest
           </code>
-          <div class="tip" id="1">
-            <strong>Signature:</strong> ws:WebSocket -&gt; cx:&#39;?19879 -&gt; Async&lt;Choice&lt;unit,Error&gt;&gt;<br />
-                          <strong>Type parameters:</strong> '?19879          </div>
+          <div class="tip" id="19">
+            <strong>Signature:</strong> processRequest:(&#39;?7089 -&gt; &#39;?7090) -&gt; WebPart&lt;HttpContext&gt;<br />
+                          <strong>Type parameters:</strong> '?7089, '?7090          </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/halcwb/GenUnitApp/tree/master/src/GenUnitApp/Server.fs#L27-27" class="github-link">
+            <a href="http://github.com/halcwb/GenUnitApp/tree/master/src/GenUnitApp/Server.fs#L85-85" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>Implementation of an echo websocket,
-just echos the received message</p>
+          <p>Create the server app with a function
+that processes request posts.</p>
 
 
         </td>
@@ -74,15 +74,132 @@ just echos the received message</p>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '2', 2)" onmouseover="showTip(event, '2', 2)">
+          <code onmouseout="hideTip(event, '20', 20)" onmouseover="showTip(event, '20', 20)">
+            evaluate ctx
+          </code>
+          <div class="tip" id="20">
+            <strong>Signature:</strong> ctx:HttpContext -&gt; Async&lt;HttpContext option&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/halcwb/GenUnitApp/tree/master/src/GenUnitApp/Server.fs#L54-54" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '21', 21)" onmouseover="showTip(event, '21', 21)">
+            getConfig home port
+          </code>
+          <div class="tip" id="21">
+            <strong>Signature:</strong> home:string -&gt; port:string -&gt; SuaveConfig<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/halcwb/GenUnitApp/tree/master/src/GenUnitApp/Server.fs#L74-74" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Get the server configuration with
+home folder <code>home</code> and port <code>port</code>.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '22', 22)" onmouseover="showTip(event, '22', 22)">
+            listLast list
+          </code>
+          <div class="tip" id="22">
+            <strong>Signature:</strong> list:&#39;T list -&gt; &#39;T<br />
+                          <strong>Type parameters:</strong> 'T          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/halcwb/GenUnitApp/tree/master/src/GenUnitApp/Server.fs#L30-30" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Utility to get the last element
+in a list</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '23', 23)" onmouseover="showTip(event, '23', 23)">
+            msg 
+          </code>
+          <div class="tip" id="23">
+            <strong>Signature:</strong> string<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/halcwb/GenUnitApp/tree/master/src/GenUnitApp/Server.fs#L47-47" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '24', 24)" onmouseover="showTip(event, '24', 24)">
+            NOT_FOUND_RESPONSE 
+          </code>
+          <div class="tip" id="24">
+            <strong>Signature:</strong> string<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/halcwb/GenUnitApp/tree/master/src/GenUnitApp/Server.fs#L38-38" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '25', 25)" onmouseover="showTip(event, '25', 25)">
+            setCORSHeaders 
+          </code>
+          <div class="tip" id="25">
+            <strong>Signature:</strong> HttpContext -&gt; Async&lt;HttpContext option&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/halcwb/GenUnitApp/tree/master/src/GenUnitApp/Server.fs#L42-42" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Utility function to set the headers to allow
+cross origin requests</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '26', 26)" onmouseover="showTip(event, '26', 26)">
             start home port
           </code>
-          <div class="tip" id="2">
+          <div class="tip" id="26">
             <strong>Signature:</strong> home:string -&gt; port:string -&gt; unit<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/halcwb/GenUnitApp/tree/master/src/GenUnitApp/Server.fs#L48-48" class="github-link">
+            <a href="http://github.com/halcwb/GenUnitApp/tree/master/src/GenUnitApp/Server.fs#L112-112" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>

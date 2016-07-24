@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8"/>
-    <title>Seq - GenUnitApp</title>
+    <title>Path - GenUnitApp</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="description" content=""/>
     <meta name="author" content="halcwb"/>
@@ -35,10 +35,9 @@
 
 
 
-<h1>Seq</h1>
+<h1>Path</h1>
 <p>
-  <span>Namespace: global</span><br />
-  <span>Parent Module: <a href="global-yolo.html">YoLo</a></span>
+  <span>Namespace: GenUnitApp.Utils</span><br />
 </p>
 <div class="xmldoc">
 </div>
@@ -54,37 +53,81 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '134', 134)" onmouseover="showTip(event, '134', 134)">
-            combinations size set
+          <code onmouseout="hideTip(event, '29', 29)" onmouseover="showTip(event, '29', 29)">
+            combineWith p2 p1
           </code>
-          <div class="tip" id="134">
-            <strong>Signature:</strong> size:int -&gt; set:&#39;?7050 list -&gt; seq&lt;&#39;?7050 list&gt;<br />
-                          <strong>Type parameters:</strong> '?7050          </div>
+          <div class="tip" id="29">
+            <strong>Signature:</strong> p2:string -&gt; p1:string -&gt; string<br />
+                      </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/halcwb/GenUnitApp/tree/master/paket-files/halcwb/YoLo/YoLo.fs#L580-580" class="github-link">
+            <a href="http://github.com/halcwb/GenUnitApp/tree/master/src/GenUnitApp/Utils.fs#L9-9" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          
+          <p>combine path <code>p1</code> with <code>p2</code></p>
+
+
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '135', 135)" onmouseover="showTip(event, '135', 135)">
-            first xs
+          <code onmouseout="hideTip(event, '30', 30)" onmouseover="showTip(event, '30', 30)">
+            dir p
           </code>
-          <div class="tip" id="135">
-            <strong>Signature:</strong> xs:seq&lt;&#39;?7052&gt; -&gt; &#39;?7052 option<br />
-                          <strong>Type parameters:</strong> '?7052          </div>
+          <div class="tip" id="30">
+            <strong>Signature:</strong> p:string -&gt; DirectoryInfo<br />
+                      </div>
         </td>
         <td class="xmldoc">
-            <a href="http://github.com/halcwb/GenUnitApp/tree/master/paket-files/halcwb/YoLo/YoLo.fs#L592-592" class="github-link">
+            <a href="http://github.com/halcwb/GenUnitApp/tree/master/src/GenUnitApp/Utils.fs#L12-12" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          
+          <p>Create a <code>DirectoryInfo</code> from <code>p</code></p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '31', 31)" onmouseover="showTip(event, '31', 31)">
+            dirExists p
+          </code>
+          <div class="tip" id="31">
+            <strong>Signature:</strong> p:string -&gt; bool<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/halcwb/GenUnitApp/tree/master/src/GenUnitApp/Utils.fs#L15-15" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Check whether directory <code>p</code> exists</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '32', 32)" onmouseover="showTip(event, '32', 32)">
+            parentDirectory p
+          </code>
+          <div class="tip" id="32">
+            <strong>Signature:</strong> p:string -&gt; string<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="http://github.com/halcwb/GenUnitApp/tree/master/src/GenUnitApp/Utils.fs#L20-20" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Get the parent directory from <code>p</code></p>
+
+
         </td>
       </tr>
     </tbody>
