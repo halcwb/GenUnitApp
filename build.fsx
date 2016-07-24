@@ -24,7 +24,7 @@ Target "All" DoNothing
   ==> "CopyBinaries"
   ==> "NUnit3"
   ==> "BuildClient"
-  ==> "ClientTests"
+//  ==> "ClientTests"
   ==> "CopyClient"
   ==> "GenerateReferenceDocs"
   ==> "GenerateDocs"
