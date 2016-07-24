@@ -121,9 +121,10 @@
     //*** BUILD
 
     desc("Build distribution package");
-    task("build", [ "prepDistDir", "buildClient" ]);
+    task("build", [ "lint", "prepDistDir", "buildClient", "docs" ]);
 
     task("prepDistDir", function() {
+        debug("Preparing dist dir");
         shell.rm("-rf", paths.distDir);
     });
 
