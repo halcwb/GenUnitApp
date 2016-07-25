@@ -17,6 +17,13 @@
 */
 webix.ready(function () {
 
+    var reload  = require("./lib/util/reload.js");
+
+
+    // Make underscore globally available
+    window._ = require('underscore');
+
+
     /**
      * Util functions
      * @memberof app
@@ -24,83 +31,59 @@ webix.ready(function () {
      */
     app.util  = require("util");
 
+
     /**
     * Debug factory
     * @memberof app
     * @method debug
     */
-    app.debug = require("debug");
+    app.debug = require('debug');
 
-    var debug   = app.debug('client:app');
-    var reload  = require("./lib/util/reload.js");
-    var request = require("./lib/ajax/request.js");
-    var controller = require('./controller.js');
 
-    var expressionForm =
-        { view: "form", id: 'expression_form', elements: [
-            { view:"text",
-                id: 'expression_text',
-                placeholder: "<expression>",
-                label: 'expression' },
-            { view:"button",
-                id: 'evaluate_button',
-                value: 'evaluate' }
-        ]};
+    /**
+     * Message bus
+     * @memberof app
+     * @property bus
+     */
+    app.bus = require('./lib/util/msgBus.js');
 
-    var convertForm =
-        { view: "form", id: 'convert_form', elements: [
-            { cols: [
-                { view:"text",
-                    id: 'value_text',
-                    placeholder: "<value>",
-                    label: 'value' },
-                { view:"combo",
-                    id: 'from_units_combo',
-                    placeholder: "<units>",
-                    options: [],
-                    label: '' },
-                { view:"label",
-                    label: 'to',
-                    width:  30,
-                    align: 'center',
-                    id: 'label_to' },
-                { view:"combo",
-                    id: 'to_units_combo',
-                    placeholder: "<units>",
-                    options: [],
-                    label: '' }
-            ] },
-            { view:"button",
-                id: 'convert_button',
-                value: 'convert' }
-        ]};
 
-    // starting reload for development
+    /**
+     * Request function
+     * @memberof app
+     * @method request
+     */
+    app.request = require('./lib/ajax/request');
+
+
+    // **** Starting reload for development ****
+
     reload.init();
 
-    debug("Starting the app!, ok");
-    request.message().then(function (resp) {
+
+    // **** Initialize UI ****
+
+    require('./views/ui.js').init(app);
+
+
+    // **** Initialize Loading Mask ****
+
+    require('./views/windows/loadingMask').view(app);
+
+
+    // **** Initialize Controllers ****
+
+    require('./controllers/convert.js').init(app);
+    require('./controllers/units.js').init(app);
+    require('./controllers/evaluate.js').init(app);
+
+
+    // **** Show welcome message ****
+
+    app.debug('client:app')("Starting the app!, ok");
+    app.request.message().then(function (resp) {
         webix.alert(resp.text());
     });
 
-    // create the ui
-    webix.ui({
-        rows: [
-            { type: 'header', template: 'GenUnitApp' },
-            { cols: [
-                {rows: [
-                    expressionForm,
-                    convertForm
-                ]},
-                { template: 'result', id: 'result_template' }
-            ]}
-        ]
-    });
-
-    // attach events
-    $$('evaluate_button').attachEvent('onItemClick', controller.onClickEvaluate);
-    $$('from_units_combo').attachEvent('onItemclick', controller.onFromUnitsComboClick);
-    $$('from_units_combo').attachEvent('onChange', controller.onFromUnitsComboChange);
-    $$('convert_button').attachEvent('onItemClick', controller.onClickConvert);
 
 });

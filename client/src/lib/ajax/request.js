@@ -7,13 +7,13 @@
 (function () {
     "use strict";
 
-    var debug = app.debug('client:request');
 
     /**
     * Get a message just to test that
     * the server is life.
     */
     exports.message = function () {
+        var debug = app.debug('client:request');
         debug('request message');
         return webix.ajax().post("/msg");
     };
@@ -39,16 +39,18 @@
     };
 
     /**
-     * convert
-     * @param value
-     * @param fromUnit
-     * @param toUnit
+     * request function
+     * @param act
+     * @param qry
+     * @returns {*}
      */
-    exports.convert = function (value, fromUnit, toUnit) {
-        var qry = JSON.stringify({ value: value, fromUnit: fromUnit, toUnit: toUnit });
-        var req = JSON.stringify({ act: 'convert', qry : qry });
-        return webix.ajax().post("/request", req);
-    };
+    exports.request = function (act, qry) {
+        var req = JSON.stringify({
+            act: act,
+            qry: JSON.stringify(qry)
+        });
 
+        return webix.ajax().post('/request', req);
+    };
 
 })();

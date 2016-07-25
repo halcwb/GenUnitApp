@@ -85,10 +85,15 @@ publishnuget.cmd
 !/client/build/config/
 !/client/build/util/
 !/client/src/
+!/client/src/controllers/
+!/client/src/models/
 !/client/src/lib
 !/client/src/lib/ajax/
 !/client/src/lib/util/
 !/client/src/views/
+!/client/src/views/forms/
+!/client/src/views/templates/
+!/client/src/views/windows/
 !/client/tests/
 !/client/tests/lib
 !/client/tests/ui

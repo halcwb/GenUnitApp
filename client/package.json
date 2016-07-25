@@ -8,8 +8,9 @@
   },
   "dependencies": {
     "debug": "^2.2.0",
-    "webix": "^3.3.17",
-    "underscore": "^1.8.3"
+    "postal": "^2.0.4",
+    "underscore": "^1.8.3",
+    "webix": "^3.3.17"
   },
   "devDependencies": {
     "browserify": "^13.0.1",

@@ -73,7 +73,7 @@
     task("lintNode", function() {
         debug("Linting Node.js code: ");
         jshint.checkFiles({
-            files: [ "src/*.js", "src/lib/**/*.js", "build/**/*.js" ],
+            files: [ "build/**/*.js" ],
             options: jshintConfig.nodeOptions,
             globals: jshintConfig.nodeGlobals
         }, complete, fail);
@@ -82,7 +82,7 @@
     task("lintClient", function() {
         debug("Linting browser code: ");
         jshint.checkFiles({
-            files: [ "src/ui/**/*.js" ],
+            files: [ "src/**/*.js" ],
             options: jshintConfig.clientOptions,
             globals: jshintConfig.clientGlobals
         }, complete, fail);

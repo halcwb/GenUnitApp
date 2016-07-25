@@ -2,7 +2,10 @@
  * @module views/loadingMask
  */
 
+/*global webix, $$ */
+
 (function () {
+    "use strict";
 
     var doWait = function (p) {
         if (p)
@@ -28,9 +31,24 @@
     /**
      * loadingMask: </br>
      * shows a loading mask if p = true
-     * @param p
+     * @param app
      */
-    exports.loadingMask = doWait;
+    exports.view = function (app) {
+
+        // Subscribe to loading event
+        app.bus.event.subscribe("loading", function (data, envelope) {
+            app.debug('client:loadingMask')('loading', data.loading);
+            doWait(data.loading);
+        });
+
+        // Make app loading shortcut
+        app.loading = function (loading) {
+            app.bus.event.publish('loading', {
+                loading: loading
+            });
+        };
+
+    };
 
 })();
 

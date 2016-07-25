@@ -22,7 +22,7 @@ describe("Client", function () {
     });
 
     it('should have an app.util', function () {
-        expect(app.util.inspect).to.be.ok;
+        expect(app.util).to.be.ok;
     });
 
 });

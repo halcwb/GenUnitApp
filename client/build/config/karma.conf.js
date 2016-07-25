@@ -20,7 +20,7 @@ module.exports = function (config) {
             'node_modules/webix/**/webix.css',
             'node_modules/webix/**/webix_debug.js',
             'generated/dist/bundle.js',
-            'tests/smoke/**/*.js',
+//            'tests/smoke/**/*.js',
             'tests/ui/**/*.js'
         ],
 
