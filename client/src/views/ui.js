@@ -11,7 +11,7 @@
     exports.init = function (app) {
         var convert = require('./forms/convert.js');
         var expression = require('./forms/expression.js');
-        var result = require('./templates/result.js');
+        var result = require('./lists/result.js');
         var debug = app.debug('views:ui');
 
         debug('init');

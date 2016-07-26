@@ -14,6 +14,7 @@
                 debug('post', envelope);
 
                 app.bus.controller.publish('evaluate.result', {
+                    expr: data.expr,
                     result: resp.json().result.text
                 });
             };
@@ -23,7 +24,7 @@
 
                 debug('error', err);
 
-                app.bus.controller.publish('evaluate.result', {
+                app.bus.controller.publish('err', {
                     result: text
                 });
             };

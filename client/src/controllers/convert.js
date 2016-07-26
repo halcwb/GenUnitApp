@@ -20,6 +20,7 @@
             var succ = function (resp) {
                 debug('got: ', resp);
                 app.bus.controller.publish('convert.result', {
+                    expr: data.value + " " + data.fromUnit,
                     result: resp.json().result.text
                 });
             };
@@ -28,7 +29,7 @@
                 debug('error', err);
                 var result = { result: 'cannot convert: ' + data.value + " " + data.fromUnit + '</br>' + err.responseText};
 
-                app.bus.controller.publish('convert.result', result);
+                app.bus.controller.publish('err', result);
 
             };
 
