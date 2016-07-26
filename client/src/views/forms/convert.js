@@ -89,7 +89,7 @@
 
         // **** Subscribe to controllers ****
 
-        app.bus.controller.subscribe('units.from_units', function (data, envelope) {
+        app.bus.controller.subscribe('convert.from_units', function (data, envelope) {
             var combo = $$('from_units_combo');
             var list = combo.getPopup().getList();
 
@@ -98,7 +98,7 @@
         });
 
 
-        app.bus.controller.subscribe('units.to_units', function (data, envelope) {
+        app.bus.controller.subscribe('convert.to_units', function (data, envelope) {
             var combo = $$('to_units_combo');
             var list = combo.getPopup().getList();
 

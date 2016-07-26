@@ -36,14 +36,14 @@
     exports.view = function (app) {
 
         // Subscribe to loading event
-        app.bus.event.subscribe("loading", function (data, envelope) {
-            app.debug('client:loadingMask')('loading', data.loading);
+        app.bus.controller.subscribe("loading", function (data, envelope) {
+            app.debug('client:views:loadingMask')('loading', envelope.topic, envelope.timeStamp);
             doWait(data.loading);
         });
 
         // Make app loading shortcut
         app.loading = function (loading) {
-            app.bus.event.publish('loading', {
+            app.bus.controller.publish('loading', {
                 loading: loading
             });
         };

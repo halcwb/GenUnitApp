@@ -74,7 +74,6 @@ webix.ready(function () {
     // **** Initialize Controllers ****
 
     require('./controllers/convert.js').init(app);
-    require('./controllers/units.js').init(app);
     require('./controllers/evaluate.js').init(app);
 
 

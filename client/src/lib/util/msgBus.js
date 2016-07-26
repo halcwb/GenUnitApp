@@ -25,7 +25,7 @@
 
     exports.reqs = postal.channel('reqs');
 
-    exports.result = postal.channel('result');
+    exports.postal = postal;
 
 
 })();
