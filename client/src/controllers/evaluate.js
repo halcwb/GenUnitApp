@@ -6,34 +6,31 @@
     "use strict";
 
     exports.init = function (app) {
-        var request = app.request;
         var debug = app.debug('client:controllers:evaluate');
 
         app.bus.view.subscribe('expression.evaluate', function (data, envelope) {
-            debug('post', envelope);
 
-            app.loading(true);
-
-            request.evaluate(data.expression).then(function(resp) {
-                debug('got: ', resp);
+            var succ = function (resp) {
+                debug('post', envelope);
 
                 app.bus.controller.publish('evaluate.result', {
                     result: resp.json().result.text
                 });
+            };
 
-                app.loading(false);
-
-            }).fail(function (err) {
-                var text = 'cannot evaluate: ' + data.expression + '</br>' + err.responseText;
+            var fail = function (err) {
+                var text = 'cannot evaluate: ' + data.expr + '</br>' + err.responseText;
 
                 debug('error', err);
 
                 app.bus.controller.publish('evaluate.result', {
                     result: text
                 });
+            };
 
-                app.loading(false);
-            });
+            app.loading(true);
+            app.request.request(succ, fail, 'evaluate', data);
+            app.loading(false);
 
         });
 

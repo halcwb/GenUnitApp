@@ -44,7 +44,7 @@
             var text = $$('expression_text').getValue();
 
             app.bus.view.publish('expression.evaluate', {
-                expression: text
+                expr: text
             });
         });
 
