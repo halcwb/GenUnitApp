@@ -1,3 +1,8 @@
+#### 0.2.0-beta - July 27 2016
+* evaluate an expression
+* convert a value unit to another unit
+* add result to result list
+
 #### 0.1.0-beta - July 21 2016
 * evaluate an expression
 * convert a value unit to another unit
