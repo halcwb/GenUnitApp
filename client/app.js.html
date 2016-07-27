@@ -28,12 +28,19 @@
         <article>
             <pre class="prettyprint source linenums"><code>/*global webix, $$, console, app, debug */
 
-/**
-* @file The entry point the application, creates the app
-*
-*/
-
 "use strict";
+
+
+/**
+ * @file The entry point the application, creates the app
+ * @requires util
+ * @requires debug
+ * @requires lib/util/reload
+ * @requires lib/util/msgBus
+ * @requires lib/ajax/request
+ * @requires views/ui
+ * @requires views/windows/loadingMask
+ */
 
 /**
 * Starts the application: &lt;/br>
@@ -45,91 +52,79 @@
 */
 webix.ready(function () {
 
+    var reload  = require("./lib/util/reload.js");
+
+
+    // Make underscore globally available
+    window._ = require('underscore');
+
+
     /**
      * Util functions
      * @memberof app
-     * @property util
+     * @property util {util} - Utility library
      */
     app.util  = require("util");
+
 
     /**
     * Debug factory
     * @memberof app
     * @method debug
+    * @returns {function} debug function
     */
-    app.debug = require("debug");
+    app.debug = require('debug');
 
-    var debug   = app.debug('client:app');
-    var reload  = require("./lib/util/reload.js");
-    var request = require("./lib/ajax/request.js");
-    var controller = require('./controller.js');
 
-    var expressionForm =
-        { view: "form", id: 'expression_form', elements: [
-            { view:"text",
-                id: 'expression_text',
-                placeholder: "&lt;expression>",
-                label: 'expression' },
-            { view:"button",
-                id: 'evaluate_button',
-                value: 'evaluate' }
-        ]};
+    /**
+     * Message bus&lt;/br>
+     * {@link module:lib/util/msgBus}
+     * @memberof app
+     * @property bus {lib/util/msgBus} - Provides message bus functionality
+     */
+    app.bus = require('./lib/util/msgBus.js');
 
-    var convertForm =
-        { view: "form", id: 'convert_form', elements: [
-            { cols: [
-                { view:"text",
-                    id: 'value_text',
-                    placeholder: "&lt;value>",
-                    label: 'value' },
-                { view:"combo",
-                    id: 'from_units_combo',
-                    placeholder: "&lt;units>",
-                    options: [],
-                    label: '' },
-                { view:"label",
-                    label: 'to',
-                    width:  30,
-                    align: 'center',
-                    id: 'label_to' },
-                { view:"combo",
-                    id: 'to_units_combo',
-                    placeholder: "&lt;units>",
-                    options: [],
-                    label: '' }
-            ] },
-            { view:"button",
-                id: 'convert_button',
-                value: 'convert' }
-        ]};
 
-    // starting reload for development
-    reload.init();
+    /**
+     * Request object&lt;/br>
+     * {@link module:lib/ajax/request}
+     * @memberof app
+     * @property request {lib/ajax/request} - provides request function
+     */
+    app.request = require('./lib/ajax/request.js');
 
-    debug("Starting the app!, ok");
-    request.message().then(function (resp) {
-        webix.alert(resp.text());
+
+    // **** Starting reload for development ****
+
+    reload.init(app);
+
+
+    // **** Initialize UI ****
+
+    require('./views/ui.js').init(app);
+
+
+    // **** Initialize Loading Mask ****
+
+    require('./views/windows/loadingMask').view(app);
+
+
+    // **** Initialize Controllers ****
+
+    require('./controllers/convert.js').init(app);
+    require('./controllers/evaluate.js').init(app);
+
+
+    // **** Show welcome message ****
+
+    app.debug('client:app')("Starting the app!, ok");
+    app.request.request(function (resp) {
+        var msg = "Can calculate:&lt;/br>100 ml[Volume] * 20 mg[Mass]/ml[Volume]=&lt;/br>" + resp.json().result.text;
+        webix.alert(msg);
+    }, function (err) {}, 'evaluate', {
+        expr: '100 ml[Volume] * 20 mg[Mass]/ml[Volume]'
     });
 
-    // create the ui
-    webix.ui({
-        rows: [
-            { type: 'header', template: 'GenUnitApp' },
-            { cols: [
-                {rows: [
-                    expressionForm,
-                    convertForm
-                ]},
-                { template: 'result', id: 'result_template' }
-            ]}
-        ]
-    });
-
-    // attach events
-    $$('evaluate_button').attachEvent('onItemClick', controller.onClickEvaluate);
-    $$('from_units_combo').attachEvent('onItemclick', controller.onFromUnitsComboClick);
-    $$('from_units_combo').attachEvent('onChange', controller.onFromUnitsComboChange);
-    $$('convert_button').attachEvent('onItemClick', controller.onClickConvert);
 
 });
 </code></pre>
@@ -142,13 +137,13 @@ webix.ready(function () {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-controller.html">controller</a></li><li><a href="module-lib_ajax_request.html">lib/ajax/request</a></li><li><a href="module-lib_util_reload.html">lib/util/reload</a></li><li><a href="module-views_loadingMask.html">views/loadingMask</a></li></ul><h3>Namespaces</h3><ul><li><a href="app.html">app</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-controllers_convert.html">controllers/convert</a></li><li><a href="module-controllers_evaluate.html">controllers/evaluate</a></li><li><a href="module-lib_ajax_request.html">lib/ajax/request</a></li><li><a href="module-lib_util_msgBus.html">lib/util/msgBus</a></li><li><a href="module-lib_util_reload.html">lib/util/reload</a></li><li><a href="module-views_forms_convert.html">views/forms/convert</a></li><li><a href="module-views_forms_expression.html">views/forms/expression</a></li><li><a href="module-views_lists_result.html">views/lists/result</a></li><li><a href="module-views_templates_result.html">views/templates/result</a></li><li><a href="module-views_ui.html">views/ui</a></li><li><a href="module-views_windows_loadingMask.html">views/windows/loadingMask</a></li></ul><h3>Namespaces</h3><ul><li><a href="app.html">app</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Mon Jul 25 2016 01:39:06 GMT+0200 (CEST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Wed Jul 27 2016 13:41:19 GMT+0200 (Central Europe Daylight Time)
 </footer>
 
 <script> prettyPrint(); </script>

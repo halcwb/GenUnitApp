@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: lib/ajax/request.js</title>
+    <title>JSDoc: Source: controllers/evaluate.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: lib/ajax/request.js</h1>
+    <h1 class="page-title">Source: controllers/evaluate.js</h1>
 
     
 
@@ -27,40 +27,49 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
- * @module lib/ajax/request
+ * @module controllers/evaluate
  */
-
-/*global webix, app */
 
 (function () {
     "use strict";
 
-
     /**
-     * request function
-     * @requires webix
-     * @param succ {Function} - Success function get's the resp object
-     * @param fail {Function} - Failure function get's the err object
-     * @param act  {String}   - The action that is requested
-     * @param qry  {Object}   - The query object for the requested action
-     * @return {Object}       - Result of succ or failure function
+     * Initializes the evaluate controller
+     * @param app {app} Provides app functionality
      */
-    exports.request = function (succ, fail, act, qry) {
-        var req = JSON.stringify({
-            act: act,
-            qry: JSON.stringify(qry)
-        });
+    exports.init = function (app) {
+        var debug = app.debug('client:controllers:evaluate');
 
-        webix.ajax().post('/request', req).then(function (resp) {
-            return succ(resp);
-        }).fail(function (err) {
-            return fail(err);
+        app.bus.view.subscribe('expression.evaluate', function (data, envelope) {
+
+            var succ = function (resp) {
+                debug('post', envelope);
+
+                app.bus.controller.publish('evaluate.result', {
+                    expr: data.expr,
+                    result: resp.json().result.text
+                });
+            };
+
+            var fail = function (err) {
+                var text = 'cannot evaluate: ' + data.expr + '&lt;/br>' + err.responseText;
+
+                debug('error', err);
+
+                app.bus.controller.publish('err', {
+                    result: text
+                });
+            };
+
+            app.loading(true);
+            app.request.request(succ, fail, 'evaluate', data);
+            app.loading(false);
+
         });
 
     };
 
-})();
-</code></pre>
+})();</code></pre>
         </article>
     </section>
 

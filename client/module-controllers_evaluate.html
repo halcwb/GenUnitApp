@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: lib/ajax/request.js</title>
+    <title>JSDoc: Module: controllers/evaluate</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,52 +17,185 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: lib/ajax/request.js</h1>
+    <h1 class="page-title">Module: controllers/evaluate</h1>
 
     
 
 
 
+
+<section>
+
+<header>
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>/**
- * @module lib/ajax/request
- */
+        
+    
+</header>
 
-/*global webix, app */
+<article>
+    <div class="container-overview">
+    
+        
 
-(function () {
-    "use strict";
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id=".init"><span class="type-signature">(static) </span>init<span class="signature">(app)</span><span class="type-signature"></span></h4>
+
+    
 
 
-    /**
-     * request function
-     * @requires webix
-     * @param succ {Function} - Success function get's the resp object
-     * @param fail {Function} - Failure function get's the err object
-     * @param act  {String}   - The action that is requested
-     * @param qry  {Object}   - The query object for the requested action
-     * @return {Object}       - Result of succ or failure function
-     */
-    exports.request = function (succ, fail, act, qry) {
-        var req = JSON.stringify({
-            act: act,
-            qry: JSON.stringify(qry)
-        });
 
-        webix.ajax().post('/request', req).then(function (resp) {
-            return succ(resp);
-        }).fail(function (err) {
-            return fail(err);
-        });
+<div class="description">
+    Initializes the evaluate controller
+</div>
 
-    };
 
-})();
-</code></pre>
-        </article>
-    </section>
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>app</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="app.html">app</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Provides app functionality</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="controllers_evaluate.js.html">controllers/evaluate.js</a>, <a href="controllers_evaluate.js.html#line12">line 12</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 

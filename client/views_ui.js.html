@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: lib/ajax/request.js</title>
+    <title>JSDoc: Source: views/ui.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: lib/ajax/request.js</h1>
+    <h1 class="page-title">Source: views/ui.js</h1>
 
     
 
@@ -27,40 +27,54 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
- * @module lib/ajax/request
+ * @module views/ui
  */
 
-/*global webix, app */
+/*global webix */
 
 (function () {
     "use strict";
 
 
     /**
-     * request function
-     * @requires webix
-     * @param succ {Function} - Success function get's the resp object
-     * @param fail {Function} - Failure function get's the err object
-     * @param act  {String}   - The action that is requested
-     * @param qry  {Object}   - The query object for the requested action
-     * @return {Object}       - Result of succ or failure function
+     * Initialize ui with app.
+     * app provides: &lt;/br>
+     * &lt;/br>
+     * - debug function&lt;/br>
+     * - bus object&lt;/br>
+     *&lt;/br>
+     * expects: require function and webix lib
+     * @param app {app} - Provides app functionality
      */
-    exports.request = function (succ, fail, act, qry) {
-        var req = JSON.stringify({
-            act: act,
-            qry: JSON.stringify(qry)
+    exports.init = function (app) {
+        var convert = require('./forms/convert.js');
+        var expression = require('./forms/expression.js');
+        var result = require('./lists/result.js');
+        var debug = app.debug('views:ui');
+
+        debug('init');
+
+        webix.ui({
+            rows: [
+                { type: 'header', template: 'GenUnitApp' },
+                { cols: [
+                    {rows: [
+                        expression.view(app),
+                        convert.view(app)
+                    ]},
+                    result.view(app)
+                ]}
+            ]
         });
 
-        webix.ajax().post('/request', req).then(function (resp) {
-            return succ(resp);
-        }).fail(function (err) {
-            return fail(err);
-        });
+        convert.init(app);
+        expression.init(app);
+        result.init(app);
 
+        app.bus.view.publish('ui.init');
     };
 
-})();
-</code></pre>
+})();</code></pre>
         </article>
     </section>
 

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: lib/ajax/request.js</title>
+    <title>JSDoc: Source: lib/util/msgBus.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: lib/ajax/request.js</h1>
+    <h1 class="page-title">Source: lib/util/msgBus.js</h1>
 
     
 
@@ -27,40 +27,58 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
- * @module lib/ajax/request
+ * @module lib/util/msgBus
  */
 
-/*global webix, app */
+/*global app, $$ */
 
 (function () {
     "use strict";
 
+    var postal = require('postal');
 
     /**
-     * request function
-     * @requires webix
-     * @param succ {Function} - Success function get's the resp object
-     * @param fail {Function} - Failure function get's the err object
-     * @param act  {String}   - The action that is requested
-     * @param qry  {Object}   - The query object for the requested action
-     * @return {Object}       - Result of succ or failure function
+     * controller channel
      */
-    exports.request = function (succ, fail, act, qry) {
-        var req = JSON.stringify({
-            act: act,
-            qry: JSON.stringify(qry)
-        });
+    exports.controller = postal.channel('controller');
 
-        webix.ajax().post('/request', req).then(function (resp) {
-            return succ(resp);
-        }).fail(function (err) {
-            return fail(err);
-        });
+    /**
+     * view channel
+     */
+    exports.view = postal.channel('view');
 
-    };
+    /**
+     * model channel
+     */
+    exports.model = postal.channel('model');
 
-})();
-</code></pre>
+    /**
+     * info channel
+     */
+    exports.info = postal.channel('info');
+
+    /**
+     * warning channel
+     */
+    exports.warn = postal.channel('warn');
+
+    /**
+     * errors channel
+     */
+    exports.errs = postal.channel('errs');
+
+    /**
+     * requests channel
+     */
+    exports.reqs = postal.channel('reqs');
+
+    /**
+     * postal object
+     */
+    exports.postal = postal;
+
+
+})();</code></pre>
         </article>
     </section>
 

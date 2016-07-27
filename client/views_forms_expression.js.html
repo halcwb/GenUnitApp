@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: lib/ajax/request.js</title>
+    <title>JSDoc: Source: views/forms/expression.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: lib/ajax/request.js</h1>
+    <h1 class="page-title">Source: views/forms/expression.js</h1>
 
     
 
@@ -27,40 +27,62 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
- * @module lib/ajax/request
+ * @module views/forms/expression
  */
 
-/*global webix, app */
+/*global $$ */
 
 (function () {
     "use strict";
 
-
     /**
-     * request function
-     * @requires webix
-     * @param succ {Function} - Success function get's the resp object
-     * @param fail {Function} - Failure function get's the err object
-     * @param act  {String}   - The action that is requested
-     * @param qry  {Object}   - The query object for the requested action
-     * @return {Object}       - Result of succ or failure function
+     * Creates an expression form
+     * @param app
+     * @returns {view}
      */
-    exports.request = function (succ, fail, act, qry) {
-        var req = JSON.stringify({
-            act: act,
-            qry: JSON.stringify(qry)
-        });
+    exports.view = function (app) {
+        var debug = app.debug('client:views:forms:expression');
+        var id = "expression_form";
+        var view =
+            { view: "form", id: id, elements: [
+                { view:"text",
+                    id: 'expression_text',
+                    placeholder: "&lt;expression>",
+                    label: 'expression' },
+                { view:"button",
+                    id: 'evaluate_button',
+                    value: 'evaluate' }
+            ]};
 
-        webix.ajax().post('/request', req).then(function (resp) {
-            return succ(resp);
-        }).fail(function (err) {
-            return fail(err);
-        });
+        debug('view');
+        return view;
 
     };
 
-})();
-</code></pre>
+    /**
+     * Initializes the form&lt;/br>
+     * uses $$ webix function to attach events to widgets
+     * @param app {app} Provides app functionality
+     */
+    exports.init = function (app) {
+        var debug = app.debug('client:views:forms:expression');
+
+        // **** Publish events *****
+
+        $$('evaluate_button').attachEvent('onItemClick', function () {
+            var text = $$('expression_text').getValue();
+
+            app.bus.view.publish('expression.evaluate', {
+                expr: text
+            });
+        });
+
+
+        debug('init');
+    };
+
+
+})();</code></pre>
         </article>
     </section>
 
