@@ -32,8 +32,9 @@
     };
 
     /**
-     * Initializes the expression form
-     * @param app
+     * Initializes the form</br>
+     * uses $$ webix function to attach events to widgets
+     * @param app {app} Provides app functionality
      */
     exports.init = function (app) {
         var debug = app.debug('client:views:forms:expression');

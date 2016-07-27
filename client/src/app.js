@@ -1,11 +1,18 @@
 /*global webix, $$, console, app, debug */
 
-/**
-* @file The entry point the application, creates the app
-*
-*/
-
 "use strict";
+
+
+/**
+ * @file The entry point the application, creates the app
+ * @requires util
+ * @requires debug
+ * @requires lib/util/reload
+ * @requires lib/util/msgBus
+ * @requires lib/ajax/request
+ * @requires views/ui
+ * @requires views/windows/loadingMask
+ */
 
 /**
 * Starts the application: </br>
@@ -27,7 +34,7 @@ webix.ready(function () {
     /**
      * Util functions
      * @memberof app
-     * @property util
+     * @property util {util} - Utility library
      */
     app.util  = require("util");
 
@@ -36,29 +43,32 @@ webix.ready(function () {
     * Debug factory
     * @memberof app
     * @method debug
+    * @returns {function} debug function
     */
     app.debug = require('debug');
 
 
     /**
-     * Message bus
+     * Message bus</br>
+     * {@link module:lib/util/msgBus}
      * @memberof app
-     * @property bus
+     * @property bus {lib/util/msgBus} - Provides message bus functionality
      */
     app.bus = require('./lib/util/msgBus.js');
 
 
     /**
-     * Request function
+     * Request object</br>
+     * {@link module:lib/ajax/request}
      * @memberof app
-     * @method request
+     * @property request {lib/ajax/request} - provides request function
      */
-    app.request = require('./lib/ajax/request');
+    app.request = require('./lib/ajax/request.js');
 
 
     // **** Starting reload for development ****
 
-    reload.init();
+    reload.init(app);
 
 
     // **** Initialize UI ****

@@ -9,7 +9,7 @@
 
     /**
      * Initializes the controller
-     * @param app
+     * @param app {app} Object with app functionality
      */
     exports.init = function (app) {
 

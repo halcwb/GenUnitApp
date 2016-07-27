@@ -1,10 +1,14 @@
 /**
- * Created by halcwb on 25/07/16.
+ * @module controllers/evaluate
  */
 
 (function () {
     "use strict";
 
+    /**
+     * Initializes the evaluate controller
+     * @param app {app} Provides app functionality
+     */
     exports.init = function (app) {
         var debug = app.debug('client:controllers:evaluate');
 

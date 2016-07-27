@@ -1,5 +1,5 @@
 /**
- * @module ui
+ * @module views/ui
  */
 
 /*global webix */
@@ -8,6 +8,16 @@
     "use strict";
 
 
+    /**
+     * Initialize ui with app.
+     * app provides: </br>
+     * </br>
+     * - debug function</br>
+     * - bus object</br>
+     *</br>
+     * expects: require function and webix lib
+     * @param app {app} - Provides app functionality
+     */
     exports.init = function (app) {
         var convert = require('./forms/convert.js');
         var expression = require('./forms/expression.js');

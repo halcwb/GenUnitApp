@@ -1,5 +1,5 @@
 /**
- * @module views/loadingMask
+ * @module views/windows/loadingMask
  */
 
 /*global webix, $$ */
@@ -30,8 +30,9 @@
 
     /**
      * loadingMask: </br>
-     * shows a loading mask if p = true
-     * @param app
+     * creates a loading mask
+     * @param app {app} uses app functionality
+     * @returns {view} a loading mask view
      */
     exports.view = function (app) {
 

@@ -112,7 +112,7 @@
         karma.run({
             configFile: KARMA_CONFIG,
             strict:  true,
-            capture: [],
+            capture: ['Firefox'],
             expectedBrowsers: []
         }, complete, fail);
     }, { async: true });

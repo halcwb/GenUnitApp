@@ -8,11 +8,12 @@
 (function () {
 
     /**
-    * Initializes the app with a 'reload server'
-    * When the reload server sends a message by
-    * a websocket, the window will be reloaded.
-    */
-    exports.init = function () {
+     * Initializes the app with a 'reload server'
+     * When the reload server sends a message by
+     * a websocket, the window will be reloaded.
+     * @param app {app} Provides app functionality
+     */
+    exports.init = function (app) {
         var URL = '//localhost:1337';
         var debug = app.debug("client:reload");
         var resp = webix.ajax().get('http:' + URL);
