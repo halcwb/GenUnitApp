@@ -26,16 +26,20 @@
 
         debug('init');
 
+        webix.ui.fullScreen();
+
         webix.ui({
             rows: [
                 { type: 'header', template: 'GenUnitApp' },
                 { cols: [
                     {rows: [
                         expression.view(app),
-                        convert.view(app)
+                        convert.view(app),
+                        { template: '' }
                     ]},
                     result.view(app)
-                ]}
+                ]},
+                { template: 'bottom bar', height: 30 }
             ]
         });
 
