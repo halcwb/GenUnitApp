@@ -2,7 +2,7 @@
  * @module lib/ajax/request
  */
 
-/*global webix, app */
+/*global webix */
 
 (function () {
     "use strict";
@@ -24,7 +24,7 @@
         });
 
         webix.ajax().post('/request', req).then(function (resp) {
-            return succ(resp);
+            return succ(resp.json());
         }).fail(function (err) {
             return fail(err);
         });

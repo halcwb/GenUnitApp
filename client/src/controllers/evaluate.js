@@ -19,7 +19,7 @@
 
                 app.bus.controller.publish('evaluate.result', {
                     expr: data.expr,
-                    result: resp.json().result.text
+                    result: resp.result.text
                 });
             };
 
@@ -42,7 +42,7 @@
         app.bus.view.subscribe('ui.init', function (data, envelope) {
 
             var succ = function (resp) {
-                var msg = "Can calculate:</br>100 ml[Volume] * 20 mg[Mass]/ml[Volume]=</br>" + resp.json().result.text;
+                var msg = "Can calculate:</br>100 ml[Volume] * 20 mg[Mass]/ml[Volume]=</br>" + resp.result.text;
                 app.bus.controller.publish('app.alert', {
                     title: 'Welcome to the GenUnitApp',
                     text: msg

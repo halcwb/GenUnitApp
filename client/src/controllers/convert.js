@@ -21,7 +21,7 @@
                 debug('got: ', resp);
                 app.bus.controller.publish('convert.result', {
                     expr: data.value + " " + data.fromUnit,
-                    result: resp.json().result.text
+                    result: resp.result.text
                 });
             };
 
@@ -49,7 +49,7 @@
 
             var succ = function (resp) {
                 app.bus.controller.publish('convert.from_units',{
-                    units: resp.json().result.units
+                    units: resp.result.units
                 });
             };
 
@@ -72,7 +72,7 @@
 
             var succ = function (resp) {
                 app.bus.controller.publish('convert.to_units',{
-                    units: resp.json().result.units
+                    units: resp.result.units
                 });
             };
 

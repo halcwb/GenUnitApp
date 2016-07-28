@@ -8,6 +8,10 @@
     /**
      * Initializes the controller
      * @param app {app} Object with app functionality
+     * uses: </br>
+     * app.debug</br>
+     * app.bus.view.subscribe</br>
+     * app.bus.controller.publish</br>
      */
     exports.init = function (app) {
         var debug = app.debug('client:controllers:app');
