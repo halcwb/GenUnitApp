@@ -27,9 +27,11 @@
 
             var fail = function (err) {
                 debug('error', err);
-                var result = { result: 'cannot convert: ' + data.value + " " + data.fromUnit + '</br>' + err.responseText};
+                var text = 'cannot convert: ' + data.value + " " + data.fromUnit + '</br>' + err.responseText;
 
-                app.bus.controller.publish('err', result);
+                app.bus.controller.publish('convert.err', {
+                    err: text
+                });
 
             };
 

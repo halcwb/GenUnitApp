@@ -83,6 +83,7 @@ webix.ready(function () {
 
     // **** Initialize Controllers ****
 
+    require('./controllers/app.js').init(app);
     require('./controllers/convert.js').init(app);
     require('./controllers/evaluate.js').init(app);
 
@@ -90,12 +91,7 @@ webix.ready(function () {
     // **** Show welcome message ****
 
     app.debug('client:app')("Starting the app!, ok");
-    app.request.request(function (resp) {
-        var msg = "Can calculate:</br>100 ml[Volume] * 20 mg[Mass]/ml[Volume]=</br>" + resp.json().result.text;
-        webix.alert(msg);
-    }, function (err) {}, 'evaluate', {
-        expr: '100 ml[Volume] * 20 mg[Mass]/ml[Volume]'
-    });
+    app.bus.view.publish('ui.init');
 
 
 });

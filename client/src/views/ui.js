@@ -2,7 +2,7 @@
  * @module views/ui
  */
 
-/*global webix */
+/*global $$, webix */
 
 (function () {
     "use strict";
@@ -22,13 +22,18 @@
         var convert = require('./forms/convert.js');
         var expression = require('./forms/expression.js');
         var result = require('./lists/result.js');
+        var status = require('./templates/bottomBar.js');
         var debug = app.debug('views:ui');
 
         debug('init');
 
+
+        // **** Create Views ****
+
         webix.ui.fullScreen();
 
         webix.ui({
+            id: 'ui',
             rows: [
                 { type: 'header', template: 'GenUnitApp' },
                 { cols: [
@@ -39,15 +44,25 @@
                     ]},
                     result.view(app)
                 ]},
-                { template: 'bottom bar', height: 30 }
+                status.view(app)
             ]
         });
+
+
+        // **** Initialize Views ****
 
         convert.init(app);
         expression.init(app);
         result.init(app);
+        status.init(app);
+
+        require('./windows/alert.js').init(app);
+
+
+        // **** Views Initialized ****
 
         app.bus.view.publish('ui.init');
+
     };
 
 })();

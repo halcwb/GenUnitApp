@@ -1,8 +1,8 @@
 /**
- * @module views/templates/result
+ * @module views/templates/bottomBar
  */
 
-/*global $$ */
+/*global webix, $$ */
 
 (function () {
     "use strict";
@@ -14,9 +14,9 @@
      */
     exports.view = function (app) {
         //noinspection JSUnresolvedFunction
-        var debug = app.debug('client:views:templates:result');
-        var id = 'result_template';
-        var view = { template: 'result', id: id };
+        var debug = app.debug('client:views:templates:bottomBar');
+        var id = 'bottom_bar_template';
+        var view = { template: '</>', id: id, height: 30, html: '' };
 
         debug('view');
         //noinspection JSValidateTypes
@@ -30,16 +30,26 @@
      */
     exports.init = function (app) {
         //noinspection JSUnresolvedFunction
-        var debug = app.debug('client:views:templates:result');
+        var debug = app.debug('client:views:templates:bottomBar');
+        var view = $$('bottom_bar_template');
+
         debug('init');
 
+        webix.event(view.$view, 'click', function () {
+            app.bus.view.publish('bottomBar.click', {
+                text: view.html
+            });
+        });
+
         //noinspection JSUnresolvedVariable
-        app.bus.controller.subscribe('*.result', function (data /*, envelope */) {
+        app.bus.controller.subscribe('*.err', function (data /*, envelope */) {
             //noinspection JSUnresolvedFunction
             debug('result', data.result);
-            $$('result_template').setHTML(data.result);
+            $$('bottom_bar_template').html = data.err;
+            $$('bottom_bar_template').setHTML(data.err);
         });
 
     };
+
 
 })();

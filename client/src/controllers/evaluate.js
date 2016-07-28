@@ -28,14 +28,36 @@
 
                 debug('error', err);
 
-                app.bus.controller.publish('err', {
-                    result: text
+                app.bus.controller.publish('evaluate.err', {
+                    err: text
                 });
             };
 
             app.loading(true);
             app.request.request(succ, fail, 'evaluate', data);
             app.loading(false);
+
+        });
+
+        app.bus.view.subscribe('ui.init', function (data, envelope) {
+
+            var succ = function (resp) {
+                var msg = "Can calculate:</br>100 ml[Volume] * 20 mg[Mass]/ml[Volume]=</br>" + resp.json().result.text;
+                app.bus.controller.publish('app.alert', {
+                    title: 'Welcome to the GenUnitApp',
+                    text: msg
+                });
+            };
+
+            var fail = function (err) {
+                app.bus.publish('err', {
+                    err: err
+                });
+            };
+
+            app.request.request(succ, fail, 'evaluate', {
+                expr: '100 ml[Volume] * 20 mg[Mass]/ml[Volume]'
+            });
 
         });
 
