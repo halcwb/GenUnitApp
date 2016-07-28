@@ -10,8 +10,11 @@ Minimum Marketing Features:
 User Stories:
 -------------
 - ~~enter a string expression and let the app calculate the expression~~
-- enter a digit and unit string expression, return a list of available
-conversions (units) and let the user pick a conversion
+- ~~enter a digit and unit string expression, return a list of available
+conversions (units) and let the user pick a conversion~~
+- ~~add result of evaluation or conversion to list~~
+- add info, warning and error messages to status bar
+- give help info when invalid input (validation)
 
 Engineering Tasks:
 ------------------
@@ -64,11 +67,11 @@ Engineering Tasks:
 
 Current Taks:
 -------------
-- Try to hide console error when no development refresh server
+- ~~Try to hide console error when no development refresh server~~ isn not going to work
 see (http://forum.webix.com/discussion/7230/suppress-ajax-error-in-console#latest)
 - Give better description when invalid expression input
-- Implement server side request response abstraction
+- ~~Implement server side request response abstraction~~
 - Create tests for client and server
 - Refactor
   - client extract query objects
-  - abstract creating request objects
+  - ~~abstract creating request objects~~
