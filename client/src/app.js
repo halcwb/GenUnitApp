@@ -1,7 +1,5 @@
 /*global webix, $$, console, app, debug */
 
-"use strict";
-
 
 /**
  * @file The entry point the application, creates the app
@@ -22,14 +20,16 @@
 *
 * @namespace app
 */
-webix.ready(function () {
 
-    var reload  = require("./lib/util/reload.js");
+(function () {
+    "use strict";
 
 
     // Make underscore globally available
     window._ = require('underscore');
 
+    // Create app namespace
+    window.app = {};
 
     /**
      * Util functions
@@ -40,11 +40,11 @@ webix.ready(function () {
 
 
     /**
-    * Debug factory
-    * @memberof app
-    * @method debug
-    * @returns {function} debug function
-    */
+     * Debug factory
+     * @memberof app
+     * @method debug
+     * @returns {function} debug function
+     */
     app.debug = require('debug');
 
 
@@ -66,32 +66,43 @@ webix.ready(function () {
     app.request = require('./lib/ajax/request.js');
 
 
-    // **** Starting reload for development ****
 
-    reload.init(app);
+    webix.ready(function () {
 
+        var reload  = require("./lib/util/reload.js");
 
-    // **** Initialize UI ****
+        // **** Starting reload for development ****
 
-    require('./views/ui.js').init(app);
-
-
-    // **** Initialize Loading Mask ****
-
-    require('./views/windows/loadingMask').view(app);
+        reload.init(app);
 
 
-    // **** Initialize Controllers ****
+        // **** Initialize UI ****
 
-    require('./controllers/app.js').init(app);
-    require('./controllers/convert.js').init(app);
-    require('./controllers/evaluate.js').init(app);
+        require('./views/ui.js').init(app);
 
 
-    // **** Show welcome message ****
+        // **** Initialize Loading Mask ****
 
-    app.debug('client:app')("Starting the app!, ok");
-    app.bus.view.publish('ui.init');
+        require('./views/windows/loadingMask').view(app);
 
 
-});
+        // **** Initialize Controllers ****
+
+        require('./controllers/app.js').init(app);
+        require('./controllers/convert.js').init(app);
+        require('./controllers/evaluate.js').init(app);
+
+
+        // **** Show welcome message ****
+
+        app.debug('client:app')("Starting the app!, ok");
+        app.bus.view.publish('ui.init');
+
+        webix.hasRun = true;
+
+
+    });
+
+})();
+
+

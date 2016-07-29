@@ -50,7 +50,7 @@
             };
 
             var fail = function (err) {
-                app.bus.publish('err', {
+                app.bus.controller.publish('err', {
                     err: err
                 });
             };

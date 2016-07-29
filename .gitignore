@@ -84,6 +84,9 @@ publishnuget.cmd
 !/client/build/scripts/
 !/client/build/config/
 !/client/build/util/
+!/client/spikes/
+!/client/spikes/karma/
+!/client/spikes/postaljs/
 !/client/src/
 !/client/src/controllers/
 !/client/src/models/

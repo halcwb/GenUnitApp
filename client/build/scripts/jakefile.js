@@ -140,8 +140,7 @@
             entry: paths.entryPoint,
             outfile: paths.distBundle,
             options: {
-                standalone: "app",
-                debug: true
+                debug: false
             }
         }, complete, fail);
     }, { async: true });
