@@ -82,7 +82,7 @@
     task("lintClient", function() {
         debug("Linting browser code: ");
         jshint.checkFiles({
-            files: [ "src/**/*.js" ],
+            files: [ "src/**/*.js", 'tests/**/*.js' ],
             options: jshintConfig.clientOptions,
             globals: jshintConfig.clientGlobals
         }, complete, fail);
@@ -140,7 +140,7 @@
             entry: paths.entryPoint,
             outfile: paths.distBundle,
             options: {
-                debug: false
+                debug: true
             }
         }, complete, fail);
     }, { async: true });

@@ -66,7 +66,6 @@
     app.request = require('./lib/ajax/request.js');
 
 
-
     webix.ready(function () {
 
         var reload  = require("./lib/util/reload.js");
