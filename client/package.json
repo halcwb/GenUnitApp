@@ -23,7 +23,6 @@
     "karma": "^0.13.22",
     "karma-browserify": "^5.1.0",
     "karma-chrome-launcher": "^0.2.3",
-    "karma-commonjs": "^1.0.0",
     "karma-expect": "^1.1.2",
     "karma-firefox-launcher": "^1.0.0",
     "karma-mocha": "^1.0.1",

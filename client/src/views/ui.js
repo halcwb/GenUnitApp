@@ -14,7 +14,7 @@
      * </br>
      * - debug function</br>
      * - bus object</br>
-     *</br>
+     * </br>
      * expects: require function and webix lib
      * @param app {app} - Provides app functionality
      */
