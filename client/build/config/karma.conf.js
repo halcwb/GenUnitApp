@@ -18,9 +18,10 @@ module.exports = function (config) {
         // list of files / patterns to load in the browser
         files: [
             'node_modules/webix/**/webix.css',
-            'node_modules/webix/**/webix_debug.js',
+            'node_modules/webix/**/webix.js',
             'generated/dist/bundle.js',
             'src/**/*.js',
+            'tests/smoke/**/*.js',
             'tests/browser/**/*.js'
         ],
 
