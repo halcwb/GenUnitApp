@@ -2,17 +2,18 @@
  * Created by halcwb on 18/07/16.
  */
 
-/* global console, dump, expect, assert, webix, $$, app */
+/* global console, dump, expect, assert, webix, $$, app, _ */
 
 (function () {
     "use strict";
 
 
     describe("Smoke process request tests", function () {
-        var HOME_URL = "http://localhost:3000/request";
-        var foo, echo, evaluate, units, convert;
+        var log = _.partial(console.log, 'smoke:process_request_tests'),
+            HOME_URL = "http://localhost:3000/request",
+            foo, echo, evaluate, units, convert;
 
-        this.retries(4);
+        this.retries(2);
 
 
         it("should not be able to process request with action foo", function (done) {
@@ -21,12 +22,12 @@
                 qry: ''
             }));
 
-            console.log('test');
+            log('act: foo');
             promise.then(function (resp) {
                 expect(resp.json().succ).to.be(false);
                 done();
             }).fail(function (err) {
-                console.log('echo test error', app.util.inspect(promise));
+                log('foo test error', promise.state);
                 done();
             });
 
@@ -39,13 +40,13 @@
                 req: JSON.stringify({ expr: '20 ml[Volume] * 100 mg[Mass]/ml[Volume]' })
             });
 
-            console.log('echo');
+            log('act: echo');
             promise.then(function (resp) {
                 expect(resp.json().succ).to.be(true);
                 expect(resp.json().result).to.eql({ act: 'echo', qry: '' });
                 done();
             }).fail(function (err) {
-                console.log('echo test error', app.util.inspect(promise));
+                log('echo test error', promise.state);
                 done();
             });
 
@@ -58,13 +59,13 @@
                 qry: JSON.stringify({ expr: '20 ml[Volume]' })
             }));
 
-            console.log('evaluate');
+            log('act: evaluate');
             promise.then(function (resp) {
                 expect(resp.json().succ).to.be(true);
                 expect(resp.json().result.text).to.equal("20 ml[Volume]");
                 done();
             }).fail(function (err) {
-                console.log('req evaluate error', app.util.inspect(promise));
+                log('req evaluate error', promise.state);
                 done();
             });
 
@@ -76,12 +77,13 @@
                 qry: JSON.stringify({ grp: ''})
             }));
 
+            log('act: getunits');
             promise.then(function (resp) {
                 expect(resp.json().succ).to.be(true);
                 expect(resp.json().result.units).to.be.an(Array);
                 done();
             }).fail(function () {
-                console.log('get units failed', app.util.inspect(promise));
+                log('get units failed', promise.state);
                 done();
             });
         });
@@ -92,12 +94,12 @@
                 qry: JSON.stringify({ value: 1, fromUnit: 'g[Mass]', toUnit: 'g[Mass]'})
             }));
 
-
+            log('act: convert');
             promise.then(function (resp) {
                 expect(resp.json().succ).to.be(true);
                 done();
             }).fail(function () {
-                console.log('convert value unit failed', app.util.inspect(promise));
+                log('convert value unit failed', promise.state);
                 done();
             });
         });

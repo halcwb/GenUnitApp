@@ -33,16 +33,10 @@
     //*** GENERAL
 
     desc("Lint and test");
-    task("default", ["version", "lint", "test", "docs"], function() {
+    task("default", ["version", "lint", "test", "build", "docs"], function() {
         var elapsedSeconds = (Date.now() - startTime) / 1000;
         debug("BUILD OK  (" + elapsedSeconds.toFixed(2) + "s)");
     });
-
-    desc("Start server (for manual testing)");
-    task("run", [ "build" ], function() {
-        debug("Starting server. Press Ctrl-C to exit.");
-        jake.exec("node " + paths.distDir + "/run.js 5000", { interactive: true }, complete);
-    }, { async: true });
 
     desc("Delete generated files");
     task("clean", function() {
@@ -107,7 +101,7 @@
         }, complete, fail);
     }, { async: true });
 
-    task("testBrowser", ["build"], function() {
+    task("testBrowser", function() {
         debug("Testing browser code: ");
         karma.run({
             configFile: KARMA_CONFIG,
@@ -121,7 +115,7 @@
     //*** BUILD
 
     desc("Build distribution package");
-    task("build", [ "lint", "prepDistDir", "buildClient", "docs" ]);
+    task("build", [ "lint", "prepDistDir", "buildClient" ]);
 
     task("prepDistDir", function() {
         debug("Preparing dist dir");
