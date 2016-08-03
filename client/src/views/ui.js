@@ -35,7 +35,22 @@
         webix.ui({
             id: 'ui',
             rows: [
-                { type: 'header', template: 'GenUnitApp' },
+                {
+                    id: 'header',
+                    view: 'toolbar',
+                    elements: [
+                        {
+                            view: 'icon',
+                            icon: 'bars',
+                            click: function () {
+                                if ($$('menu').config.hidden) {
+                                    $$('menu').show();
+                                } else $$('menu').hide();
+                            }
+                        },
+                        { view: 'label', label: 'GenUnitApp' }
+                    ]
+                },
                 { cols: [
                     {rows: [
                         expression.view(app),
@@ -47,6 +62,29 @@
                 status.view(app)
             ]
         });
+
+        webix.ui(
+            {
+                id: 'menu',
+                view: 'sidemenu',
+                width: 200,
+                position: 'left',
+                state: function(state) {
+                    var headerHeight = $$('header').$height;
+                    state.top = headerHeight;
+                    state.height -= headerHeight;
+                },
+                body: {
+                    view: 'list',
+                    borderless: true,
+                    scroll: false,
+                    template: '#value#',
+                    data: [
+                        { value: 'settings' }
+                    ]
+                }
+            }
+        );
 
 
         // **** Initialize Views ****
