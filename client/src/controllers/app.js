@@ -24,6 +24,20 @@
                 text: data.text
             });
         });
+
+        app.bus.view.subscribe('sidemenu.itemclick', function (data) {
+            var status;
+
+            debug(data);
+            if (data.id === '1') {
+                app.settings.demo = !app.settings.demo;
+                status = app.settings.demo ? 'demo' : 'online';
+                app.bus.controller.publish('app.status', { status: status });
+            }
+        });
+
+        app.bus.controller.publish('app.status', { status: 'online' });
+
     };
 
 })();

@@ -17,9 +17,7 @@
            id:'result_list',
            view: 'list',
            template: '#expr# = #result#',
-           data: [
-               { expr: "100 ml[Volume] * 20 mg[Mass]/ml[Volume]", result: "2000 mg[Mass]" }
-           ]
+           data: []
        };
 
        return view;

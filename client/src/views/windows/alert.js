@@ -23,7 +23,10 @@
 
                 webix.alert({
                     title: data.title,
-                    text: text
+                    text: text,
+                    callback: function () {
+                        app.bus.view.publish('alert.click', { text: text });
+                    }
                 });
 
             }

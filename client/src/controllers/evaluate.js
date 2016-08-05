@@ -2,6 +2,9 @@
  * @module controllers/evaluate
  */
 
+
+/*global _ */
+
 (function () {
     "use strict";
 
@@ -14,50 +17,71 @@
 
         app.bus.view.subscribe('expression.evaluate', function (data, envelope) {
 
-            var succ = function (resp) {
-                debug('post', envelope);
+            var post = _.partial(app.request.post, app.settings.demo),
 
-                app.bus.controller.publish('evaluate.result', {
-                    expr: data.expr,
-                    result: resp.result.text
-                });
-            };
+                succ = function (resp) {
+                    debug('post', envelope);
 
-            var fail = function (err) {
-                var text = 'cannot evaluate: ' + data.expr + '</br>' + err.responseText;
+                    app.bus.controller.publish('evaluate.result', {
+                        expr: data.expr,
+                        result: resp.result.text
+                    });
+                },
 
-                debug('error', err);
+                fail = function (err) {
+                    var text = 'cannot evaluate: ' + data.expr + '</br>' + err.responseText;
 
-                app.bus.controller.publish('evaluate.err', {
-                    err: text
-                });
-            };
+                    debug('error', err);
+
+                    app.bus.controller.publish('evaluate.err', {
+                        err: text
+                    });
+                };
 
             app.loading(true);
-            app.request.request(succ, fail, 'evaluate', data);
+            post(succ, fail, 'evaluate', data);
             app.loading(false);
 
         });
 
         app.bus.view.subscribe('ui.init', function (data, envelope) {
 
-            var succ = function (resp) {
-                var msg = "Can calculate:</br>100 ml[Volume] * 20 mg[Mass]/ml[Volume]=</br>" + resp.result.text;
-                app.bus.controller.publish('app.alert', {
-                    title: 'Welcome to the GenUnitApp',
-                    text: msg
-                });
-            };
+            var expr = '20 ml[Volume] * 10 mg[Mass]/ml[Volume]',
 
-            var fail = function (err) {
-                app.bus.controller.publish('err', {
-                    err: err
-                });
-            };
+                post = _.partial(app.request.post, app.settings.demo),
 
-            app.request.request(succ, fail, 'evaluate', {
-                expr: '100 ml[Volume] * 20 mg[Mass]/ml[Volume]'
+                succ = function (resp) {
+                    var msg = "Can calculate:</br>" + expr + "=</br>" + resp.result.text,
+
+                        // propagate evaluate result on alert click
+                        subs = app.bus.view.subscribe('alert.click', function () {
+                            app.bus.controller.publish('evaluate.result', {
+                                expr: expr,
+                                result: resp.result.text
+                            });
+                            // make sure that subscription is only called once
+                            app.bus.postal.unsubscribe(subs);
+                        });
+
+                    // publish alert msg
+                    app.bus.controller.publish('app.alert', {
+                        title: 'Welcome to the GenUnitApp',
+                        text: msg
+                    });
+
+                },
+
+                fail = function (err) {
+                    app.bus.controller.publish('err', {
+                        err: err
+                    });
+                };
+
+
+            post(succ, fail, 'evaluate', {
+                expr: expr
             });
+
 
         });
 

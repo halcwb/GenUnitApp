@@ -19,11 +19,12 @@
      * @param app {app} - Provides app functionality
      */
     exports.init = function (app) {
-        var convert = require('./forms/convert.js');
-        var expression = require('./forms/expression.js');
-        var result = require('./lists/result.js');
-        var status = require('./templates/bottomBar.js');
-        var debug = app.debug('views:ui');
+        var menu = require('./menus/sideMenu.js'),
+            convert = require('./forms/convert.js'),
+            expression = require('./forms/expression.js'),
+            result = require('./lists/result.js'),
+            status = require('./templates/bottomBar.js'),
+            debug = app.debug('views:ui');
 
         debug('init');
 
@@ -63,31 +64,10 @@
             ]
         });
 
-        webix.ui(
-            {
-                id: 'menu',
-                view: 'sidemenu',
-                width: 200,
-                position: 'left',
-                state: function(state) {
-                    var headerHeight = $$('header').$height;
-                    state.top = headerHeight;
-                    state.height -= headerHeight;
-                },
-                body: {
-                    view: 'list',
-                    borderless: true,
-                    scroll: false,
-                    template: '#value#',
-                    data: [
-                        { value: 'settings' }
-                    ]
-                }
-            }
-        );
-
 
         // **** Initialize Views ****
+
+        menu.init(app);
 
         convert.init(app);
         expression.init(app);

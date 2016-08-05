@@ -1,4 +1,4 @@
-/*global webix, $$, console, app, debug */
+/*global webix, _, $$, console, app, debug */
 
 
 /**
@@ -30,6 +30,13 @@
 
     // Create app namespace
     window.app = {};
+
+    app.settings = {
+        demo: false
+    };
+
+
+    app.data = require('./data/data.js');
 
     /**
      * Util functions

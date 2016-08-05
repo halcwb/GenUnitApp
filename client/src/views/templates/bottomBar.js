@@ -7,6 +7,8 @@
 (function () {
     "use strict";
 
+    var id = 'bottom_bar_template';
+
     /**
      * Create the view
      * @param app {app} provides the app functionality
@@ -14,9 +16,13 @@
      */
     exports.view = function (app) {
         //noinspection JSUnresolvedFunction
-        var debug = app.debug('client:views:templates:bottomBar');
-        var id = 'bottom_bar_template';
-        var view = { template: '</>', id: id, height: 30, html: '' };
+        var debug = app.debug('client:views:templates:bottomBar'),
+            view = {
+                template: 'status: #status# | message: #message#',
+                id: id,
+                height: 30,
+                data: { status: '', message: '' }
+            };
 
         debug('view');
         //noinspection JSValidateTypes
@@ -37,16 +43,27 @@
 
         webix.event(view.$view, 'click', function () {
             app.bus.view.publish('bottomBar.click', {
-                text: view.html
+                text: $$(id).getValues().message
             });
+        });
+
+        app.bus.controller.subscribe('*.status', function (data) {
+            var bar = $$(id),
+                vals = bar.getValues();
+
+            vals.status = data.status;
+            bar.setValues(vals);
         });
 
         //noinspection JSUnresolvedVariable
         app.bus.controller.subscribe('*.err', function (data /*, envelope */) {
             //noinspection JSUnresolvedFunction
             debug('result', data.result);
-            $$('bottom_bar_template').html = data.err;
-            $$('bottom_bar_template').setHTML(data.err);
+            var bar = $$(id),
+                vals = bar.getValues();
+
+            vals.message = data.err;
+            bar.setValues(vals);
         });
 
     };
