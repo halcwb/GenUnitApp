@@ -1,9 +1,11 @@
 /*global desc, task, jake, fail, complete, directory */
+
 "use strict";
 
 (function () {
 
     var KARMA_CONFIG = "./build/config/karma.conf.js";
+    var KARMA_CONFIG_SMOKE = "./build/config/karma.conf_smoke.js";
     var MOCHA_CONFIG = {
         ui: "bdd",
         reporter: "dot"
@@ -34,6 +36,12 @@
 
     desc("Lint and test");
     task("default", ["version", "lint", "test", "build", "docs"], function() {
+        var elapsedSeconds = (Date.now() - startTime) / 1000;
+        debug("BUILD OK  (" + elapsedSeconds.toFixed(2) + "s)");
+    });
+
+    desc("Lint and test");
+    task("smoke", ["version", "lint", "testSmoke", "build", "docs"], function() {
         var elapsedSeconds = (Date.now() - startTime) / 1000;
         debug("BUILD OK  (" + elapsedSeconds.toFixed(2) + "s)");
     });
@@ -106,6 +114,17 @@
         karma.run({
             configFile: KARMA_CONFIG,
             strict:  true,
+            capture: ['Firefox'],
+            expectedBrowsers: []
+        }, complete, fail);
+    }, { async: true });
+
+    desc("Run tests including smoke tests");
+    task("testSmoke", ["testLib"], function() {
+        debug("Testing browser code: ");
+        karma.run({
+            configFile: KARMA_CONFIG_SMOKE,
+            strict: true,
             capture: ['Firefox'],
             expectedBrowsers: []
         }, complete, fail);

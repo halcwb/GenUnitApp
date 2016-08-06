@@ -20,6 +20,7 @@ module.exports = function (config) {
             'node_modules/webix/**/webix.css',
             'node_modules/webix/**/webix.js',
             'src/**/*.js',
+            'tests/smoke/**/*.js',
             'tests/browser/**/*.js'
         ],
 
@@ -32,6 +33,7 @@ module.exports = function (config) {
         // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
         preprocessors: {
             'src/**/*.js': ['browserify'],
+            'tests/smoke/**/*.js': ['browserify'],
             'tests/browser/**/*.js': ['browserify']
         },
 

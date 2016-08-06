@@ -2,7 +2,7 @@
  * Created by halcwb on 18/07/16.
  */
 
-/* global console, dump, expect, assert, webix, $$, app, _ */
+/* global console, dump, expect, assert, webix, $$, app, _  */
 
 (function () {
     "use strict";

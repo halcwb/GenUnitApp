@@ -18,4 +18,4 @@ install:
 
 script:
   - . ~/.nvm/nvm.sh # manually source nvm
-  - ./build.sh nunit3
+  - ./build.sh ClientTests
