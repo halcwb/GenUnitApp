@@ -31,11 +31,19 @@
     // Create app namespace
     window.app = {};
 
+    /**
+     * settings container
+     * @memberof app
+     * @type {{demo: boolean}}
+     */
     app.settings = {
         demo: false
     };
 
-
+    /**
+     * data container for demo data
+     * @memberof app
+     */
     app.data = require('./data/data.js');
 
     /**
@@ -75,11 +83,10 @@
 
     webix.ready(function () {
 
-        var reload  = require("./lib/util/reload.js");
 
         // **** Starting reload for development ****
 
-        reload.init(app);
+        require("./lib/util/reload.js").init(app);
 
 
         // **** Initialize UI ****

@@ -96,6 +96,7 @@ publishnuget.cmd
 !/client/src/lib/ajax/
 !/client/src/lib/util/
 !/client/src/views/
+!/client/src/views/bars/
 !/client/src/views/menus/
 !/client/src/views/lists/
 !/client/src/views/forms/

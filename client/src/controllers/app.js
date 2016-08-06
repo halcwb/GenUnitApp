@@ -2,6 +2,8 @@
  * @module controllers/app
  */
 
+/* global $$ */
+
 (function () {
     "use strict";
 
@@ -34,6 +36,13 @@
                 status = app.settings.demo ? 'demo' : 'online';
                 app.bus.controller.publish('app.status', { status: status });
             }
+        });
+
+        app.bus.view.subscribe('header.menu.click', function () {
+            if ($$('menu').config.hidden) {
+                $$('menu').show();
+            } else $$('menu').hide();
+
         });
 
         app.bus.controller.publish('app.status', { status: 'online' });

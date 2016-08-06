@@ -19,12 +19,15 @@
      * @param app {app} - Provides app functionality
      */
     exports.init = function (app) {
-        var menu = require('./menus/sideMenu.js'),
+
+        var header = require('./bars/header.js'),
+            menu = require('./menus/sideMenu.js'),
             convert = require('./forms/convert.js'),
             expression = require('./forms/expression.js'),
             result = require('./lists/result.js'),
             status = require('./templates/bottomBar.js'),
             debug = app.debug('views:ui');
+
 
         debug('init');
 
@@ -36,28 +39,14 @@
         webix.ui({
             id: 'ui',
             rows: [
-                {
-                    id: 'header',
-                    view: 'toolbar',
-                    elements: [
-                        {
-                            view: 'icon',
-                            icon: 'bars',
-                            click: function () {
-                                if ($$('menu').config.hidden) {
-                                    $$('menu').show();
-                                } else $$('menu').hide();
-                            }
-                        },
-                        { view: 'label', label: 'GenUnitApp' }
-                    ]
-                },
+                header.view(app),
                 { cols: [
                     {rows: [
                         expression.view(app),
                         convert.view(app),
                         { template: '' }
                     ]},
+                    { view: 'resizer'},
                     result.view(app)
                 ]},
                 status.view(app)

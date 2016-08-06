@@ -21,7 +21,14 @@
         });
     };
 
-
+    /**
+     * server post function
+     * @param succ {Function} - Success function get's the resp object
+     * @param fail {Function} - Failure function get's the err object
+     * @param act  {String}   - The action that is requested
+     * @param qry  {Object}   - The query object for the requested action
+     * @return {Object}       - Result of succ or failure function
+     */
     exports.serverPost = function (succ, fail, act, qry) {
         var req = exports.createReq(act, qry);
 
@@ -33,6 +40,15 @@
     };
 
 
+    /**
+     * data post function
+     * @requires underscore
+     * @param succ {Function} - Success function get's the resp object
+     * @param fail {Function} - Failure function get's the err object
+     * @param act  {String}   - The action that is requested
+     * @param qry  {Object}   - The query object for the requested action
+     * @return {Object}       - Result of succ or failure function
+     */
     exports.dataPost = function (succ, fail, act, qry) {
         var data = require('../../data/data.js').data,
             req = data[act], resp;
@@ -42,17 +58,18 @@
                 return _.isEqual(el.req, qry);
             });
             if (resp.length === 1) {
-                succ(resp[0].resp);
-                return;
+                return succ(resp[0].resp);
             }
         }
 
         fail({ text: "Could not process" + act });
     };
 
+
     /**
-     * request function
+     * request post function
      * @requires webix
+     * @param demo {bool}     - Use either server or demo data
      * @param succ {Function} - Success function get's the resp object
      * @param fail {Function} - Failure function get's the err object
      * @param act  {String}   - The action that is requested
