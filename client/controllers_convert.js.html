@@ -45,26 +45,29 @@
 
         app.bus.view.subscribe('convert.convert', function (data, envelope) {
 
-            var succ = function (resp) {
-                debug('got: ', resp);
-                app.bus.controller.publish('convert.result', {
-                    expr: data.value + " " + data.fromUnit,
-                    result: resp.json().result.text
-                });
-            };
+            var post = _.partial(app.request.post, app.settings.demo),
 
-            var fail = function (err) {
-                debug('error', err);
-                var result = { result: 'cannot convert: ' + data.value + " " + data.fromUnit + '&lt;/br>' + err.responseText};
+                succ = function (resp) {
+                    debug('got: ', resp);
+                    app.bus.controller.publish('convert.result', {
+                        expr: data.value + " " + data.fromUnit,
+                        result: resp.result.text
+                    });
+                },
 
-                app.bus.controller.publish('err', result);
+                fail = function (err) {
+                    debug('error', err);
+                    var text = 'cannot convert: ' + data.value + " " + data.fromUnit + '&lt;/br>' + err.responseText;
 
-            };
+                    app.bus.controller.publish('convert.err', {
+                        err: text
+                    });
+
+                };
 
             app.loading(true);
-            app.request.request(succ, fail, 'convert', data);
+            post(succ, fail, 'convert', data);
             app.loading(false);
-
 
         });
 
@@ -73,20 +76,21 @@
 
             debug('post', envelope);
 
-            var succ = function (resp) {
-                app.bus.controller.publish('convert.from_units',{
-                    units: resp.json().result.units
-                });
-            };
+            var post = _.partial(app.request.post, app.settings.demo),
 
-            var fail = function (err) {
-                debug('err', err);
-            };
+                succ = function (resp) {
+                    app.bus.controller.publish('convert.from_units',{
+                        units: resp.result.units
+                    });
+                },
+
+                fail = function (err) {
+                    debug('err', err);
+                };
 
             app.loading(true);
-            app.request.request(succ, fail, 'getunits', { grp: '' });
+            post(succ, fail, 'getunits', { grp: '' });
             app.loading(false);
-
 
         });
 
@@ -96,24 +100,23 @@
 
             debug('post', envelope);
 
-            var succ = function (resp) {
-                app.bus.controller.publish('convert.to_units',{
-                    units: resp.json().result.units
-                });
-            };
+            var post = _.partial(app.request.post, app.settings.demo),
 
-            var fail = function (err) {
-                debug('err', err);
-            };
+                succ = function (resp) {
+                        app.bus.controller.publish('convert.to_units',{
+                        units: resp.result.units
+                    });
+                },
+
+                fail = function (err) {
+                    debug('err', err);
+                };
 
             app.loading(true);
-            app.request.request(succ, fail, 'getunits', { grp: grp });
+            post(succ, fail, 'getunits', { grp: grp });
             app.loading(false);
 
-
         });
-
-
 
     };
 
@@ -127,13 +130,14 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-controllers_convert.html">controllers/convert</a></li><li><a href="module-controllers_evaluate.html">controllers/evaluate</a></li><li><a href="module-lib_ajax_request.html">lib/ajax/request</a></li><li><a href="module-lib_util_msgBus.html">lib/util/msgBus</a></li><li><a href="module-lib_util_reload.html">lib/util/reload</a></li><li><a href="module-views_forms_convert.html">views/forms/convert</a></li><li><a href="module-views_forms_expression.html">views/forms/expression</a></li><li><a href="module-views_lists_result.html">views/lists/result</a></li><li><a href="module-views_templates_result.html">views/templates/result</a></li><li><a href="module-views_ui.html">views/ui</a></li><li><a href="module-views_windows_loadingMask.html">views/windows/loadingMask</a></li></ul><h3>Namespaces</h3><ul><li><a href="app.html">app</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="data_data%250AContains%2520demo_test%2520datamodule_.html">data/data
+Contains demo/test data</a></li><li><a href="module-controllers_app.html">controllers/app</a></li><li><a href="module-controllers_convert.html">controllers/convert</a></li><li><a href="module-controllers_evaluate.html">controllers/evaluate</a></li><li><a href="module-lib_ajax_request.html">lib/ajax/request</a></li><li><a href="module-lib_util_msgBus.html">lib/util/msgBus</a></li><li><a href="module-lib_util_reload.html">lib/util/reload</a></li><li><a href="module-views_bars_header.html">views/bars/header</a></li><li><a href="module-views_forms_convert.html">views/forms/convert</a></li><li><a href="module-views_forms_expression.html">views/forms/expression</a></li><li><a href="module-views_lists_result.html">views/lists/result</a></li><li><a href="module-views_templates_bottomBar.html">views/templates/bottomBar</a></li><li><a href="module-views_templates_result.html">views/templates/result</a></li><li><a href="module-views_ui.html">views/ui</a></li><li><a href="module-views_windows_alert.html">views/windows/alert</a></li><li><a href="module-views_windows_loadingMask.html">views/windows/loadingMask</a></li></ul><h3>Namespaces</h3><ul><li><a href="app.html">app</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Wed Jul 27 2016 13:41:19 GMT+0200 (Central Europe Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Sat Aug 06 2016 18:23:22 GMT+0200 (CEST)
 </footer>
 
 <script> prettyPrint(); </script>

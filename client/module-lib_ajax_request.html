@@ -61,14 +61,190 @@
 
     
 
-    <h4 class="name" id=".request"><span class="type-signature">(static) </span>request<span class="signature">(succ, fail, act, qry)</span><span class="type-signature"> &rarr; {Object}</span></h4>
+    <h4 class="name" id=".createReq"><span class="type-signature">(static) </span>createReq<span class="signature">(act, qry)</span><span class="type-signature"> &rarr; {Object}</span></h4>
 
     
 
 
 
 <div class="description">
-    request function
+    create a request object from an action and a query object
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>act</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The action that is requested</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>qry</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The query object for the requested action</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="lib_ajax_request.js.html">lib/ajax/request.js</a>, <a href="lib_ajax_request.js.html#line17">line 17</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    - The request object
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".dataPost"><span class="type-signature">(static) </span>dataPost<span class="signature">(succ, fail, act, qry)</span><span class="type-signature"> &rarr; {Object}</span></h4>
+
+    
+
+
+
+<div class="description">
+    data post function
 </div>
 
 
@@ -230,7 +406,257 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="lib_ajax_request.js.html">lib/ajax/request.js</a>, <a href="lib_ajax_request.js.html#line20">line 20</a>
+        <a href="lib_ajax_request.js.html">lib/ajax/request.js</a>, <a href="lib_ajax_request.js.html#line52">line 52</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+<h5>Requires:</h5>
+<ul>
+    <li>module:underscore</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    - Result of succ or failure function
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".post"><span class="type-signature">(static) </span>post<span class="signature">(demo, succ, fail, act, qry)</span><span class="type-signature"> &rarr; {Object}</span></h4>
+
+    
+
+
+
+<div class="description">
+    request post function
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>demo</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">bool</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Use either server or demo data</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>succ</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Success function get's the resp object</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>fail</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Failure function get's the err object</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>act</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The action that is requested</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>qry</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The query object for the requested action</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="lib_ajax_request.js.html">lib/ajax/request.js</a>, <a href="lib_ajax_request.js.html#line79">line 79</a>
     </li></ul></dd>
     
 
@@ -284,6 +710,228 @@
 
 
         
+            
+
+    
+
+    <h4 class="name" id=".serverPost"><span class="type-signature">(static) </span>serverPost<span class="signature">(succ, fail, act, qry)</span><span class="type-signature"> &rarr; {Object}</span></h4>
+
+    
+
+
+
+<div class="description">
+    server post function
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>succ</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Success function get's the resp object</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>fail</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Failure function get's the err object</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>act</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The action that is requested</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>qry</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The query object for the requested action</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="lib_ajax_request.js.html">lib/ajax/request.js</a>, <a href="lib_ajax_request.js.html#line32">line 32</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    - Result of succ or failure function
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
     
 
     
@@ -299,13 +947,14 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-controllers_convert.html">controllers/convert</a></li><li><a href="module-controllers_evaluate.html">controllers/evaluate</a></li><li><a href="module-lib_ajax_request.html">lib/ajax/request</a></li><li><a href="module-lib_util_msgBus.html">lib/util/msgBus</a></li><li><a href="module-lib_util_reload.html">lib/util/reload</a></li><li><a href="module-views_forms_convert.html">views/forms/convert</a></li><li><a href="module-views_forms_expression.html">views/forms/expression</a></li><li><a href="module-views_lists_result.html">views/lists/result</a></li><li><a href="module-views_templates_result.html">views/templates/result</a></li><li><a href="module-views_ui.html">views/ui</a></li><li><a href="module-views_windows_loadingMask.html">views/windows/loadingMask</a></li></ul><h3>Namespaces</h3><ul><li><a href="app.html">app</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="data_data%250AContains%2520demo_test%2520datamodule_.html">data/data
+Contains demo/test data</a></li><li><a href="module-controllers_app.html">controllers/app</a></li><li><a href="module-controllers_convert.html">controllers/convert</a></li><li><a href="module-controllers_evaluate.html">controllers/evaluate</a></li><li><a href="module-lib_ajax_request.html">lib/ajax/request</a></li><li><a href="module-lib_util_msgBus.html">lib/util/msgBus</a></li><li><a href="module-lib_util_reload.html">lib/util/reload</a></li><li><a href="module-views_bars_header.html">views/bars/header</a></li><li><a href="module-views_forms_convert.html">views/forms/convert</a></li><li><a href="module-views_forms_expression.html">views/forms/expression</a></li><li><a href="module-views_lists_result.html">views/lists/result</a></li><li><a href="module-views_templates_bottomBar.html">views/templates/bottomBar</a></li><li><a href="module-views_templates_result.html">views/templates/result</a></li><li><a href="module-views_ui.html">views/ui</a></li><li><a href="module-views_windows_alert.html">views/windows/alert</a></li><li><a href="module-views_windows_loadingMask.html">views/windows/loadingMask</a></li></ul><h3>Namespaces</h3><ul><li><a href="app.html">app</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Wed Jul 27 2016 13:41:19 GMT+0200 (Central Europe Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Sat Aug 06 2016 18:23:22 GMT+0200 (CEST)
 </footer>
 
 <script> prettyPrint(); </script>

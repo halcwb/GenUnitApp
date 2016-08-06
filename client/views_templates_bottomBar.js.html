@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Module: controllers/convert</title>
+    <title>JSDoc: Source: views/templates/bottomBar.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,185 +17,89 @@
 
 <div id="main">
 
-    <h1 class="page-title">Module: controllers/convert</h1>
+    <h1 class="page-title">Source: views/templates/bottomBar.js</h1>
 
     
 
 
 
-
-<section>
-
-<header>
     
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-
-     
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Methods</h3>
-
-        
-            
-
-    
-
-    <h4 class="name" id=".init"><span class="type-signature">(static) </span>init<span class="signature">(app)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    Initializes the controller
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>app</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="app.html">app</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Object with app functionality</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="controllers_convert.js.html">controllers/convert.js</a>, <a href="controllers_convert.js.html#line14">line 14</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-    
-
-    
-
-    
-</article>
-
-</section>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @module views/templates/bottomBar
+ */
+
+/*global webix, $$ */
+
+(function () {
+    "use strict";
+
+    var id = 'bottom_bar_template';
+
+    /**
+     * Create the view
+     * @param app {app} provides the app functionality
+     * @returns {view} Returns the view
+     */
+    exports.view = function (app) {
+        //noinspection JSUnresolvedFunction
+        var debug = app.debug('client:views:templates:bottomBar'),
+            view = {
+                template: 'status: #status# | message: #message#',
+                id: id,
+                height: 30,
+                data: { status: '', message: '' }
+            };
+
+        debug('view');
+        //noinspection JSValidateTypes
+        return view;
+    };
+
+    /**
+     * Initializes the view
+     * Uses the webix $$ to get the view
+     * @param app {app} provides the app functionality
+     */
+    exports.init = function (app) {
+        //noinspection JSUnresolvedFunction
+        var debug = app.debug('client:views:templates:bottomBar');
+        var view = $$('bottom_bar_template');
+
+        debug('init');
+
+        webix.event(view.$view, 'click', function () {
+            app.bus.view.publish('bottomBar.click', {
+                text: $$(id).getValues().message
+            });
+        });
+
+        app.bus.controller.subscribe('*.status', function (data) {
+            var bar = $$(id),
+                vals = bar.getValues();
+
+            vals.status = data.status;
+            bar.setValues(vals);
+        });
+
+        //noinspection JSUnresolvedVariable
+        app.bus.controller.subscribe('*.err', function (data /*, envelope */) {
+            //noinspection JSUnresolvedFunction
+            debug('result', data.result);
+            var bar = $$(id),
+                vals = bar.getValues();
+
+            vals.message = data.err;
+            bar.setValues(vals);
+        });
+
+    };
+
+
+})();</code></pre>
+        </article>
+    </section>
 
 
 

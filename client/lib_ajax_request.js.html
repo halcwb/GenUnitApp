@@ -30,34 +30,85 @@
  * @module lib/ajax/request
  */
 
-/*global webix, app */
+/*global webix, _ */
 
 (function () {
     "use strict";
 
 
     /**
-     * request function
-     * @requires webix
+     * create a request object from an action and a query object
+     * @param act  {String} - The action that is requested
+     * @param qry  {Object} - The query object for the requested action
+     * @return {Object}     - The request object
+     */
+    exports.createReq = function (act, qry) {
+        return JSON.stringify({
+            act: act,
+            qry: JSON.stringify(qry)
+        });
+    };
+
+    /**
+     * server post function
      * @param succ {Function} - Success function get's the resp object
      * @param fail {Function} - Failure function get's the err object
      * @param act  {String}   - The action that is requested
      * @param qry  {Object}   - The query object for the requested action
      * @return {Object}       - Result of succ or failure function
      */
-    exports.request = function (succ, fail, act, qry) {
-        var req = JSON.stringify({
-            act: act,
-            qry: JSON.stringify(qry)
-        });
+    exports.serverPost = function (succ, fail, act, qry) {
+        var req = exports.createReq(act, qry);
 
         webix.ajax().post('/request', req).then(function (resp) {
-            return succ(resp);
+            return succ(resp.json());
         }).fail(function (err) {
             return fail(err);
         });
-
     };
+
+
+    /**
+     * data post function
+     * @requires underscore
+     * @param succ {Function} - Success function get's the resp object
+     * @param fail {Function} - Failure function get's the err object
+     * @param act  {String}   - The action that is requested
+     * @param qry  {Object}   - The query object for the requested action
+     * @return {Object}       - Result of succ or failure function
+     */
+    exports.dataPost = function (succ, fail, act, qry) {
+        var data = require('../../data/data.js').data,
+            req = data[act], resp;
+
+        if (req) {
+            resp = _.filter(req.reqResp, function (el) {
+                return _.isEqual(el.req, qry);
+            });
+            if (resp.length === 1) {
+                return succ(resp[0].resp);
+            }
+        }
+
+        fail({ text: "Could not process" + act });
+    };
+
+
+    /**
+     * request post function
+     * @requires webix
+     * @param demo {bool}     - Use either server or demo data
+     * @param succ {Function} - Success function get's the resp object
+     * @param fail {Function} - Failure function get's the err object
+     * @param act  {String}   - The action that is requested
+     * @param qry  {Object}   - The query object for the requested action
+     * @return {Object}       - Result of succ or failure function
+     */
+    exports.post = function (demo, succ, fail, act, qry) {
+        if (!demo) return exports.serverPost(succ, fail, act, qry);
+        else return exports.dataPost(succ, fail, act, qry);
+    };
+
 
 })();
 </code></pre>
@@ -70,13 +121,14 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-controllers_convert.html">controllers/convert</a></li><li><a href="module-controllers_evaluate.html">controllers/evaluate</a></li><li><a href="module-lib_ajax_request.html">lib/ajax/request</a></li><li><a href="module-lib_util_msgBus.html">lib/util/msgBus</a></li><li><a href="module-lib_util_reload.html">lib/util/reload</a></li><li><a href="module-views_forms_convert.html">views/forms/convert</a></li><li><a href="module-views_forms_expression.html">views/forms/expression</a></li><li><a href="module-views_lists_result.html">views/lists/result</a></li><li><a href="module-views_templates_result.html">views/templates/result</a></li><li><a href="module-views_ui.html">views/ui</a></li><li><a href="module-views_windows_loadingMask.html">views/windows/loadingMask</a></li></ul><h3>Namespaces</h3><ul><li><a href="app.html">app</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="data_data%250AContains%2520demo_test%2520datamodule_.html">data/data
+Contains demo/test data</a></li><li><a href="module-controllers_app.html">controllers/app</a></li><li><a href="module-controllers_convert.html">controllers/convert</a></li><li><a href="module-controllers_evaluate.html">controllers/evaluate</a></li><li><a href="module-lib_ajax_request.html">lib/ajax/request</a></li><li><a href="module-lib_util_msgBus.html">lib/util/msgBus</a></li><li><a href="module-lib_util_reload.html">lib/util/reload</a></li><li><a href="module-views_bars_header.html">views/bars/header</a></li><li><a href="module-views_forms_convert.html">views/forms/convert</a></li><li><a href="module-views_forms_expression.html">views/forms/expression</a></li><li><a href="module-views_lists_result.html">views/lists/result</a></li><li><a href="module-views_templates_bottomBar.html">views/templates/bottomBar</a></li><li><a href="module-views_templates_result.html">views/templates/result</a></li><li><a href="module-views_ui.html">views/ui</a></li><li><a href="module-views_windows_alert.html">views/windows/alert</a></li><li><a href="module-views_windows_loadingMask.html">views/windows/loadingMask</a></li></ul><h3>Namespaces</h3><ul><li><a href="app.html">app</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Wed Jul 27 2016 13:41:19 GMT+0200 (Central Europe Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Sat Aug 06 2016 18:23:22 GMT+0200 (CEST)
 </footer>
 
 <script> prettyPrint(); </script>

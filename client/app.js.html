@@ -26,9 +26,7 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/*global webix, $$, console, app, debug */
-
-"use strict";
+            <pre class="prettyprint source linenums"><code>/*global webix, _, $$, console, app, debug */
 
 
 /**
@@ -50,14 +48,31 @@
 *
 * @namespace app
 */
-webix.ready(function () {
 
-    var reload  = require("./lib/util/reload.js");
+(function () {
+    "use strict";
 
 
     // Make underscore globally available
     window._ = require('underscore');
 
+    // Create app namespace
+    window.app = {};
+
+    /**
+     * settings container
+     * @memberof app
+     * @type {{demo: boolean}}
+     */
+    app.settings = {
+        demo: false
+    };
+
+    /**
+     * data container for demo data
+     * @memberof app
+     */
+    app.data = require('./data/data.js');
 
     /**
      * Util functions
@@ -68,11 +83,11 @@ webix.ready(function () {
 
 
     /**
-    * Debug factory
-    * @memberof app
-    * @method debug
-    * @returns {function} debug function
-    */
+     * Debug factory
+     * @memberof app
+     * @method debug
+     * @returns {function} debug function
+     */
     app.debug = require('debug');
 
 
@@ -94,39 +109,44 @@ webix.ready(function () {
     app.request = require('./lib/ajax/request.js');
 
 
-    // **** Starting reload for development ****
-
-    reload.init(app);
+    webix.ready(function () {
 
 
-    // **** Initialize UI ****
+        // **** Starting reload for development ****
 
-    require('./views/ui.js').init(app);
-
-
-    // **** Initialize Loading Mask ****
-
-    require('./views/windows/loadingMask').view(app);
+        require("./lib/util/reload.js").init(app);
 
 
-    // **** Initialize Controllers ****
+        // **** Initialize UI ****
 
-    require('./controllers/convert.js').init(app);
-    require('./controllers/evaluate.js').init(app);
+        require('./views/ui.js').init(app);
 
 
-    // **** Show welcome message ****
+        // **** Initialize Loading Mask ****
 
-    app.debug('client:app')("Starting the app!, ok");
-    app.request.request(function (resp) {
-        var msg = "Can calculate:&lt;/br>100 ml[Volume] * 20 mg[Mass]/ml[Volume]=&lt;/br>" + resp.json().result.text;
-        webix.alert(msg);
-    }, function (err) {}, 'evaluate', {
-        expr: '100 ml[Volume] * 20 mg[Mass]/ml[Volume]'
+        require('./views/windows/loadingMask').view(app);
+
+
+        // **** Initialize Controllers ****
+
+        require('./controllers/app.js').init(app);
+        require('./controllers/convert.js').init(app);
+        require('./controllers/evaluate.js').init(app);
+
+
+        // **** Show welcome message ****
+
+        app.debug('client:app')("Starting the app!, ok");
+        app.bus.view.publish('ui.init');
+
+        webix.hasRun = true;
+
+
     });
 
+})();
 
-});
+
 </code></pre>
         </article>
     </section>
@@ -137,13 +157,14 @@ webix.ready(function () {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-controllers_convert.html">controllers/convert</a></li><li><a href="module-controllers_evaluate.html">controllers/evaluate</a></li><li><a href="module-lib_ajax_request.html">lib/ajax/request</a></li><li><a href="module-lib_util_msgBus.html">lib/util/msgBus</a></li><li><a href="module-lib_util_reload.html">lib/util/reload</a></li><li><a href="module-views_forms_convert.html">views/forms/convert</a></li><li><a href="module-views_forms_expression.html">views/forms/expression</a></li><li><a href="module-views_lists_result.html">views/lists/result</a></li><li><a href="module-views_templates_result.html">views/templates/result</a></li><li><a href="module-views_ui.html">views/ui</a></li><li><a href="module-views_windows_loadingMask.html">views/windows/loadingMask</a></li></ul><h3>Namespaces</h3><ul><li><a href="app.html">app</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="data_data%250AContains%2520demo_test%2520datamodule_.html">data/data
+Contains demo/test data</a></li><li><a href="module-controllers_app.html">controllers/app</a></li><li><a href="module-controllers_convert.html">controllers/convert</a></li><li><a href="module-controllers_evaluate.html">controllers/evaluate</a></li><li><a href="module-lib_ajax_request.html">lib/ajax/request</a></li><li><a href="module-lib_util_msgBus.html">lib/util/msgBus</a></li><li><a href="module-lib_util_reload.html">lib/util/reload</a></li><li><a href="module-views_bars_header.html">views/bars/header</a></li><li><a href="module-views_forms_convert.html">views/forms/convert</a></li><li><a href="module-views_forms_expression.html">views/forms/expression</a></li><li><a href="module-views_lists_result.html">views/lists/result</a></li><li><a href="module-views_templates_bottomBar.html">views/templates/bottomBar</a></li><li><a href="module-views_templates_result.html">views/templates/result</a></li><li><a href="module-views_ui.html">views/ui</a></li><li><a href="module-views_windows_alert.html">views/windows/alert</a></li><li><a href="module-views_windows_loadingMask.html">views/windows/loadingMask</a></li></ul><h3>Namespaces</h3><ul><li><a href="app.html">app</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Wed Jul 27 2016 13:41:19 GMT+0200 (Central Europe Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Sat Aug 06 2016 18:23:22 GMT+0200 (CEST)
 </footer>
 
 <script> prettyPrint(); </script>
