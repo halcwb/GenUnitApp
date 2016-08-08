@@ -2,7 +2,7 @@
  * Created by halcwb on 05/08/16.
  */
 
-/*global webix, $$ */
+/*global webix, $$, window */
 
 (function () {
     "use strict";
@@ -10,6 +10,7 @@
     var id = 'menu';
 
     exports.init = function (app) {
+        var enabled = window.localStorage.debug === '' ? 'disabled' : 'enabled';
 
         webix.ui(
             {
@@ -28,12 +29,14 @@
                     scroll: false,
                     template: "<span class='webix_icon fa-#icon#'></span> #setting#: #value#",
                     data: [
-                        { id: 1, icon: 'cog', setting: 'server', value: '' }
+                        { id: 'server', icon: 'cog', setting: 'server', value: '' },
+                        { id: 'debug', icon: 'code', setting: 'debug', value: enabled }
                     ],
                     on: {
                         'onItemClick': function (id, e, trg) {
                             app.bus.view.publish('sidemenu.itemclick', {
-                                id: id
+                                id: id,
+                                trg: trg
                             });
                         }
                     }
@@ -43,7 +46,7 @@
 
         app.bus.controller.subscribe('*.status', function () {
             var status = app.settings.demo ? 'demo' : 'online';
-            $$(id).getBody().updateItem(1, { value: status });
+            $$(id).getBody().updateItem('server', { value: status });
         });
 
 
