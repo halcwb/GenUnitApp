@@ -2,7 +2,7 @@
  * @module views/forms/convert
  */
 
-/*global $$ */
+/*global $$, _ */
 
 (function () {
     "use strict";
@@ -15,32 +15,79 @@
     exports.view = function (app) {
         var debug = app.debug('client:views:forms:convert');
         var view =
-            { view: "form", id: 'convert_form', elements: [
-                { cols: [
-                    { view:"text",
-                        id: 'value_text',
-                        placeholder: "<value>",
-                        label: 'value' },
-                    { view:"combo",
-                        id: 'from_units_combo',
-                        placeholder: "<units>",
-                        options: [],
-                        label: '' },
-                    { view:"label",
-                        label: 'to',
-                        width:  30,
-                        align: 'center',
-                        id: 'label_to' },
-                    { view:"combo",
-                        id: 'to_units_combo',
-                        placeholder: "<units>",
-                        options: [],
-                        label: '' }
-                ] },
-                { view:"button",
+            {
+                view: "form", id: 'convert_form', elements: [
+                { view: 'fieldset', label: 'Unit Groups', body: {
+                        cols: [
+                            {
+                                view: 'button',
+                                id: 'groups_button',
+                                value: 'create units'
+                            },
+                            {
+                                view: 'combo',
+                                id: 'group1_combo',
+                                placeholder: '<group>',
+                                options: [],
+                                label: ''
+                            },
+                            {
+                                view: 'combo',
+                                id: 'group2_combo',
+                                placeholder: '<group>',
+                                options: [],
+                                label: ''
+                            },
+                            {
+                                view: 'combo',
+                                id: 'group3_combo',
+                                placeholder: '<group>',
+                                options: [],
+                                label: ''
+                            }
+                        ]
+                    }
+                },
+                {
+                    view: 'fieldset', label: 'Convert', body: {
+                        cols: [
+                            {
+                                view:"text",
+                                id: 'value_text',
+                                placeholder: "<value>",
+                                label: 'value'
+                            },
+                            {
+                                view:"combo",
+                                id: 'from_units_combo',
+                                placeholder: "<units>",
+                                options: [],
+                                label: ''
+                            },
+                            {
+                                view:"label",
+                                label: 'to',
+                                width:  30,
+                                align: 'center',
+                                id: 'label_to'
+                            },
+                            {
+                                view:"combo",
+                                id: 'to_units_combo',
+                                placeholder: "<units>",
+                                options: [],
+                                label: ''
+                            }
+                        ]
+                    }
+                },
+                {
+                    view:"button",
                     id: 'convert_button',
-                    value: 'convert' }
-            ]};
+                    value: 'convert'
+                }
+            ]
+        };
 
         debug('view');
         return view;
@@ -57,6 +104,39 @@
 
 
         // **** Publish events ****
+
+
+        $$('groups_button').attachEvent('onItemClick', function () {
+            var grp1 = $$('group1_combo').getValue(),
+                grp2 = $$('group2_combo').getValue(),
+                grp3 = $$('group3_combo').getValue();
+
+            app.bus.view.publish('convert.groups', {
+                group1: grp1,
+                group2: grp2,
+                group3: grp3
+            });
+        });
+
+
+        $$('group1_combo').attachEvent('onItemClick', function () {
+            var list = $$('group1_combo').getPopup().getList();
+
+            if (list.count() === 0) {
+                app.bus.view.publish('convert.group1.groups', { units: list });
+            }
+        });
+
+
+        $$('from_units_combo').attachEvent('onItemClick', function () {
+            var list = $$('from_units_combo').getPopup().getList();
+
+            if (list.count() === 0) {
+                debug('publish convert.get_units');
+                app.bus.view.publish('convert.get_units', { units: list });
+            }
+        });
+
 
         $$('convert_button').attachEvent('onItemClick', function () {
             var value =    $$('value_text').getValue();
@@ -89,6 +169,18 @@
 
 
         // **** Subscribe to controllers ****
+
+
+        app.bus.controller.subscribe('convert.groups', function (data, envelope) {
+            debug('post', envelope);
+            _.forEach(['group1_combo', 'group2_combo', 'group3_combo'], function (id) {
+                var combo = $$(id);
+                var list = combo.getPopup().getList();
+
+                list.parse(data.groups);
+            });
+        });
+
 
         app.bus.controller.subscribe('convert.from_units', function (data, envelope) {
             var combo = $$('from_units_combo');
