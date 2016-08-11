@@ -15,7 +15,10 @@ module Actions =
     let NOACTION = "cannot map this action"
 
     [<Literal>]
-    let GETUNITS = "getunits"
+    let GROUPS = "groups"
+
+    [<Literal>]
+    let UNITS = "units"
 
     [<Literal>]
     let CONVERT = "convert"
@@ -81,6 +84,15 @@ module Result =
 
     let createConvert txt : Convert = { Text = txt }
 
+    [<CLIMutable>]
+    type GetGroups = 
+        {
+            [<JsonProperty("groups")>]
+            Groups : string[]
+        }
+
+    let createGroups grps : GetGroups = { Groups = grps |> Array.ofSeq }
+
 
 /// Mapping a request to a response 
 module RequestMapping =
@@ -112,10 +124,15 @@ module RequestMapping =
             |> Result.createConvert
             |> (toResponse true)
 
-        | Actions.GETUNITS ->
+        | Actions.UNITS ->
             (r.Query |> Json.deSerialize<Query.GetUnits>).Group 
             |> GenUnits.Api.getUnits
             |> Result.createUnits
+            |> (toResponse true)
+
+        | Actions.GROUPS ->
+            GenUnits.Api.groups
+            |> Result.createGroups
             |> (toResponse true)
 
         | _ -> 

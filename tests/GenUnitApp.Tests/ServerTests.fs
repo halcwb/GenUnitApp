@@ -179,7 +179,7 @@ module ServerTests =
 
         let qry = { QR.GetUnits.Group = "" }
         let data = 
-            createRequest "getunits" (qry |> Json.serialize)
+            createRequest "units" (qry |> Json.serialize)
             |> Json.serialize
             |> Encoding.UTF8.GetBytes
 

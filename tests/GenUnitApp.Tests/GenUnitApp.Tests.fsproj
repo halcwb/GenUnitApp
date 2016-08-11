@@ -68,6 +68,8 @@
     <None Include="Scripts\Script.fsx" />
     <None Include="Scripts\Json.fsx" />
     <None Include="Scripts\Newtonsoft.fsx" />
+    <None Include="Scripts\load-references-debug.fsx" />
+    <None Include="Scripts\load-project-debug.fsx" />
     <None Include="data\index.html" />
     <Content Include="App.config" />
     <None Include="paket.references" />
