@@ -33,7 +33,7 @@
                 }
             ]
         },
-        'getunits': {
+        'units': {
             reqResp: [
                 {
                     req: { grp: '' },

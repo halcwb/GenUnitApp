@@ -21,7 +21,7 @@
                 return (grp !== '');
             }).join('/').value();
 
-            var post = _.partial(app.request.post, true),
+            var post = _.partial(app.request.post, app.settings.demo),
 
                 succ = function (resp) {
                     app.bus.controller.publish('convert.from_units', {
@@ -46,7 +46,7 @@
             debug('envelope', envelope, 'group', grp);
 
             app.loading(true);
-            post(succ, fail, 'getunits', { grp: grp });
+            post(succ, fail, 'units', { grp: grp });
             app.loading(false);
 
         });
@@ -56,7 +56,7 @@
 
             debug('post', envelope);
 
-            var post = _.partial(app.request.post, true),
+            var post = _.partial(app.request.post, app.settings.demo),
 
                 succ = function (resp) {
                     app.bus.controller.publish('convert.groups',{
@@ -121,7 +121,7 @@
                 };
 
             app.loading(true);
-            post(succ, fail, 'getunits', { grp: '' });
+            post(succ, fail, 'units', { grp: '' });
             app.loading(false);
 
         });
@@ -147,7 +147,7 @@
                 };
 
             app.loading(true);
-            post(succ, fail, 'getunits', { grp: grp });
+            post(succ, fail, 'units', { grp: grp });
             app.loading(false);
 
         });
