@@ -2,7 +2,7 @@
  * @module views/lists/result
  */
 
-/*global $$ */
+/*global $$, _ */
 
 (function () {
     "use strict";
@@ -30,11 +30,19 @@
      */
     exports.init = function (app) {
         var debug = app.debug('client:views:lists:result');
+
+
         debug('init');
 
+
         app.bus.controller.subscribe('*.result', function (data /*, envelope */) {
+            var result =
+                    app.util.numberParser.parseStringToFloat(data.result.split(' ')[0]) + ' ' +
+                    (_.tail(data.result.split(' ')).join(' '));
+
+
             debug('result', data.result);
-            $$('result_list').add({ expr: data.expr, result: data.result });
+            $$('result_list').add({ expr: data.expr, result: result });
         });
 
     };

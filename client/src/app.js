@@ -54,6 +54,9 @@
     app.util  = require("util");
 
 
+    app.util.numberParser = require('./lib/util/numberParser.js');
+
+
     /**
      * Debug factory
      * @memberof app
