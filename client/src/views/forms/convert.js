@@ -27,6 +27,7 @@
                             {
                                 view: 'combo',
                                 id: 'group1_combo',
+                                name: 'group1_combo',
                                 placeholder: '<group>',
                                 options: [],
                                 label: ''
@@ -34,6 +35,7 @@
                             {
                                 view: 'combo',
                                 id: 'group2_combo',
+                                name: 'group2_combo',
                                 placeholder: '<group>',
                                 options: [],
                                 label: ''
@@ -41,6 +43,7 @@
                             {
                                 view: 'combo',
                                 id: 'group3_combo',
+                                name: 'group3_combo',
                                 placeholder: '<group>',
                                 options: [],
                                 label: ''
@@ -53,13 +56,15 @@
                         cols: [
                             {
                                 view:"text",
-                                id: 'value_text',
+                                id: 'convert_value',
+                                name: 'convert_value',
                                 placeholder: "<value>",
                                 label: 'value'
                             },
                             {
                                 view:"combo",
                                 id: 'from_units_combo',
+                                name: 'from_units_combo',
                                 placeholder: "<units>",
                                 options: [],
                                 label: ''
@@ -74,6 +79,7 @@
                             {
                                 view:"combo",
                                 id: 'to_units_combo',
+                                name: 'to_units_combo',
                                 placeholder: "<units>",
                                 options: [],
                                 label: ''
@@ -82,9 +88,18 @@
                     }
                 },
                 {
-                    view:"button",
-                    id: 'convert_button',
-                    value: 'convert'
+                    cols: [
+                        {
+                            view:"button",
+                            id: 'convert_button',
+                            value: 'convert'
+                        },
+                        {
+                            view:"button",
+                            id: 'convert_clear_button',
+                            value: 'clear'
+                        }
+                    ]
                 }
             ]
         };
@@ -152,6 +167,11 @@
         });
 
 
+        $$('convert_clear_button').attachEvent('onItemClick', function () {
+            app.bus.view.publish('convert.clear', {});
+        });
+
+
         $$('from_units_combo').attachEvent('onItemClick', function () {
             var list = $$('from_units_combo').getPopup().getList();
 
@@ -163,8 +183,10 @@
 
 
         $$('from_units_combo').attachEvent('onChange', function (value) {
-            debug('publish convert.unit_change');
-            app.bus.view.publish('convert.unit_change', { value: value });
+            if (value) {
+                debug('publish convert.unit_change', value);
+                app.bus.view.publish('convert.unit_change', { value: value });
+            }
         });
 
 

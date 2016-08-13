@@ -152,6 +152,15 @@
 
         });
 
+
+        app.bus.view.subscribe('convert.clear', function (data, envelope) {
+            _.forEach(['to_units_combo', 'from_units_combo'], function (id) {
+                $$(id).getList().clearAll();
+            });
+
+            $$('convert_form').clear();
+        });
+
     };
 
 })();
