@@ -154,7 +154,7 @@
 
 
         $$('convert_button').attachEvent('onItemClick', function () {
-            var value =    $$('value_text').getValue();
+            var value =    $$('convert_value').getValue();
             var fromUnit = $$('from_units_combo').getValue();
             var toUnit =   $$('to_units_combo').getValue();
 
