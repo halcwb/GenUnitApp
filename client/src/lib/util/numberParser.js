@@ -9,8 +9,17 @@
     "use strict";
 
 
-    exports.parseStringToFloat = function (f) {
-        var nd = _.isString(f) ? f.split('/') : [''],
+    exports.parseFloatToString = function (f) {
+        var s = f.toString(),
+            del = s.indexOf('.') > 0 ? '.' : ',',
+            dec = s.split(del).length === 1 ? 0 : s.split(del)[1].length;
+
+        return parseInt(s.replace(del, "")) +  "/" + Math.pow(10, dec);
+    };
+
+
+    exports.parseStringToFloat = function (s) {
+        var nd = _.isString(s) ? s.split('/') : [''],
             n = parseFloat(nd[0] === '' ? '0' : nd[0].replace(',', '.')),
             d = parseFloat(nd.length > 1 ? nd[1] : "1"),
             fix = exports.fixPrecision;

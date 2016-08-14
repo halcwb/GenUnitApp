@@ -36,12 +36,9 @@
 
 
         app.bus.controller.subscribe('*.result', function (data /*, envelope */) {
-            var result =
-                    app.util.numberParser.parseStringToFloat(data.result.split(' ')[0]) + ' ' +
-                    (_.tail(data.result.split(' ')).join(' '));
+            var result = app.util.numberParser.parseStringToFloat(data.result.split(' ')[0]) + ' ' + (_.tail(data.result.split(' ')).join(' '));
 
-
-            debug('result', data.result);
+            debug('result', data);
             $$('result_list').add({ expr: data.expr, result: result });
         });
 

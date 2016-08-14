@@ -76,13 +76,14 @@
 
 
         app.bus.view.subscribe('convert.convert', function (data, envelope) {
+            data.value = app.util.numberParser.parseFloatToString(data.value);
 
             var post = _.partial(app.request.post, app.settings.demo),
 
                 succ = function (resp) {
                     debug('got: ', resp);
                     app.bus.controller.publish('convert.result', {
-                        expr: data.value + " " + data.fromUnit,
+                        expr: app.util.numberParser.parseStringToFloat(data.value) + " " + data.fromUnit,
                         result: resp.result.text
                     });
                 },

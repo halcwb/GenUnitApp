@@ -16,6 +16,13 @@
         var debug = app.debug('client:controllers:evaluate');
 
         app.bus.view.subscribe('expression.evaluate', function (data, envelope) {
+            var expr = _.chain(data.expr.split(' ')).map(function (el) {
+                if (el.indexOf('.') > 0 || el.indexOf(',') > 0) {
+                    return app.util.numberParser.parseFloatToString(el);
+                } else {
+                    return el;
+                }
+            }).join(' ').value();
 
             var post = _.partial(app.request.post, app.settings.demo),
 
@@ -39,7 +46,7 @@
                 };
 
             app.loading(true);
-            post(succ, fail, 'evaluate', data);
+            post(succ, fail, 'evaluate', { expr: expr });
             app.loading(false);
 
         });
