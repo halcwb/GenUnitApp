@@ -2,7 +2,7 @@
  * @module views/forms/expression
  */
 
-/*global $$ */
+/*global webix, $$, window */
 
 (function () {
     "use strict";
@@ -41,6 +41,7 @@
 
         // **** Publish events *****
 
+
         $$('evaluate_button').attachEvent('onItemClick', function () {
             var text = $$('expression_text').getValue();
 
@@ -49,6 +50,18 @@
             });
         });
 
+
+        webix.event($$('evaluate_button').getInputNode(), 'mouseenter', function (e) {
+            app.bus.view.publish('expression.evaluate.mouseenter', {
+                event: e
+            });
+        });
+
+        webix.event($$('evaluate_button').getInputNode(), 'mouseleave', function (e) {
+            app.bus.view.publish('expression.evaluate.mouseleave', {
+                event: e
+            });
+        });
 
         debug('init');
     };

@@ -2,7 +2,7 @@
  * @module views/forms/convert
  */
 
-/*global $$, _ */
+/*global webix, $$, _ */
 
 (function () {
     "use strict";
@@ -189,7 +189,44 @@
             }
         });
 
+        webix.event($$('groups_button').getInputNode(), 'mouseenter', function (e) {
+            app.bus.view.publish('convert.groups.mouseenter', {
+                event: e
+            });
+        });
 
+        webix.event($$('groups_button').getInputNode(), 'mouseleave', function (e) {
+            app.bus.view.publish('convert.groups.mouseleave', {
+                event: e
+            });
+        });
+
+        webix.event($$('convert_button').getInputNode(), 'mouseenter', function (e) {
+            app.bus.view.publish('convert.convert.mouseenter', {
+                event: e
+            });
+        });
+
+        webix.event($$('convert_button').getInputNode(), 'mouseleave', function (e) {
+            app.bus.view.publish('convert.convert.mouseleave', {
+                event: e
+            });
+        });
+
+
+        webix.event($$('convert_clear_button').getInputNode(), 'mouseenter', function (e) {
+            app.bus.view.publish('convert.clear.mouseenter', {
+                event: e
+            });
+        });
+
+        webix.event($$('convert_clear_button').getInputNode(), 'mouseleave', function (e) {
+            app.bus.view.publish('convert.clear.mouseleave', {
+                event: e
+            });
+        });
+
+        
         // **** Subscribe to controllers ****
 
 

@@ -95,6 +95,7 @@
         // **** Initialize UI ****
 
         require('./views/ui.js').init(app);
+        require('./views/windows/tooltip.js').init(app);
 
 
         // **** Initialize Loading Mask ****
@@ -107,6 +108,7 @@
         require('./controllers/app.js').init(app);
         require('./controllers/convert.js').init(app);
         require('./controllers/evaluate.js').init(app);
+        require('./controllers/tooltip.js').init(app);
 
 
         // **** Show welcome message ****
